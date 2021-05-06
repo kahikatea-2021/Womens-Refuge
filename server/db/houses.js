@@ -29,7 +29,7 @@ function getIslandRegions (island, db = connection) {
     .distinct('region', 'island')
 }
 
-// Get every house in a region
+// Get every house in a region houses
 function getAllRegionalHouses (region, db = connection) {
   return db('houses')
     .join('regions', 'regions.id', 'houses.region_id')
