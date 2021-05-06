@@ -5,7 +5,7 @@ export default function App() {
     return (
       <>
         <div>
-          <Link className='button' to='/northisland'>North Island</Link>
+        <Link className='button' to='/southisland'>South Island</Link>
         </div>
       </>
     );
