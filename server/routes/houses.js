@@ -14,7 +14,7 @@ const exampleData = [
   { id: 7, name: 'TestHouse 7', rooms: 7, region: 'Auckland', island: 'North' }
 ]
 
-router.get('/all', (req, res) => {
+router.get('/', (req, res) => {
   const island = req.query.island ? req.query.island : 'all'
   const regions = req.query.region ? [].concat(req.query.region) : ['all']
   const excludedRegions = req.query.exclude ? [].concat(req.query.exclude) : []
