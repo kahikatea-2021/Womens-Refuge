@@ -1,9 +1,9 @@
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('users').del()
+  return knex('regions').del()
     .then(function () {
       // Inserts seed entries
-      return knex('users').insert([
+      return knex('regions').insert([
         { id: 1, island: 'north', region: 'Northland' },
         { id: 2, island: 'north', region: 'Auckland' },
         { id: 3, island: 'north', region: 'Bay of Plenty' },
