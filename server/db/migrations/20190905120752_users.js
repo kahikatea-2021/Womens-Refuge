@@ -14,6 +14,7 @@ exports.up = function (knex) {
     table.string('email')
     table.boolean('isMasterAdmin')
     table.boolean('isRefugeCoordinator')
+    table.int('house_id').references('houses.id')
   })
 }
 
