@@ -1,21 +1,11 @@
-import React, { useEffect } from 'react'
-// import { connect } from 'react-redux'
+import React from 'react'
+// import { Link } from 'react-router-dom'
+import Login from './Login'
 
-function App (props) {
-  // useEffect(() => {
-  //   props.dispatch(fetchFruits())
-  // }, [])
-
+function App () {
   return (
-    <>
-      <h1>App goes here!</h1>
-    </>
+    <Login />
   )
 }
-// const mapStateToProps = (globalState) => {
-//   return {
-//     fruits: globalState.fruits
-//   }
-// }
 
 export default App

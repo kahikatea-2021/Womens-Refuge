@@ -7,9 +7,9 @@ import App from './components/App'
 
 document.addEventListener('DOMContentLoaded', () => {
   render(
-    // <Provider store={store}>
-    <App />
-    // </Provider>,
-    , document.getElementById('app')
+    <>
+      <App />
+    </>,
+    document.getElementById('app')
   )
 })
