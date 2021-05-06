@@ -21,14 +21,30 @@ function getHouseById (id, db = connection) {
 function getAllRegionalHouses (region, db = connection) {
   return db('houses')
     .join('regions', 'regions.id', 'houses.region_id')
-    .where('region', '=', region)
+    .where(db.raw('LOWER(region)'), '=', region.toLowerCase())
 }
 
 // exclude houses from selected regions
 function excludeRegions (regions, db = connection) {
   return db('regions')
     .join('houses', 'regions.id', 'region_id')
-    .whereNotIn('region', regions)
+    .whereNotIn(db.raw('LOWER(region)'), regions.toLowerCase())
+}
+
+function genearlQuery (island, regions, exclude, db = connection) {
+  console.log(regions, exclude, island)
+  if (island === 'all') island = '%'
+  let query = db('houses')
+    .join('regions', 'houses.region_id', 'regions.id')
+    .where('regions.island', 'like', island)
+
+  if (regions.length > 0) {
+    query = query.whereIn(db.raw('LOWER(region)'), regions.map(region => region.toLowerCase()))
+  }
+  if (exclude.length > 0) {
+    query = query.whereNotIn(db.raw('LOWER(region)'), exclude.map(region => region.toLowerCase()))
+  }
+  return query
 }
 
 module.exports = {
@@ -36,5 +52,6 @@ module.exports = {
   getAllRegionalHouses,
   getHouseById,
   getHouseByName,
-  excludeRegions
+  excludeRegions,
+  genearlQuery
 }

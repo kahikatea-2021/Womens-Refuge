@@ -1,5 +1,5 @@
 const express = require('express')
-
+const db = require('../db/houses')
 const router = express.Router()
 
 module.exports = router
@@ -16,31 +16,42 @@ const exampleData = [
 
 router.get('/', (req, res) => {
   const island = req.query.island ? req.query.island : 'all'
-  const regions = req.query.region ? [].concat(req.query.region) : ['all']
+  const regions = req.query.region ? [].concat(req.query.region) : []
   const excludedRegions = req.query.exclude ? [].concat(req.query.exclude) : []
 
-  let data = []
-  data = island === 'all' ? exampleData : exampleData.filter(house => house.island.toLocaleLowerCase() === island.toLocaleLowerCase())
+  // let data = []
+  // data = island === 'all' ? exampleData : exampleData.filter(house => house.island.toLocaleLowerCase() === island.toLocaleLowerCase())
 
-  data = regions[0] === 'all' ? data : data.filter(house => {
-    const result = regions.find(region => region.toLocaleLowerCase() === house.region.toLocaleLowerCase())
-    return !!result
-  })
+  // data = regions[0] === 'all' ? data : data.filter(house => {
+  //   const result = regions.find(region => region.toLocaleLowerCase() === house.region.toLocaleLowerCase())
+  //   return !!result
+  // })
 
-  data = excludedRegions.length > 0 ? data.filter(house => {
-    const result = excludedRegions.find(region => house.region.toLocaleLowerCase() === region.toLocaleLowerCase())
-    return !result
-  }) : data
+  // data = excludedRegions.length > 0 ? data.filter(house => {
+  //   const result = excludedRegions.find(region => house.region.toLocaleLowerCase() === region.toLocaleLowerCase())
+  //   return !result
+  // }) : data
 
   // TODO hook up to database
 
-  res.status(200).json(data)
+  db.genearlQuery(island, regions, excludedRegions)
+    .then(result => {
+      res.status(200).json(result)
+      return null
+    })
+    .catch(err => console.log(err))
 })
 
+// get houses by region
 router.get('/region/:region', (req, res) => {
   console.log(req.params.region)
-  const data = exampleData.filter(house => house.region.toLowerCase() === req.params.region?.toLowerCase())
-  res.json(data)
+  const region = req.params.region
+  db.getAllRegionalHouses(region)
+    .then(data => {
+      res.json(data)
+      return null
+    })
+    .catch(err => console.log(err))
 })
 
 router.get('/house/:name', (req, res) => {
