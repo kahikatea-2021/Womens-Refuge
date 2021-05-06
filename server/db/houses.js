@@ -17,18 +17,6 @@ function getHouseById (id, db = connection) {
     .where('id', '=', id)
 }
 
-// Get every region in a particular island
-function getIslandRegions (island, db = connection) {
-  if (island === 'all') {
-    island = '%'
-  } else {
-    island = '%' + island + '%'
-  }
-  return db('regions')
-    .where('island', 'like', island)
-    .distinct('region', 'island')
-}
-
 // Get every house in a region houses
 function getAllRegionalHouses (region, db = connection) {
   return db('houses')
@@ -36,10 +24,17 @@ function getAllRegionalHouses (region, db = connection) {
     .where('region', '=', region)
 }
 
+// exclude houses from selected regions
+function excludeRegions (regions, db = connection) {
+  return db('regions')
+    .join('houses', 'regions.id', 'region_id')
+    .whereNotIn('region', regions)
+}
+
 module.exports = {
   getAllHouses,
   getAllRegionalHouses,
-  getIslandRegions,
   getHouseById,
-  getHouseByName
+  getHouseByName,
+  excludeRegions
 }
