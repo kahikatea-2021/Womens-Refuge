@@ -1,6 +1,6 @@
 exports.up = function (knex) {
   return knex.schema.createTable('regions', table => {
-    table.increments('id')
+    table.increments('id').primary()
     table.string('island')
     table.string('region')
   })
