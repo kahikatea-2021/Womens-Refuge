@@ -1,9 +1,8 @@
 import React from 'react'
-import LogoutButton from './Buttons/LogoutButton'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function Header () {
-  const { logout, isLoading, isAuthenticated, user } = useAuth0()
+  const { isLoading, isAuthenticated } = useAuth0()
 
   if (isLoading) {
     return <p>Loading...</p>

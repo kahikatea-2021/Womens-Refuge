@@ -1,13 +1,22 @@
 import request from 'superagent'
-const acceptJsonHeader = { Accept: 'application/json' }
-const rootUrl = '/api/v1/southisland'
+// const acceptJsonHeader = { Accept: 'application/json' }
+const rootUrl = '/api/v1/regions'
 
 // get all the houses in SI
 
-export function getAllSouthHouses () {
+// export function getAllSouthHouses () {
+//   return request.get(rootUrl)
+//     .accept(acceptJsonHeader)
+//     .then(res => {
+//       return res.send('yoohoo')
+//     })
+// }
+
+export function getAllIslandRegions (island) {
   return request.get(rootUrl)
-    .accept(acceptJsonHeader)
+    .query({ island: island })
     .then(res => {
-      return res.send('yoohoo')
+      console.log(res.body)
+      return res.body
     })
 }
