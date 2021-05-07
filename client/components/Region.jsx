@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getHousesInRegion } from '../apis/regions'
+import { Link } from 'react-router-dom'
+
 
 function Region () {
   const [houses, setHouses] = useState(null)
@@ -17,7 +19,7 @@ function Region () {
   return (
     <>
       {houses && houses.map(house => {
-        return <p key={house.id}>{house.name}</p>
+        return <p key={house.id}><Link to={`/house/${house.name}`}>  {house.name}</Link></p>
       })}
     </>
   )
