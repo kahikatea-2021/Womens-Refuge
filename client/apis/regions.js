@@ -1,21 +1,30 @@
 import request from 'superagent'
-const acceptJsonHeader = { Accept: 'application/json' }
 const rootUrl = '/api/v1/houses/'
 
 // Get all the houses
-export function getAllHouses () {
-  return request.get(rootUrl + 'all')
-    .accept(acceptJsonHeader)
+export function getAllHouses (house) {
+  return request.get(rootUrl)
+    .query({ house: house })
     .then(res => {
-      return res.body.houses
+      return res.body
     })
 }
 
 // Get all the houses in a particular region
 export function getHousesInRegion (region) {
-  return request.get(rootUrl + 'region/' + region)
-    .accept(acceptJsonHeader)
+  return request.get(rootUrl)
+    .query({ region: region })
+    // .accept(acceptJsonHeader)
     .then(res => {
-      return res.body.region
+      return res.body
+    })
+}
+
+// Get a house
+export function getHouse (house) {
+  return request.get(rootUrl + 'house/' + house)
+    .then(res => {
+      console.log(res.body[0])
+      return res.body[0]
     })
 }

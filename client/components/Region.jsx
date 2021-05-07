@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams, Link } from 'react-router-dom'
+import { getHousesInRegion } from '../apis/regions'
 
 function Region () {
+  const [houses, setHouses] = useState(null)
+  const regionName = useParams().name
+  useEffect(() => {
+    return getHousesInRegion(regionName)
+      .then(houses => {
+        setHouses(houses)
+        return null
+      })
+      .catch(err => console.log(err))
+  }, [])
+
   return (
     <>
+      {houses && houses.map(house => {
+        return <p key={house.house_id}><Link to={`/house/${house.name}`}>  {house.name}</Link></p>
+      })}
     </>
   )
 }
-
-// We will use .map() method to map over the safehouses within the individual regions once database has been established
 
 export default Region

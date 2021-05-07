@@ -1,14 +1,28 @@
-import React from 'react'
-import Region from './Region'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { getAllHouses } from '../apis/regions'
 
 function AllSafehouses () {
+  const [houses, setHouses] = useState([])
+  useEffect(() => {
+    getAllHouses()
+      .then(results => {
+        setHouses(results)
+        return null
+      })
+      .catch(err => console.log(err))
+  }, [])
+
   return (
     <>
-      <Region />
+      <h1>All Safehouses</h1>
+      {houses.map(house => {
+        return <p key={house.name}>
+          <Link to={`/house/${house.name}`}>  {house.name}</Link>
+        </p>
+      })}
     </>
   )
 }
-
-// We will use .map() method to map over the regions once database has been established
 
 export default AllSafehouses
