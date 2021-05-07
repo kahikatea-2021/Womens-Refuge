@@ -39,11 +39,11 @@ function genearlQuery (island, regions, exclude, db = connection) {
   `WHERE LOWER(regions.island) LIKE "${island.toLowerCase()}" `
 
   if (regions.length > 0) {
-    query += 'AND LOWER(regions.region) IN (' + regions.map(region => `"${region}"`).join(' ,') + ') '
+    query += 'AND LOWER(regions.region) IN (' + regions.map(region => `"${region.toLowerCase()}"`).join(' ,') + ') '
   }
 
   if (exclude.length > 0) {
-    query += 'AND LOWER(regions.region) NOT IN (' + exclude.map(region => `"${region}"`).join(' ,') + ') '
+    query += 'AND LOWER(regions.region) NOT IN (' + exclude.map(region => `"${region.toLowerCase()}"`).join(' ,') + ') '
   }
 
   query += 'GROUP BY houses.id '
