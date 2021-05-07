@@ -17,7 +17,7 @@ useEffect(() => {
   return (
     <>
       <h1>House:</h1>
-      <p key={house.id}>{house.name}</p>
+      <p key={house.name}>{houseName}</p>
     </>
   )
 }
