@@ -19,3 +19,13 @@ export function getHousesInRegion (region) {
       return res.body
     })
 }
+
+// Get a house
+export function getHouse (house) {
+  return request.get(rootUrl + house)
+  .query({house: house})
+  .then(res => {
+    console.log('here ', house.name)
+    return res.body
+  })
+}

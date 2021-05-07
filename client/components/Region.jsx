@@ -9,13 +9,11 @@ function Region () {
     return getHousesInRegion(regionName)
       .then(houses => {
         setHouses(houses)
-        console.log(houses)
         return null
       })
       .catch(err => console.log(err))
   }, [])
 
-  console.log(useParams().name)
   return (
     <>
       {houses && houses.map(house => {
@@ -24,7 +22,5 @@ function Region () {
     </>
   )
 }
-
-// We will use .map() method to map over the safehouses within the individual regions once database has been established
 
 export default Region
