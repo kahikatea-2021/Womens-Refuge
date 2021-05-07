@@ -73,7 +73,6 @@ router.delete('/:id', (req, res) => {
 
 // get houses by region
 router.get('/region/:region', (req, res) => {
-  console.log(req.params.region)
   const region = req.params.region
   houseDb.getAllRegionalHouses(region)
     .then(data => {

@@ -21,7 +21,6 @@ function NorthIsland () {
           <Link to={`/region/${region.region}`}>{region.region}</Link>
         </p>
       })}
-
     </>
   )
 }
