@@ -16,7 +16,7 @@ function AllSafehouses () {
     <>
       <h1>All Safehouses</h1>
       {houses.map(house => {
-        console.log('this is it!! ', house)
+        console.log(house)
         return <p key={house.name}>
           {house.name}
         </p>
