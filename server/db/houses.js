@@ -1,14 +1,4 @@
 const connection = require('./connection')
-
-// const baseQuery = connection.raw('SELECT h1.*, count(h1.id) as rooms_available' +
-// 'FROM houses h1' +
-// 'JOIN rooms on h1.id = rooms.house_id' +
-// 'GROUP BY h1.id')
-
-const baseQuery = connection.raw('SELECT *, COUNT(houses.id) as  FROM houses ' +
-'JOIN rooms on houses.id = rooms.house_id ' +
-'GROUP BY houses.id')
-
 // Get every house in the database
 function getAllHouses (db = connection) {
   return db('houses')
