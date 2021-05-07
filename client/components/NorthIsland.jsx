@@ -1,11 +1,29 @@
-import React from 'react'
-import Region from './Region'
+import React, { useEffect, useState } from 'react'
+import HouseList from './HouseList'
+import { getAllIslandRegions } from '../apis/islands'
 
 function NorthIsland () {
+  const [regions, setRegions] = useState([])
+  console.log('HELLOOOOO')
+  useEffect(() => {
+    getAllIslandRegions('north')
+      .then(results => {
+        setRegions(results)
+        return null
+      })
+      .catch(err => console.log(err))
+  }, [])
+
   return (
     <>
       <h1>North Island Regions:</h1>
-      <Region />
+      {regions.map(region => {
+        return <p key={region.region}>
+          {region.region}
+        </p>
+      })}
+      <HouseList/>
+
     </>
   )
 }
