@@ -1,8 +1,4 @@
 const connection = require('./connection')
-// Get every house in the database
-function getAllHouses (db = connection) {
-  return db('houses')
-}
 
 // when a user searches for a specific house name, that house is returned
 function getHouseByName (name, db = connection) {
@@ -14,20 +10,6 @@ function getHouseByName (name, db = connection) {
 function getHouseById (id, db = connection) {
   return db('houses')
     .where('id', '=', id)
-}
-
-// Get every house in a region houses
-function getAllRegionalHouses (region, db = connection) {
-  return db('houses')
-    .join('regions', 'regions.id', 'houses.region_id')
-    .where(db.raw('LOWER(region)'), '=', region.toLowerCase())
-}
-
-// exclude houses from selected regions
-function excludeRegions (regions, db = connection) {
-  return db('regions')
-    .join('houses', 'regions.id', 'region_id')
-    .whereNotIn(db.raw('LOWER(region)'), regions.toLowerCase())
 }
 
 function genearlQuery (island, regions, exclude, db = connection) {
@@ -50,11 +32,28 @@ function genearlQuery (island, regions, exclude, db = connection) {
   return db.raw(query)
 }
 
+function updateHouseById (houseId, house, db = connection) {
+  return db('houses')
+    .update(house)
+    .where('id', '=', houseId)
+}
+
+function addHouse (house, db = connection) {
+  return db('houses')
+    .insert(house)
+}
+
+function deleteHouseById (houseId, db = connection) {
+  return db('houses')
+    .del()
+    .where('id', '=', houseId)
+}
+
 module.exports = {
-  getAllHouses,
-  getAllRegionalHouses,
   getHouseById,
   getHouseByName,
-  excludeRegions,
-  genearlQuery
+  genearlQuery,
+  updateHouseById,
+  addHouse,
+  deleteHouseById
 }

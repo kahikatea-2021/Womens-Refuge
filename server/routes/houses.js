@@ -20,6 +20,58 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.post('/', (req, res) => {
+  const rooms = [].concat(req.body.room)
+  const house = {}
+  house.name = req.body.name
+  house.region_id = req.body.region
+  house.phone_1 = req.body.phone_1
+  house.phone_2 = req.body.phone_2
+  house.notes = req.body.note
+
+  houseDb.addHouse(house)
+    .then(ids => {
+      return rooms.map(room => {
+        room.house_id = ids[0]
+        return room
+      })
+    })
+    .then(rooms => {
+      return roomDb.addRooms(rooms)
+    })
+    .then(() => {
+      res.status(200).send()
+      return null
+    })
+    .catch(err => console.log(err))
+})
+
+router.put('/', (req, res) => {
+  const house = {}
+  house.id = req.body.id
+  house.name = req.body.name
+  house.region_id = req.body.region
+  house.phone_1 = req.body.phone_1
+  house.phone_2 = req.body.phone_2
+  house.notes = req.body.note
+
+  houseDb.updateHouseById(house.id)
+    .then(() => {
+      res.status(200).send()
+      return null
+    })
+    .catch(err => console.log(err))
+})
+
+router.delete('/:id', (req, res) => {
+  houseDb.deleteHouseById(req.params.id)
+    .then(() => {
+      res.status(200).send()
+      return null
+    })
+    .catch(err => console.log(err))
+})
+
 // get houses by region
 router.get('/region/:region', (req, res) => {
   console.log(req.params.region)
