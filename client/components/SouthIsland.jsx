@@ -1,15 +1,14 @@
 import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
 
-function SouthIsland() {
+import Region from './Region'
+
+function SouthIsland () {
   return (
-      <>
-      <Header />
+    <>
       <h1>South Island Regions:</h1>
       <Region />
-      <Footer />
-      </>
+
+    </>
   )
 }
 

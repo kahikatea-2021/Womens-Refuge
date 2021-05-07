@@ -12,7 +12,13 @@ function Header () {
       </>
     )
   } else {
+<<<<<<< HEAD
     return <h1>Womens Refuge</h1>
+=======
+    return (
+      <h1>Womens Refuge</h1>
+    )
+>>>>>>> 33e1c028ec4d448f506c45a3c2127383ef9e57eb
   }
 }
 

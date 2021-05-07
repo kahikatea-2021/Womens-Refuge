@@ -1,13 +1,16 @@
 import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
+import Region from './Region'
 
 function AllSafehouses () {
   return (
     <>
+<<<<<<< HEAD
       <Header />
       <Region />
       <Footer />
+=======
+      <Region />
+>>>>>>> 33e1c028ec4d448f506c45a3c2127383ef9e57eb
     </>
   )
 }

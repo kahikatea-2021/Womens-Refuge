@@ -36,7 +36,7 @@ function genearlQuery (island, regions, exclude, db = connection) {
   let query = 'SELECT *, COUNT(houses.id) as rooms_available ' +
   'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
   'JOIN regions on houses.region_id = regions.id ' +
-  `WHERE regions.island LIKE "${island}" `
+  `WHERE LOWER(regions.island) LIKE "${island.toLowerCase()}" `
 
   if (regions.length > 0) {
     query += 'AND LOWER(regions.region) IN (' + regions.map(region => `"${region}"`).join(' ,') + ') '
