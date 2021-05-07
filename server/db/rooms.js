@@ -9,7 +9,14 @@ function getRoomById (id, db = connection) {
 // when a user searches for a specific house name, that house is returned
 function getRoomsByHouse (name, db = connection) {
   return db('houses')
+    .join('rooms', 'house_id', 'houses.id')
     .where('name', '=', name)
+}
+
+function getRoomsByHouseId (houseId, db = connection) {
+  return db('houses')
+    .join('rooms', 'house_id', 'houses.id')
+    .where('houses.id', '=', houseId)
 }
 
 function updateRoomDescription (roomId, updateDescription, db = connection) {
@@ -32,5 +39,6 @@ module.exports = {
   getRoomsByHouse,
   getRoomById,
   updateRoomDescription,
-  updateRoomAvailability
+  updateRoomAvailability,
+  getRoomsByHouseId
 }
