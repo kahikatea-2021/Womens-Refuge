@@ -1,9 +1,15 @@
 const connection = require('./connection')
 
+const baseQuery = 'SELECT *, COUNT(houses.id) as rooms_available ' +
+  'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
+  'JOIN regions on houses.region_id = regions.id '
+
 // when a user searches for a specific house name, that house is returned
 function getHouseByName (name, db = connection) {
-  return db('houses')
-    .where('name', '=', name)
+  const query = baseQuery +
+    `WHERE LOWER(name) = "${name.toLowerCase()}" ` +
+    'GROUP BY houses.id'
+  return db.raw(query)
 }
 
 // when a user clicks on a house to view the house details
@@ -15,9 +21,7 @@ function getHouseById (id, db = connection) {
 function genearlQuery (island, regions, exclude, db = connection) {
   console.log(regions, exclude, island)
   if (island === 'all') island = '%'
-  let query = 'SELECT *, COUNT(houses.id) as rooms_available ' +
-  'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
-  'JOIN regions on houses.region_id = regions.id ' +
+  let query = baseQuery +
   `WHERE LOWER(regions.island) LIKE "${island.toLowerCase()}" `
 
   if (regions.length > 0) {

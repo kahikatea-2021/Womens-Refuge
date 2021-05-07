@@ -22,9 +22,9 @@ export function getHousesInRegion (region) {
 
 // Get a house
 export function getHouse (house) {
-  return request.get(rootUrl + house)
-  .query({house: house})
-  .then(res => {
-    return res.body
-  })
+  return request.get(rootUrl + 'house/' + house)
+    .then(res => {
+      console.log(res.body[0])
+      return res.body[0]
+    })
 }
