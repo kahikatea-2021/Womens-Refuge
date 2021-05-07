@@ -8,6 +8,7 @@ import Home from './Home'
 import Header from './Header'
 import Footer from './Footer'
 import SouthIsland from './SouthIsland'
+import NorthIsland from './NorthIsland'
 
 function App () {
   const { isAuthenticated } = useAuth0()
@@ -18,6 +19,7 @@ function App () {
       <Header />
       {!isAuthenticated && <Login />}
       <Route exact path='/' component={Home} />
+      <Route path='./northisland' component={NorthIsland} />
       <Route path='/southisland' component={SouthIsland} />
       <Footer />
     </>
