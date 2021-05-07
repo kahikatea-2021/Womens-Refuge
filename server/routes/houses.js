@@ -40,9 +40,9 @@ router.get('/house/:name', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.get('/house/:name/rooms', (req, res) => {
-  const name = req.params.name
-  roomDb.getRoomsByHouse(name)
+router.get('/house/:id/rooms', (req, res) => {
+  const id = req.params.id
+  roomDb.getRoomsByHouseId(id)
     .then(rooms => {
       res.status(200).json(rooms)
       return null

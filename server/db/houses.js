@@ -1,5 +1,14 @@
 const connection = require('./connection')
 
+// const baseQuery = connection.raw('SELECT h1.*, count(h1.id) as rooms_available' +
+// 'FROM houses h1' +
+// 'JOIN rooms on h1.id = rooms.house_id' +
+// 'GROUP BY h1.id')
+
+const baseQuery = connection.raw('SELECT *, COUNT(houses.id) as  FROM houses ' +
+'JOIN rooms on houses.id = rooms.house_id ' +
+'GROUP BY houses.id')
+
 // Get every house in the database
 function getAllHouses (db = connection) {
   return db('houses')
@@ -34,17 +43,21 @@ function excludeRegions (regions, db = connection) {
 function genearlQuery (island, regions, exclude, db = connection) {
   console.log(regions, exclude, island)
   if (island === 'all') island = '%'
-  let query = db('houses')
-    .join('regions', 'houses.region_id', 'regions.id')
-    .where('regions.island', 'like', island)
+  let query = 'SELECT *, COUNT(houses.id) as rooms_available ' +
+  'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
+  'JOIN regions on houses.region_id = regions.id ' +
+  `WHERE regions.island LIKE "${island}" `
 
   if (regions.length > 0) {
-    query = query.whereIn(db.raw('LOWER(region)'), regions.map(region => region.toLowerCase()))
+    query += 'AND LOWER(regions.region) IN (' + regions.map(region => `"${region}"`).join(' ,') + ') '
   }
+
   if (exclude.length > 0) {
-    query = query.whereNotIn(db.raw('LOWER(region)'), exclude.map(region => region.toLowerCase()))
+    query += 'AND LOWER(regions.region) NOT IN (' + exclude.map(region => `"${region}"`).join(' ,') + ') '
   }
-  return query
+
+  query += 'GROUP BY houses.id '
+  return db.raw(query)
 }
 
 module.exports = {

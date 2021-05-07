@@ -4,11 +4,10 @@ const connection = require('./connection')
 function getIslandRegions (island, db = connection) {
   if (island === 'all') {
     island = '%'
-  } else {
-    island = '%' + island + '%'
   }
+
   return db('regions')
-    .where('island', 'like', island)
+    .where(db.raw('LOWER(island)'), 'like', island.toLowerCase())
     .distinct('region', 'island')
 }
 
