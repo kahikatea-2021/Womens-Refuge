@@ -10,7 +10,7 @@ import Footer from './Footer'
 import SouthIsland from './SouthIsland'
 
 function App () {
-  const { logout, isLoading, isAuthenticated, user } = useAuth0()
+  const { isAuthenticated } = useAuth0()
 
   // if (!isAuthenticated) {
   return (

@@ -1,10 +1,10 @@
 const connection = require('./connection')
 
-function isAdmin () {
+function isAdmin (db = connection) {
 
 }
 
-function isHost () {
+function isHost (db = connection) {
 
 }
 
