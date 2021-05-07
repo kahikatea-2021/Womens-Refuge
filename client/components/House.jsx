@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import getHouseByName from '../apis/houses'
-// import { useParams } from 'react-router-dom'
+import { getHouse } from '../apis/regions'
+import { useParams } from 'react-router-dom'
 
 function House () {
 const [house, setHouse] = useState([])
-// const houseName = useParams().name
+const houseName = useParams().name
 useEffect(() => {
-  getHouseByName()
+  return getHouse(houseName)
   .then(results => {
     setHouse(results)
     return null
@@ -17,7 +17,7 @@ useEffect(() => {
   return (
     <>
       <h1>House:</h1>
-      <p key={house.name}>{house.name}</p>
+      <p key={house.id}>{house.name}</p>
     </>
   )
 }

@@ -18,7 +18,7 @@ function AllSafehouses () {
       <h1>All Safehouses</h1>
       {houses.map(house => {
         return <p key={house.name}>
-          <Link to={`/houses/${house.name}`}>  {house.name}</Link>
+          <Link to={`/house/${house.name}`}>  {house.name}</Link>
         </p>
       })}
     </>
