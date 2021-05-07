@@ -5,11 +5,13 @@ import { useAuth0 } from '@auth0/auth0-react'
 function Header () {
   const { logout, isLoading, isAuthenticated, user } = useAuth0()
 
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
   if (isAuthenticated) {
     return (
       <>
-        <LogoutButton />
-        <h1>Womens Refuge</h1>
+        <h1>Womens asdfRefuge</h1>
       </>
     )
   } else {
