@@ -7,17 +7,17 @@ import Footer from './Footer'
 
 // STRETCH GOAL: have a 'advanced search' button at the bottom of the button list which takes you to an advanced search page
 
-function Home() {
-    return (
-        <>
-        <Header />
-        <h1>Safehouse Search Options:</h1>
-        <NorthIslandButton />
-        <SouthIslandButton />
-        <ViewAllButton />
-        <Footer />
-        </>
-    )
+function Home () {
+  return (
+    <>
+      <Header />
+      <h1>Safehouse Search Options:</h1>
+      <NorthIslandButton />
+      <SouthIslandButton />
+      <ViewAllButton />
+      <Footer />
+    </>
+  )
 }
 
 export default Home
