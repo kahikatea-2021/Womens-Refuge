@@ -13,7 +13,7 @@ function Header () {
       <>
         <LogoutButton />
         <h1>Safehouse</h1>
-        <img src="../../logo.png" width='200px'></img>
+        <img src="../../images/logo.png" width='200px'></img>
 
       </>
     )
@@ -21,7 +21,7 @@ function Header () {
     return (
       <>
         <h1>Safehouse</h1>
-        <img src="../../logo.png" width='200px'></img>
+        <img src="../../images/logo.png" width='200px'></img>
       </>
     )
   }
