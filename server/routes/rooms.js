@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.patch('/:id', (req, res) => {
+router.patch('/:id/description', (req, res) => {
   const id = req.params.id || -1
   console.log(id, req.body.description)
   roomDb.updateRoomDescription(id, req.body.description)
@@ -29,7 +29,7 @@ router.patch('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.put('/:id', (req, res) => {
+router.patch('/:id/availability', (req, res) => {
   const id = req.params.id || -1
   console.log(id, req.body.available)
   roomDb.updateRoomAvailability(id, req.body.available)

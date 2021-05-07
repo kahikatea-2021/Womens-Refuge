@@ -36,10 +36,17 @@ function updateRoomAvailability (roomId, updateAvailable, db = connection) {
     })
 }
 
+function addRooms (rooms, db = connection) {
+  console.log('insert rooms')
+  return db('rooms')
+    .insert(rooms)
+}
+
 module.exports = {
   getRoomsByHouse,
   getRoomById,
   updateRoomDescription,
   updateRoomAvailability,
-  getRoomsByHouseId
+  getRoomsByHouseId,
+  addRooms
 }
