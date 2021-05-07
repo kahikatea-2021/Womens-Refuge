@@ -4,6 +4,7 @@ import App from './components/App'
 import store from './store'
 import { Provider } from 'react-redux'
 import { Auth0Provider } from '@auth0/auth0-react'
+import { HashRouter as Router } from 'react-router-dom'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
@@ -15,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
       scope="read:current_user update:current_user_metadata"
     >
       <Provider store={store}>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </Provider>,
     </Auth0Provider>,
     document.getElementById('app')
