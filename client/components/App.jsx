@@ -7,6 +7,7 @@ import Header from './Header'
 import Footer from './Footer'
 import NorthIsland from './NorthIsland'
 import SouthIsland from './SouthIsland'
+import NorthIsland from './NorthIsland'
 
 function App () {
   const { isAuthenticated } = useAuth0()

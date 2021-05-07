@@ -4,7 +4,7 @@ import { getAllIslandRegions } from '../apis/islands'
 
 function NorthIsland () {
   const [regions, setRegions] = useState([])
-  console.log('HELLOOOOO')
+  
   useEffect(() => {
     getAllIslandRegions('north')
       .then(results => {
