@@ -4,7 +4,7 @@ export default function App () {
   return (
     <>
       <div>
-        <button></button>
+        <button>View all safe houses in the North Island</button>
       </div>
     </>
   )
