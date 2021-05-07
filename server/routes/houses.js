@@ -10,8 +10,10 @@ router.get('/', (req, res) => {
   const regions = req.query.region ? [].concat(req.query.region) : []
   const excludedRegions = req.query.exclude ? [].concat(req.query.exclude) : []
 
+  console.log('regions: ', regions)
   houseDb.genearlQuery(island, regions, excludedRegions)
     .then(result => {
+      console.log('in general query', result)
       res.status(200).json(result)
       return null
     })

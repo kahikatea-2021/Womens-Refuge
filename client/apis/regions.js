@@ -1,5 +1,5 @@
 import request from 'superagent'
-const rootUrl = '/api/v1/houses'
+const rootUrl = '/api/v1/houses/'
 
 // Get all the houses
 export function getAllHouses (house) {
@@ -10,11 +10,12 @@ export function getAllHouses (house) {
     })
 }
 
-// // Get all the houses in a particular region
-// export function getHousesInRegion (region) {
-//   return request.get(rootUrl + 'region/' + region)
-//     .accept(acceptJsonHeader)
-//     .then(res => {
-//       return res.body.region
-//     })
-// }
+// Get all the houses in a particular region
+export function getHousesInRegion (region) {
+  return request.get(rootUrl)
+    .query({ region: region })
+    // .accept(acceptJsonHeader)
+    .then(res => {
+      return res.body
+    })
+}
