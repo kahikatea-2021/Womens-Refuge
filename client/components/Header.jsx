@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
+import LogoutButton from './Buttons/LogoutButton'
 
 function Header () {
   const { isLoading, isAuthenticated } = useAuth0()
@@ -10,12 +11,18 @@ function Header () {
   if (isAuthenticated) {
     return (
       <>
-        <h1>Womens asdfRefuge</h1>
+        <LogoutButton />
+        <h1>Safehouse</h1>
+        <img src="../../logo.png" width='200px'></img>
+
       </>
     )
   } else {
     return (
-      <h1>Womens Refuge</h1>
+      <>
+        <h1>Safehouse</h1>
+        <img src="../../logo.png" width='200px'></img>
+      </>
     )
   }
 }
