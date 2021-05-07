@@ -1,15 +1,21 @@
 import React from 'react'
-import { render } from 'react-dom'
-// import { Provider } from 'react-redux'
-// import store from './store'
-
+import ReactDOM from 'react-dom'
 import App from './components/App'
+import store from './store'
+import { Provider } from 'react-redux'
+import { Auth0Provider } from '@auth0/auth0-react'
 
 document.addEventListener('DOMContentLoaded', () => {
-  render(
-    <>
-      <App />
-    </>,
+  ReactDOM.render(
+    <Auth0Provider
+      domain="dev-xfbt5qv8.au.auth0.com"
+      clientId="97odAuGdEYSDcteYHbDf98Nnco9tXUHi"
+      redirectUri='http://localhost:3000'
+    >
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    </Auth0Provider>,
     document.getElementById('app')
   )
 })

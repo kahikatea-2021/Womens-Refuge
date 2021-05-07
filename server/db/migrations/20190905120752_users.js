@@ -10,11 +10,11 @@
 // }
 exports.up = function (knex) {
   return knex.schema.createTable('users', table => {
-    table.increments('id')
+    table.string('id')
     table.string('email')
-    table.blob('password')
-    table.boolean('isAdmin')
-    table.boolean('isHost')
+    table.boolean('isMasterAdmin')
+    table.boolean('isRefugeCoordinator')
+    table.int('house_id').references('houses.id')
   })
 }
 
