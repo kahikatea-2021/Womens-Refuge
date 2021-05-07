@@ -13,7 +13,9 @@ function Header () {
       </>
     )
   } else {
-    <h1>Womens Refuge</h1>
+    return (
+      <h1>Womens Refuge</h1>
+    )
   }
 }
 
