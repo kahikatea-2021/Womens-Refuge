@@ -5,7 +5,7 @@ import React from 'react'
 function ViewAllButton () {
   return (
     <div>
-      <button></button>
+      <button>View all Safe houses in NZ</button>
     </div>)
 }
 
