@@ -17,10 +17,26 @@ router.get('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-// router.update('/:id', (req, res) => {
-//   const id = req.params.id || -1
+router.patch('/:id', (req, res) => {
+  const id = req.params.id || -1
+  console.log(id, req.body.description)
+  roomDb.updateRoomDescription(id, req.body.description)
+    .then(() => {
+      console.log('updated')
+      res.status(200).send()
+      return null
+    })
+    .catch(err => console.log(err))
+})
 
-//   roomDb.updateRoomById (id)
-//   .then(room => {
-//     res
-//   }))
+router.put('/:id', (req, res) => {
+  const id = req.params.id || -1
+  console.log(id, req.body.available)
+  roomDb.updateRoomAvailability(id, req.body.available)
+    .then(() => {
+      console.log('updated')
+      res.status(200).send()
+      return null
+    })
+    .catch(err => console.log(err))
+})
