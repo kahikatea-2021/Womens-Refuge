@@ -7,6 +7,8 @@ import Header from './Header'
 import Footer from './Footer'
 import NorthIsland from './NorthIsland'
 import SouthIsland from './SouthIsland'
+import AllSafehouses from './AllSafehouses'
+import Region from './Region'
 
 function App () {
   const { isAuthenticated } = useAuth0()
@@ -18,6 +20,8 @@ function App () {
       <Route exact path='/' component={Home} />
       <Route path='/northisland' component={NorthIsland} />
       <Route path='/southisland' component={SouthIsland} />
+      <Route path='/houses' component={AllSafehouses} />
+      <Route path='/region/:name' component={Region} />
       <Footer />
     </>
   )

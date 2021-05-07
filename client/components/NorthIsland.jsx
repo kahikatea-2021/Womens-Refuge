@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import HouseList from './HouseList'
 import { getAllIslandRegions } from '../apis/islands'
+import { Link } from 'react-router-dom'
 
 function NorthIsland () {
   const [regions, setRegions] = useState([])
-  console.log('HELLOOOOO')
   useEffect(() => {
     getAllIslandRegions('north')
       .then(results => {
@@ -19,15 +18,12 @@ function NorthIsland () {
       <h1>North Island Regions:</h1>
       {regions.map(region => {
         return <p key={region.region}>
-          {region.region}
+          <Link to={`/region/${region.region}`}>{region.region}</Link>
         </p>
       })}
-      <HouseList/>
 
     </>
   )
 }
-
-// We will use .map() method to map over the regions once database has been established
 
 export default NorthIsland
