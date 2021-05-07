@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 function House () {
 const [house, setHouse] = useState([])
 const houseName = useParams().name
+
 useEffect(() => {
   return getHouse(houseName)
   .then(results => {
@@ -16,8 +17,7 @@ useEffect(() => {
 
   return (
     <>
-      <h1>House:</h1>
-      <p key={house.name}>{houseName}</p>
+      <p key={house.name}>You are viewing: {houseName} house</p>
     </>
   )
 }
