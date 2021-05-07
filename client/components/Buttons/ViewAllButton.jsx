@@ -1,12 +1,14 @@
 import React from 'react'
-
-// PLEASE NOTE: the "to='/allsafehouses'" is just a placeholder until we know the route names
+import { Link } from 'react-router-dom'
 
 function ViewAllButton () {
   return (
     <div>
-      <button>View all Safe houses in NZ</button>
-    </div>)
+      <Link to='/houses'>
+        <button>View all Safe houses in NZ</button>
+      </Link>
+    </div>
+  )
 }
 
 export default ViewAllButton
