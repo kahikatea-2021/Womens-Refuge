@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function App () {
   return (
     <>
-      <div>
-        <button>View all safe houses in the North Island</button>
-      </div>
+      <Link to='/northisland'>
+        <button>View all Safe houses in the South Island</button>
+      </Link>
     </>
   )
 }
