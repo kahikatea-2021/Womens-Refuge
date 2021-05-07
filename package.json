@@ -18,7 +18,8 @@
     "build:server": "npm run knex -- migrate:latest",
     "lint": "eslint --ext .js,.jsx .",
     "webpack": "webpack --config ./client/webpack.config.js",
-    "knex": "knex --knexfile ./server/db/knexfile.js"
+    "knex": "knex --knexfile ./server/db/knexfile.js",
+    "tailbuild": "tailwindcss build ./client/styles/index.css -o server/public/main.css"
   },
   "babel": {
     "presets": [
