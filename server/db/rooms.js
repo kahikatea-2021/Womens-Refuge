@@ -37,9 +37,14 @@ function updateRoomAvailability (roomId, updateAvailable, db = connection) {
 }
 
 function addRooms (rooms, db = connection) {
-  console.log('insert rooms')
   return db('rooms')
     .insert(rooms)
+}
+
+function deleteRoom (roomId, db = connection) {
+  return db('rooms')
+    .del()
+    .where('id', '=', roomId)
 }
 
 module.exports = {
@@ -48,5 +53,6 @@ module.exports = {
   updateRoomDescription,
   updateRoomAvailability,
   getRoomsByHouseId,
-  addRooms
+  addRooms,
+  deleteRoom
 }
