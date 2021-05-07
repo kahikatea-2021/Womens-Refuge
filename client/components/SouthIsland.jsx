@@ -1,15 +1,30 @@
-import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
+import React, { useEffect, useState } from 'react'
+import HouseList from './HouseList'
+import { getAllIslandRegions } from '../apis/islands'
 
-function SouthIsland() {
+function SouthIsland () {
+  const [regions, setRegions] = useState([])
+
+  useEffect(() => {
+    getAllIslandRegions('south')
+      .then(results => {
+        setRegions(results)
+        return null
+      })
+      .catch(err => console.log(err))
+  }, [])
+
   return (
-      <>
-      <Header />
+    <>
       <h1>South Island Regions:</h1>
-      <Region />
-      <Footer />
-      </>
+      {regions.map(region => {
+        return <p key={region.region}>
+          {region.region}
+        </p>
+      })}
+      <HouseList/>
+
+    </>
   )
 }
 

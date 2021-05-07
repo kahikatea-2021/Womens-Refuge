@@ -2,7 +2,7 @@ exports.up = function (knex) {
   return knex.schema.createTable('rooms', table => {
     table.increments('id').primary()
     table.int('house_id').references('houses.id')
-    table.string('descripton')
+    table.string('description')
     table.boolean('available')
   })
 }
