@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { getAllHouses } from '../apis/regions'
 
 function AllSafehouses () {
@@ -16,9 +17,9 @@ function AllSafehouses () {
     <>
       <h1>All Safehouses</h1>
       {houses.map(house => {
-        console.log('this is it!! ', house)
+        console.log(house)
         return <p key={house.name}>
-          {house.name}
+          <Link to={`/houses/${house.name}`}>  {house.name}</Link>
         </p>
       })}
     </>
