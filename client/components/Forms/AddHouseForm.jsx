@@ -21,8 +21,6 @@ function AddHouseForm () {
     evt.preventDefault()
     console.log(form)
     addHouse(form)
-      .then(res => console.log(res))
-    console.log('add house')
   }
 
   useEffect(() => {

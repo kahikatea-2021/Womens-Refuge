@@ -11,7 +11,6 @@ export function editHouse (houseId) {
 }
 
 export function addHouse (house) {
-  console.log('in api add house')
   return request.post(rootUrl)
     .send(house)
 }
