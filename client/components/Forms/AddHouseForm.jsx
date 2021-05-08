@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router'
 import { addNewHouse, getRegionNames } from './addHouseHelper'
 
 function AddHouseForm () {
@@ -11,6 +12,8 @@ function AddHouseForm () {
     notes: ''
   })
 
+  const history = useHistory()
+
   function handleChange (evt) {
     const { name, value } = evt.target
     setForm({ ...form, [name]: value })
@@ -20,6 +23,11 @@ function AddHouseForm () {
     evt.preventDefault()
     console.log(form)
     addNewHouse(form)
+      .then(id => {
+        history.push('/rooms/add/' + id)
+        return null
+      })
+      .catch(err => console.log(err))
   }
 
   useEffect(() => {

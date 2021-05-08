@@ -14,3 +14,10 @@ export function addHouse (house) {
   return request.post(rootUrl)
     .send(house)
 }
+
+export function getAllRoomsInHouse (houseId) {
+  return request.get(rootUrl + `house/${houseId}/rooms`)
+    .then(res => {
+      return res.body
+    })
+}

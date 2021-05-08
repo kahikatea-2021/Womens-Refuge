@@ -10,7 +10,7 @@ export function addNewHouse (house) {
     .then(newHouse => {
       dispatch(setHouse(newHouse.body))
       dispatch(setWait(false))
-      return null
+      return newHouse.body.id
     })
     .catch(err => {
       dispatch(setWait(false))
