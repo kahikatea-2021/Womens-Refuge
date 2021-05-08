@@ -17,6 +17,16 @@ router.get('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.post('/', (req, res) => {
+  const room = req.body
+  roomDb.addRooms(room)
+    .then(() => {
+      res.status(200).send()
+      return null
+    })
+    .catch(err => console.log(err))
+})
+
 router.patch('/:id/description', (req, res) => {
   const id = req.params.id || -1
   console.log(id, req.body.description)
