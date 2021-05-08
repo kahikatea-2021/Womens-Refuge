@@ -20,13 +20,14 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  console.log('in routes', req.body)
   const rooms = [].concat(req.body.room)
   const house = {}
   house.name = req.body.name
-  house.region_id = req.body.region
+  house.region_id = req.body.region_id
   house.phone_1 = req.body.phone_1
   house.phone_2 = req.body.phone_2
-  house.notes = req.body.note
+  house.notes = req.body.notes
 
   houseDb.addHouse(house)
     .then(ids => {

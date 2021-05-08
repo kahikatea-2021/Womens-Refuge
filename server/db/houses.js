@@ -47,6 +47,7 @@ function updateHouseById (houseId, house, db = connection) {
 }
 
 function addHouse (house, db = connection) {
+  console.log('add a house')
   return db('houses')
     .insert(house)
 }

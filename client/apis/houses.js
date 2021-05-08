@@ -1,6 +1,6 @@
 import request from 'superagent'
 const acceptJsonHeader = { Accept: 'application/json' }
-const rootUrl = '/api/v1/'
+const rootUrl = '/api/v1/houses/'
 
 // Host can edit information about their house
 export function editHouse (houseId) {
@@ -8,4 +8,10 @@ export function editHouse (houseId) {
     .accept(acceptJsonHeader)
     .send(houseId)
     .then(res => res.body.house)
+}
+
+export function addHouse (house) {
+  console.log('in api add house')
+  return request.post(rootUrl)
+    .send(house)
 }
