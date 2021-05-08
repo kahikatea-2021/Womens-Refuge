@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllRegions } from '../../apis/regions'
-import { addHouse } from '../../apis/houses'
+import { addNewHouse, getRegionNames } from './addHouseHelper'
 
 function AddHouseForm () {
   const [regions, setRegions] = useState(null)
@@ -20,11 +19,11 @@ function AddHouseForm () {
   function onSubmit (evt) {
     evt.preventDefault()
     console.log(form)
-    addHouse(form)
+    addNewHouse(form)
   }
 
   useEffect(() => {
-    getAllRegions('all')
+    getRegionNames('all')
       .then(results => {
         console.log(results)
         setRegions(results)
