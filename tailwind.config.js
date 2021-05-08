@@ -3,11 +3,20 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-
-    }
-  },
-  variants: {
-    extend: {}
-  },
-  plugins: []
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif']
+      },
+      colors: {
+        poroporo: {
+          light: '#f0eef5',
+          DEFAULT: '#44247c'
+        },
+        butter: '#ffde02'
+      }
+    },
+    variants: {
+      extend: {}
+    },
+    plugins: []
+  }
 }

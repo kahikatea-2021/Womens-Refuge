@@ -14,7 +14,7 @@ function Home () {
 
   return (
     <>
-      {isAuthenticated && <div><h1>Safehouse Search Options:</h1>
+      {isAuthenticated && <div><h1>Find a Safehouse:</h1>
         <NorthIslandButton />
         <SouthIslandButton />
         <ViewAllButton /></div>}
