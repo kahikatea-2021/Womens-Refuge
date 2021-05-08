@@ -24,7 +24,7 @@ function AddHouseForm () {
     console.log(form)
     addNewHouse(form)
       .then(id => {
-        history.push('/rooms/add/' + id)
+        history.push('/rooms/add/')
         return null
       })
       .catch(err => console.log(err))
