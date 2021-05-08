@@ -5,7 +5,7 @@ const LogoutButton = () => {
   const { logout } = useAuth0()
 
   return (
-    <button onClick={() => logout({ returnTo: window.location.origin })}>
+    <button className="py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs w-16 rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => logout({ returnTo: window.location.origin })}>
       Log Out
     </button>
   )

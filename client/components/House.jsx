@@ -9,7 +9,6 @@ function House () {
   useEffect(() => {
     getHouse(houseName)
       .then(results => {
-        console.log('house', results)
         setHouse(results)
         return null
       })
@@ -18,31 +17,36 @@ function House () {
 
   return (
     <>
-      {house && <p>
-        <p>You are viewing: <b>{house[0].name}</b> house, in <b>{house[0].region}</b></p>
-        {house[0].available === 1 && <p>This house currently <b>has</b> availablity</p>}
-        {house[0].available === 0 && <p>This house currently has <b>no</b> availablity</p>}
+      {house &&
+      <div>
+        <p className="text-center text-3xl font-bold">{house[0].name}</p>
+        {house[0].available === 1 && <p className="text-center">available</p>}
+        {house[0].available === 0 && <p className="text-center">available</p>}
         <br />
-        <table>
-          <tr>
-            <th>Rooms</th>
-          </tr>
-          <tr>
-            <td>
-              <ul>
-                {house[0] && house.map((h, i) => {
-                  return <li key={i}><span>Room {i + 1} is <span><b>available</b> {h.available ? '' : 'no'}</span></span> and has {h.description} </li>
-                })}
-              </ul>
-            </td>
-          </tr>
-        </table>
-        <br />
+        <b>{house[0].region}</b>
         <p>Primary Contact Number: <b>{house[0].phone_1}</b></p>
         <p>Secondary Contact Number: <b>{house[0].phone_2}</b></p>
         <br />
-        {house[0]?.notes && <p>Additional Information: <b>{house[0].notes}</b></p>}
-      </p>}
+        <div>
+          {house[0] && house.map((h, i) => {
+            return <div className='border-2' key={i}>
+              <div><b>Room {i + 1}</b>
+                <div className='inline'>
+                  <div>
+                    {h.available ? <i>Available</i> : <b>Currently Unavailable</b>}
+                  </div>
+                  <br />
+                  <img className='w-8' src='../../images/bed.png' />
+                  {h.description}
+                </div>
+              </div>
+            </div>
+          })}
+        </div>
+        <br />
+        {house[0]?.notes && <p>Additional Information: <br/> <b>{house[0].notes}</b></p>}
+      </div>
+      }
     </>
   )
 }
