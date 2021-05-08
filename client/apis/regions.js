@@ -28,3 +28,7 @@ export function getHouse (house) {
       return res.body
     })
 }
+
+export function getHouseById (id) {
+  return request.get(rootUrl)
+}

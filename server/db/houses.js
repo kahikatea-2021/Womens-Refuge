@@ -15,8 +15,11 @@ function getHouseByName (name, db = connection) {
 
 // when a user clicks on a house to view the house details
 function getHouseById (id, db = connection) {
-  return db('houses')
-    .where('id', '=', id)
+  const query = 'SELECT * ' +
+    'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
+    'JOIN regions on houses.region_id = regions.id ' +
+    `WHERE houses.id = ${id} `
+  return db.raw(query)
 }
 
 function genearlQuery (island, regions, exclude, db = connection) {
