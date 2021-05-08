@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function MakeAvailableButton () {
+function MakeAvailableButton (props) {
+  const [isAvailable, setIsAvailable] = useState(props.available)
+
+  function clickHandler () {
+    setIsAvailable(!isAvailable)
+  }
   return (
-    <button>Make Available</button>
+    <button onClick={clickHandler}>Make {isAvailable ? 'unavailable' : 'available'}</button>
   )
 }
 

@@ -1,19 +1,12 @@
 import React from 'react'
 import MakeAvailableButton from '../Buttons/MakeAvaiableButton'
-import MakeUnavailableButton from '../Buttons/MakeUnavailableButton'
 
-function ManageRoom (room, n) {
-  console.log('room', room, n)
-
+function ManageRoom (props) {
   return (
-
     <>
-      <p>Room {room.n}</p>
-      <p>{room.room.description}</p>
-      {!room.room.available
-        ? <MakeAvailableButton />
-        : <MakeUnavailableButton />
-      }
+      <p>Room {props.n}</p>
+      <p>{props.room.description}</p>
+      <MakeAvailableButton available={props.room.available}/>
     </>
   )
 }
