@@ -23,10 +23,15 @@ function ManageHouse (houseId) {
 
     <>
       <h1>Manage {house[0].name}</h1>
-      {house.map(room => {
+      {/* {house.map(room => {
         return <p key={room.id}>
           <ManageRoomForm room={room}/>
         </p>
+      })} */}
+      {house[0] && house.map((room, i) => {
+        return <div key={i}>
+          <ManageRoomForm room={room} n={i + 1}/>
+        </div>
       })}
       <ManageHouseForm house={house[0]}/>
     </>
