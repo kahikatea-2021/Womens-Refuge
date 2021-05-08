@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer () {
   return (
-    <p>Created by Team Safehouse</p>
+    <p>&copy; Tuohunga 2021</p>
   )
 }
 

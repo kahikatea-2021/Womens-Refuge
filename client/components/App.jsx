@@ -10,6 +10,7 @@ import SouthIsland from './SouthIsland'
 import AllSafehouses from './AllSafehouses'
 import Region from './Region'
 import House from './House'
+import ManageHouse from './ManageHouse'
 
 function App () {
   const { isAuthenticated } = useAuth0()
@@ -25,6 +26,7 @@ function App () {
       <Route path='/region/:name' component={Region} />
       <Route path='/house/:name' component={House} />
       <Footer />
+      <ManageHouse houseId={32} />
     </>
   )
 }
