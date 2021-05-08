@@ -82,9 +82,19 @@ router.get('/region/:region', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.get('/house/:name', (req, res) => {
+router.get('/name/:name', (req, res) => {
   const name = req.params.name
   houseDb.getHouseByName(name)
+    .then(house => {
+      res.status(200).json(house)
+      return null
+    })
+    .catch(err => console.log(err))
+})
+
+router.get('/id/:id', (req, res) => {
+  const id = req.params.id
+  houseDb.getHouseById(id)
     .then(house => {
       res.status(200).json(house)
       return null
