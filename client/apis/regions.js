@@ -24,7 +24,7 @@ export function getHousesInRegion (region) {
 export function getHouse (house) {
   return request.get(rootUrl + 'house/' + house)
     .then(res => {
-      console.log(res.body)
-      return res.body[0]
+      // console.log(res.body)
+      return res.body
     })
 }
