@@ -28,7 +28,7 @@ function App () {
       <Route path='/region/:name' component={Region} />
       <Route path='/house/:name' component={House} />
       <Footer />
-      <ManageHouse houseId={32} />
+      {/* <ManageHouse houseId={32} /> */}
     </>
   )
 }
