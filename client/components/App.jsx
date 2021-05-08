@@ -12,6 +12,7 @@ import Region from './Region'
 import House from './House'
 // import ManageHouse from './ManageHouse'
 import AddHouseForm from './Forms/AddHouseForm'
+import AddRoomForm from './Forms/AddRoomForm'
 
 function App () {
   const { isAuthenticated } = useAuth0()

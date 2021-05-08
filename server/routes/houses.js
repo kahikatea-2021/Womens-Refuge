@@ -20,26 +20,11 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const rooms = [].concat(req.body.room)
-  const house = {}
-  house.name = req.body.name
-  house.region_id = req.body.region
-  house.phone_1 = req.body.phone_1
-  house.phone_2 = req.body.phone_2
-  house.notes = req.body.note
+  const house = req.body
 
   houseDb.addHouse(house)
-    .then(ids => {
-      return rooms.map(room => {
-        room.house_id = ids[0]
-        return room
-      })
-    })
-    .then(rooms => {
-      return roomDb.addRooms(rooms)
-    })
-    .then(() => {
-      res.status(200).send()
+    .then((house) => {
+      res.status(200).json(house)
       return null
     })
     .catch(err => console.log(err))
