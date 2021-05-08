@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer () {
   return (
-    null
+    <p>&copy; Tuohunga 2021</p>
   )
 }
 
