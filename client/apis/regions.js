@@ -1,6 +1,14 @@
 import request from 'superagent'
 const rootUrl = '/api/v1/houses/'
 
+export function getAllRegions (island) {
+  return request.get('/api/v1/regions')
+    .query({ island: island })
+    .then(res => {
+      return res.body
+    })
+}
+
 // Get all the houses
 export function getAllHouses (house) {
   return request.get(rootUrl)
