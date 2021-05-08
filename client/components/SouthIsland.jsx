@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { getAllIslandRegions } from '../apis/islands'
 import { Link } from 'react-router-dom'
 
-
 function SouthIsland () {
   const [regions, setRegions] = useState([])
   useEffect(() => {
