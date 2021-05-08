@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { getAllIslandRegions } from '../apis/islands'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function NorthIsland () {
   const [regions, setRegions] = useState([])
   const { isLoading, isAuthenticated } = useAuth0()
-  const history = useHistory()
   useEffect(() => {
     if (isAuthenticated) {
       getAllIslandRegions('north')
