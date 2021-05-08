@@ -33,7 +33,7 @@ function House () {
               <div><b>Room {i + 1}</b>
                 <div className='inline'>
                   <div>
-                    {h.available ? <i>available</i> : <b>unavailable</b>}
+                    {h.available ? <i>Available</i> : <b>Currently Unavailable</b>}
                   </div>
                   <br />
                   <img className='w-8' src='../../images/bed.png' />
