@@ -17,12 +17,12 @@ function Region () {
   return (
     <>
       {houses && houses.map(house => {
-        return <p key={house.house_id}><Link to={`/house/${house.name}`} >
+        return <div key={house.house_id}><Link to={`/house/${house.name}`} >
           <div className="text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
             {house.name}
           </div>
         </Link>
-        </p>
+        </div>
       })}
     </>
   )

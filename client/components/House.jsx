@@ -9,7 +9,6 @@ function House () {
   useEffect(() => {
     getHouse(houseName)
       .then(results => {
-        console.log('house', results)
         setHouse(results)
         return null
       })
@@ -19,7 +18,7 @@ function House () {
   return (
     <>
       {house &&
-      <p>
+      <div>
         <p className="text-center text-3xl font-bold">{house[0].name}</p>
         {house[0].available === 1 && <p className="text-center">available</p>}
         {house[0].available === 0 && <p className="text-center">available</p>}
@@ -46,7 +45,7 @@ function House () {
         </div>
         <br />
         {house[0]?.notes && <p>Additional Information: <br/> <b>{house[0].notes}</b></p>}
-      </p>
+      </div>
       }
     </>
   )
