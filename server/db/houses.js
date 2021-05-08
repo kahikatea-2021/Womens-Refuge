@@ -9,7 +9,7 @@ function getHouseByName (name, db = connection) {
   const query = 'SELECT *, rooms.id ' +
     'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
     'JOIN regions on houses.region_id = regions.id ' +
-    `WHERE LOWER(name) = "${name.toLowerCase()}"`
+    `WHERE name = "${name}"`
   return db.raw(query)
 }
 
