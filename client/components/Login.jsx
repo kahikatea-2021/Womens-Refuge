@@ -8,6 +8,7 @@ function Login () {
       <h2>Kia Ora!</h2>
       <h4>Please log in:</h4>
       <LoginButton />
+      <br />
       <LogoutButton />
     </>
   )

@@ -10,6 +10,7 @@ import SouthIsland from './SouthIsland'
 import AllSafehouses from './AllSafehouses'
 import Region from './Region'
 import House from './House'
+import ManageHouse from './ManageHouse'
 import AddHouseForm from './Forms/AddHouseForm'
 
 function App () {
@@ -27,6 +28,7 @@ function App () {
       <Route path='/region/:name' component={Region} />
       <Route path='/house/:name' component={House} />
       <Footer />
+      <ManageHouse houseId={32} />
     </>
   )
 }
