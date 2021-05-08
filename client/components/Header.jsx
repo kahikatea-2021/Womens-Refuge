@@ -12,7 +12,8 @@ function Header () {
     return (
       <>
         <LogoutButton />
-        <h1>Safehouse</h1>
+        <br />
+        <h1><b>Tuohunga</b></h1>
         <img src="../../images/logo.png" width='200px'></img>
 
       </>
@@ -20,7 +21,7 @@ function Header () {
   } else {
     return (
       <>
-        <h1>Safehouse</h1>
+        <h1><b>Tuohunga</b></h1>
         <img src="../../images/logo.png" width='200px'></img>
       </>
     )
