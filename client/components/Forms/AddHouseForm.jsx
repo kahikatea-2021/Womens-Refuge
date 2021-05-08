@@ -1,31 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getAllRegions } from '../../apis/regions'
 
 function AddHouseForm () {
+  const [regions, setRegions] = useState(null)
+  const [form, setForm] = useState({
+    name: '',
+    region: '',
+    phone_1: '',
+    phone_2: '',
+    notes: ''
+  })
+
+  function onChange (evt) {
+    const { name, value } = evt.target
+    setForm({ ...form, [name]: value })
+  }
+
+  useEffect(() => {
+    getAllRegions('all')
+      .then(results => {
+        console.log(results)
+        setRegions(results)
+        return null
+      })
+      .catch(err => console.log(err))
+  }, [])
   return (
     <>
       <h1>ADD A HOUSE</h1>
       <form>
         <label htmlFor='region'>Region:</label>
-        <select isRequired id='region'>
-          <option value='' disabled selected>Select...</option>
-          <option value='Northland'>Northland</option>
-          <option value='Auckland'>Auckland</option>
-          <option value='Bay of Plenty'>Bay of Plenty</option>
-          <option value='Waikato'>Waikato</option>
-          <option value='Gisborne'>Gisborne</option>
-          <option value='Taranaki'>Taranaki</option>
-          <option value='Hawke&apos;s Bay'>Hawke&apos;s Bay</option>
-          <option value='Whanganui - Manawatu'>Whanganui - Manawatu</option>
-          <option value='Wellington'>Wellington</option>
-          <option value='Nelson'>Nelson</option>
-          <option value='Marlborough'>Marlborough</option>
-          <option value='Canterbury'>Canterbury</option>
-          <option value='West Coast'>West Coast</option>
-          <option value='Otago'>Otago</option>
-          <option value='Southland'>Southland</option>
-        </select>
+        {regions && <select isRequired value={form.region} onChange={onChange} name="region" id='region'>
+          <option value='' disabled>Select Region</option>
+          {regions.map(region => {
+            return <option value={region.id} key={region.id}>{region.region}</option>
+          })}
+        </select>}
         <label htmlFor='name'>House Name:</label>
-        <input isRequired id='name' type='text'></input>
+        <input isRequired id='name' name="" type='text'></input>
         <label htmlFor='phone1'>Primary Contact Number:</label>
         <input id='phone1' type='text'></input>
         <label htmlFor='phone2'>Secondary Contact Number:</label>

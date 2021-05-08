@@ -8,7 +8,6 @@ function getIslandRegions (island, db = connection) {
 
   return db('regions')
     .where(db.raw('LOWER(island)'), 'like', island.toLowerCase())
-    .distinct('region', 'island')
 }
 
 module.exports = {
