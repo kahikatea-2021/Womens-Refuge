@@ -25,8 +25,8 @@ function App () {
       <Route path='/northisland' component={NorthIsland} />
       <Route path='/southisland' component={SouthIsland} />
       <Route exact path='/houses' component={AllSafehouses} />
-      <Route path='/houses/add' component={AddHouseForm} />
-      <Route path='/rooms/add/' component={AddRoomForm} />
+      <Route path='/houses/addhouse' component={AddHouseForm} />
+      <Route path='/houses/addrooms/' component={AddRoomForm} />
       <Route path='/region/:name' component={Region} />
       <Route path='/house/:name' component={House} />
       <Footer />

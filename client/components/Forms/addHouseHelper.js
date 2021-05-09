@@ -1,5 +1,6 @@
 import { setHouse } from '../../actions/house'
 import { setWait } from '../../actions/waiting'
+import { setRegions } from '../../actions/region'
 import { dispatch } from '../../store'
 import { addHouse } from '../../apis/houses'
 import { getAllRegions } from '../../apis/regions'
@@ -23,6 +24,7 @@ export function getRegionNames (island) {
   return getAllRegions(island)
     .then(regions => {
       dispatch(setWait(false))
+      dispatch(setRegions(regions))
       return regions
     })
     .catch(err => {
