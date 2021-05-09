@@ -5,10 +5,10 @@ import { getUser } from '../apis/users'
 export function setUserState (user, token, dispatch) {
   setWait(true)
   if (user) {
+    localStorage.setItem('access-token', token)
     getUser(user.sub, token)
       .then(userInfo => {
         userInfo.token = token
-        localStorage.setItem('access-token', token)
         dispatch(setUser(userInfo))
         setWait(false)
         return null
