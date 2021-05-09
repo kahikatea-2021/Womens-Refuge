@@ -12,15 +12,19 @@ import Region from './Region'
 import House from './House'
 import ManageHouse from './ManageHouse'
 import AddHouseForm from './Forms/AddHouseForm'
+import { setUserState } from './userStateHelper'
+import { useDispatch } from 'react-redux'
 
 // import AddRoomForm from './Forms/AddRoomForm'
 
 function App () {
-  const { isAuthenticated, isLoading } = useAuth0()
-
+  const { isAuthenticated, isLoading, user } = useAuth0()
+  const dispatch = useDispatch()
   if (isLoading) {
     return <img src="../../images/loading.gif"></img>
   }
+
+  setUserState(user, dispatch)
 
   return (
     <>
