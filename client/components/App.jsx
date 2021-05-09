@@ -42,20 +42,23 @@ function App () {
 
   return (
     <>
-      {isWaiting ? <img src="../../images/loading.gif"></img> : <div>
-        <Header />
-        <ErrorMessage />
-        {!isAuthenticated && <Login />}
-        <Route exact path='/' component={Home} />
-        <Route path='/northisland' component={NorthIsland} />
-        <Route path='/southisland' component={SouthIsland} />
-        <Route exact path='/houses' component={AllSafehouses} />
-        <Route path='/houses/add' component={AddHouseForm} />
-        <Route path='/region/:name' component={Region} />
-        <Route exact path='/house/:name' component={House} />
-        <Route path='/house/manage/:id' component={ManageHouse} />
-        <Footer />
-      </div>}
+      {isWaiting ? <img src="../../images/loading.gif"/>
+        : <div>
+          <div className='relative h-screen'>
+            <Header />
+            <ErrorMessage />
+            {!isAuthenticated && <Login />}
+            <Route exact path='/' component={Home} />
+            <Route path='/northisland' component={NorthIsland} />
+            <Route path='/southisland' component={SouthIsland} />
+            <Route exact path='/houses' component={AllSafehouses} />
+            <Route path='/houses/add' component={AddHouseForm} />
+            <Route path='/region/:name' component={Region} />
+            <Route exact path='/house/:name' component={House} />
+            <Route path='/house/manage/:id' component={ManageHouse} />
+            <Footer />
+          </div>
+        </div>}
     </>
 
   )
