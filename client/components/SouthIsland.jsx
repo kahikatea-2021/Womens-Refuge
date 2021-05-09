@@ -8,6 +8,7 @@ function SouthIsland () {
   const [regions, setRegions] = useState([])
   const { isLoading, isAuthenticated } = useAuth0()
   const user = useSelector(state => state.user)
+
   useEffect(() => {
     if (isAuthenticated && regions.length <= 0) {
       getAllIslandRegions('south')

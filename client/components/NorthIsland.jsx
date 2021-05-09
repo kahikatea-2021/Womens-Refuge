@@ -25,14 +25,14 @@ function NorthIsland () {
     return <img src="../../images/loading.gif"></img>
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated || !user) {
     return <p>Unauthorised access</p>
   }
 
   return (
     <>
       <h1>North Island Regions:</h1>
-      {user && regions.map(region => {
+      {regions.map(region => {
         return <div key={region.region}>
           <Link to={`/region/${region.region}`}>
             <div className="text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">

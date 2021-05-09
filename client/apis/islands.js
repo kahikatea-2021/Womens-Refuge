@@ -8,8 +8,8 @@ function getAccessToken () {
 
 export function getAllIslandRegions (island) {
   console.log('region', getState().user)
-  const token = 'Bearer ' + getState().user?.token
-  // const token = getAccessToken()
+  // const token = 'Bearer ' + getState().user?.token
+  const token = getAccessToken()
   return request.get(rootUrl)
     .query({ island: island })
     .set({ authorization: token })
