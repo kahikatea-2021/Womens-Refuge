@@ -1,6 +1,6 @@
 import request from 'superagent'
 import { getState } from '../store'
-import getAccessHeader, { accessHeader } from './tokenHelper'
+import { accessHeader } from './tokenHelper'
 const rootUrl = '/api/v1/regions'
 
 export function getAllIslandRegions (island) {
