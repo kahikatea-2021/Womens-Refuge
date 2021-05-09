@@ -17,12 +17,15 @@ function House () {
       .catch(err => console.log(err))
   }, [])
 
+  if (!house) {
+    return <img src="/images/loading.gif"></img>
+  }
   if (!isAuthenticated) {
     return <p>Unauthorised access</p>
   }
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <img src="/images/loading.gif"></img>
   }
 
   if (isAuthenticated && user) {
