@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { getHouse } from '../apis/regions'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 function House () {
   const [house, setHouse] = useState(null)
   const houseName = useParams()
+  const ourUser = useSelector(state => state.user)
 
   useEffect(() => {
     getHouse(houseName.name)
@@ -14,8 +16,21 @@ function House () {
       })
       .catch(err => console.log(err))
   }, [])
+
+  console.log('user', ourUser, 'house', house)
+
+  if (!house) {
+    return <p>Loading...</p>
+  }
+
   return (
     <>
+
+      {ourUser.house_id === house[0].id &&
+            <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
+
+      }
+
       {house &&
       <div>
         <p className="text-center text-3xl font-bold">{house[0].name}</p>
