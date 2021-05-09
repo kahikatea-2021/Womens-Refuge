@@ -8,6 +8,7 @@ export function setUserState (user, token, dispatch) {
     getUser(user.sub, token)
       .then(userInfo => {
         userInfo.token = token
+        localStorage.setItem('access-token', token)
         dispatch(setUser(userInfo))
         setWait(false)
         return null
@@ -18,6 +19,7 @@ export function setUserState (user, token, dispatch) {
       })
   } else {
     setWait(false)
+    localStorage.removeItem('access-token')
     deleteUser()
   }
 }
