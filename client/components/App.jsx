@@ -15,7 +15,8 @@ import AddHouseForm from './Forms/AddHouseForm'
 import { setUserState } from './userStateHelper'
 import { useDispatch, useSelector } from 'react-redux'
 import ErrorMessage from './ErrorMessage'
-import { setErrorMsg } from '../actions/error'
+import LoadingIcon from './LoadingIcon'
+// import { setErrorMsg } from '../actions/error'
 
 // import AddRoomForm from './Forms/AddRoomForm'
 
@@ -25,7 +26,7 @@ function App () {
   const isWaiting = useSelector(state => state.wait)
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <LoadingIcon/>
   }
 
   if (isAuthenticated) {
@@ -41,7 +42,7 @@ function App () {
 
   return (
     <>
-      {isWaiting ? <img src="../../images/loading.gif" />
+      {isWaiting ? <LoadingIcon />
         : <div>
           <div className='relative h-screen'>
             <Header />
