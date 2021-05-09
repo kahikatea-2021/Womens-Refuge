@@ -11,7 +11,7 @@ function ManageHouse () {
   const [house, setHouse] = useState(null)
   const houseId = useParams().id
   const ourUser = useSelector(state => state.user)
-  const { isLoading, user, isAuthenticated } = useAuth0()
+  const { isLoading, isAuthenticated, user } = useAuth0()
   console.log('houseid', houseId)
   useEffect(() => {
     if (isAuthenticated && !house) {
@@ -25,7 +25,7 @@ function ManageHouse () {
   })
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <img src="../../images/loading.gif"></img>
   }
 
   if (!isAuthenticated) {
@@ -33,7 +33,7 @@ function ManageHouse () {
   }
 
   if (!house) {
-    return <p>Loading...</p>
+    return <img src="../../images/loading.gif"></img>
   }
   return (
 

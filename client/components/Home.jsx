@@ -16,7 +16,7 @@ function Home () {
   const dispatch = useDispatch()
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <img src="../../images/loading.gif"></img>
   }
 
   if (isAuthenticated && !ourUser) {

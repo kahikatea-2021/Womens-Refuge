@@ -19,7 +19,7 @@ function App () {
   const { isAuthenticated, isLoading } = useAuth0()
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <img src="../../images/loading.gif"></img>
   }
 
   return (
