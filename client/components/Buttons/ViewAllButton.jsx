@@ -5,7 +5,7 @@ function ViewAllButton () {
   return (
     <div>
       <Link to='/houses'>
-        <button>View all Safe houses in NZ</button>
+        <button className="py-2 self-center bg-poroporo hover:bg-poroporo text-white w-16 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">View All</button>
       </Link>
     </div>
   )

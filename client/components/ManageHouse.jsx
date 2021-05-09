@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
 // import { getRoomsByHouseId } from '../apis/houses'
 import { getHouseById } from '../apis/regions'
 import ManageHouseForm from './Forms/ManageHouseForm'
 import ManageRoomForm from './Forms/ManageRoomForm'
 
-function ManageHouse (houseId) {
+function ManageHouse () {
   const [house, setHouse] = useState(null)
+  const houseId = useParams().id
+  console.log('houseid', houseId)
   useEffect(() => {
-    getHouseById(houseId.houseId)
+    getHouseById(houseId)
       .then(results => {
         setHouse(results)
         return null
@@ -18,7 +21,6 @@ function ManageHouse (houseId) {
   if (!house) {
     return <p>Loading...</p>
   }
-
   return (
 
     <>

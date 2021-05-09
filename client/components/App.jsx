@@ -12,7 +12,7 @@ import Region from './Region'
 import House from './House'
 import ManageHouse from './ManageHouse'
 import AddHouseForm from './Forms/AddHouseForm'
-import AddRoomForm from './Forms/AddRoomForm'
+// import AddRoomForm from './Forms/AddRoomForm'
 
 function App () {
   const { isAuthenticated } = useAuth0()
@@ -25,10 +25,10 @@ function App () {
       <Route path='/northisland' component={NorthIsland} />
       <Route path='/southisland' component={SouthIsland} />
       <Route exact path='/houses' component={AllSafehouses} />
-      <Route path='/houses/addhouse' component={AddHouseForm} />
-      <Route path='/houses/addrooms/' component={AddRoomForm} />
+      <Route path='/houses/add' component={AddHouseForm} />
       <Route path='/region/:name' component={Region} />
-      <Route path='/house/:name' component={House} />
+      <Route exact path='/house/:name' component={House} />
+      <Route path='/house/manage/:id' component={ManageHouse} />
       <Footer />
       {/* <ManageHouse houseId={32} /> */}
     </>

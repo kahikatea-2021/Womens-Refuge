@@ -30,6 +30,21 @@ router.post('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.patch('/:id', (req, res) => {
+  console.log('in house patch')
+  const houseDetails = req.body
+  const houseId = req.params.id
+  houseDb.updateHouseById(houseId, houseDetails)
+    .then(() => {
+      return houseDb.getHouseById(houseId)
+    })
+    .then(house => {
+      res.status(200).json(house[0])
+      return null
+    })
+    .catch(err => console.log(err))
+})
+
 router.put('/', (req, res) => {
   const house = {}
   house.id = req.body.id
@@ -71,6 +86,7 @@ router.get('/name/:name', (req, res) => {
   const name = req.params.name
   houseDb.getHouseByName(name)
     .then(house => {
+      console.log('db', house)
       res.status(200).json(house)
       return null
     })

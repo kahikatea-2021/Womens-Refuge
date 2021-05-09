@@ -1,15 +1,11 @@
 import React from 'react'
 import LoginButton from './Buttons/LoginButton'
-import LogoutButton from './Buttons/LogoutButton'
 
 function Login () {
   return (
     <>
-      <h2>Kia Ora!</h2>
-      <h4>Please log in:</h4>
-      <LoginButton />
-      <br />
-      <LogoutButton />
+      <h2>Kia Ora! Please log in:</h2>
+      <LoginButton className="p-4"/>
     </>
   )
 }
