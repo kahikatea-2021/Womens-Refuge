@@ -14,13 +14,14 @@ import ManageHouse from './ManageHouse'
 import AddHouseForm from './Forms/AddHouseForm'
 import { setUserState } from './userStateHelper'
 import { useDispatch, useSelector } from 'react-redux'
+import ErrorMessage from './ErrorMessage'
+import { setErrorMsg } from '../actions/error'
 
 // import AddRoomForm from './Forms/AddRoomForm'
 
 function App () {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
   const dispatch = useDispatch()
-
   const isWaiting = useSelector(state => state.wait)
 
   if (isLoading) {
@@ -42,6 +43,7 @@ function App () {
     <>
       {isWaiting ? <img src="../../images/loading.gif"></img> : <div>
         <Header />
+        <ErrorMessage />
         {!isAuthenticated && <Login />}
         <Route exact path='/' component={Home} />
         <Route path='/northisland' component={NorthIsland} />

@@ -5,11 +5,11 @@ const rootUrl = '/api/v1/houses/'
 
 // Host can edit information about their house
 export function editHouse (houseId, house) {
-  const user = getState(state => state.user)
-  console.log(user)
+  const user = getState().user
+  console.log('user', user)
   return request.patch(rootUrl + houseId)
     .accept(acceptJsonHeader)
-    .set({ authorization: user.token })
+    .set({ authorization: 'Bearer ' + user.token })
     .send(house)
     .then(res => res.body)
 }

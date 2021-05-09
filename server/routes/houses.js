@@ -40,7 +40,7 @@ router.patch('/:id', checkJwt, (req, res) => {
   userDb.getUser(userId)
     .then(user => {
       console.log(user)
-      if (Number(user?.house_id) === Number(houseId)) {
+      if (Number(user[0]?.house_id) === Number(houseId)) {
         return houseDb.updateHouseById(houseId, houseDetails)
       } else {
         res.status(401).send('You do not have access to this resource.')

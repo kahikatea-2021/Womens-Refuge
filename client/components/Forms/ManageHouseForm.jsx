@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router'
 import { editHouse } from '../../apis/houses'
 import { useHistory } from 'react-router-dom'
+import { setErrorMsg } from '../../actions/error'
+import { useDispatch } from 'react-redux'
 
 export default function ManageHouseForm (props) {
+  const dispatch = useDispatch()
   const history = useHistory()
   const id = useParams().id
   console.log('id', id)
@@ -30,7 +33,7 @@ export default function ManageHouseForm (props) {
       })
       .catch(err => {
         console.log(err)
-        if (err.message === 'Unauthorized') history.push('/')
+        dispatch(setErrorMsg('You do not have permission to edit this house.'))
       })
   }
 

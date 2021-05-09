@@ -1,14 +1,14 @@
 export const SET_ERROR = 'SET_ERROR'
 export const CLEAR_ERROR = 'CLEAR_ERROR'
 
-export function setError (errorMsg) {
+export function setErrorMsg (errorMsg) {
   return {
     type: SET_ERROR,
-    error: errorMsg
+    errorMsg
   }
 }
 
-export function cleaerError () {
+export function clearError () {
   return {
     type: CLEAR_ERROR
   }
