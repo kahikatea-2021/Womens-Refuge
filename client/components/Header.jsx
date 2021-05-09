@@ -21,7 +21,7 @@ function Header () {
           <div className='flex w-full justify-center'>
             <a className='flex-col items-center' href='/'>
               <img className='mx-auto self-center w-20' src="../../images/logo.png"></img>
-              <h1 className='mx-auto self-center font-bold text-xl'>Tuohunga</h1>
+              <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
             </a>
           </div>
 
