@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { getHouse } from '../apis/regions'
 import { useParams, Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function House () {
   const [house, setHouse] = useState(null)
   const houseName = useParams()
   const ourUser = useSelector(state => state.user)
+  const { isLoading, isAuthenticated, user } = useAuth0()
 
   useEffect(() => {
     getHouse(houseName.name)
@@ -17,21 +19,26 @@ function House () {
       .catch(err => console.log(err))
   }, [])
 
-  console.log('user', ourUser, 'house', house)
-
   if (!house) {
-    return <p>Loading...</p>
+    return null
   }
 
-  return (
-    <>
+  if (!isAuthenticated) {
+    return <p>Unauthorised access</p>
+  }
 
-      {ourUser.house_id === house[0].id &&
+  if (isLoading) {
+    return <img src="../../images/loading.gif"></img>
+  }
+
+  if (isAuthenticated && user) {
+    return (
+      <>
+        {ourUser.house_id === house[0].id &&
             <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
 
-      }
-
-      {house &&
+        }
+        {house &&
       <div>
         <p className="text-center text-3xl font-bold">{house[0].name}</p>
         {house[0].available === 1 && <p className="text-center">available</p>}
@@ -60,9 +67,10 @@ function House () {
         <br />
         {house[0]?.notes && <p>Additional Information: <br/> <b>{house[0].notes}</b></p>}
       </div>
-      }
-    </>
-  )
+        }
+      </>
+    )
+  }
 }
 
 export default House

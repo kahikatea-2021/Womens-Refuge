@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import NorthIslandButton from '../components/Buttons/NorthIslandButton'
 import SouthIslandButton from '../components/Buttons/SouthIslandButton'
 import ViewAllButton from '../components/Buttons/ViewAllButton'
@@ -16,7 +16,7 @@ function Home () {
   const dispatch = useDispatch()
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <img src="../../images/loading.gif"></img>
   }
 
   if (isAuthenticated && !ourUser) {
