@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import LogoutButton from './Buttons/LogoutButton'
 import BackButton from './Buttons/BackButton'
@@ -19,10 +20,10 @@ function Header () {
           </div>
 
           <div className='flex w-full justify-center'>
-            <a className='flex-col items-center' href='/'>
+            <Link to='/' className='flex-col items-center'>
               <img className='mx-auto self-center w-20' src="../../images/logo.png"></img>
               <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
-            </a>
+            </Link>
           </div>
 
           <div className='flex w-full justify-end'>

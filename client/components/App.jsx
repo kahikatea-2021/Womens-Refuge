@@ -26,7 +26,7 @@ function App () {
   const isWaiting = useSelector(state => state.wait)
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <LoadingIcon/>
   }
 
   if (isAuthenticated) {
