@@ -32,7 +32,7 @@ export function getHousesInRegion (region) {
 export function getHouse (house) {
   return request.get(rootUrl + 'name/' + house)
     .then(res => {
-      // console.log(res.body)
+      console.log('thed', res.body)
       return res.body
     })
 }

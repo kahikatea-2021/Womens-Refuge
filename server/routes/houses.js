@@ -71,6 +71,7 @@ router.get('/name/:name', (req, res) => {
   const name = req.params.name
   houseDb.getHouseByName(name)
     .then(house => {
+      console.log('db', house)
       res.status(200).json(house)
       return null
     })

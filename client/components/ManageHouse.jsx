@@ -18,7 +18,7 @@ function ManageHouse (houseId) {
   if (!house) {
     return <p>Loading...</p>
   }
-
+  console.log('thid', house)
   return (
 
     <>

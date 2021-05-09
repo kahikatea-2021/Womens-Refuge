@@ -27,7 +27,7 @@ function App () {
       <Route exact path='/houses' component={AllSafehouses} />
       <Route path='/houses/add' component={AddHouseForm} />
       <Route path='/region/:name' component={Region} />
-      <Route path='/house/:name' component={House} />
+      <Route exact path='/house/:name' component={House} />
       <Route path='/house/manage/:id' component={ManageHouse} />
       <Footer />
       {/* <ManageHouse houseId={32} /> */}

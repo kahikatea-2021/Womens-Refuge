@@ -4,9 +4,10 @@ import { useParams } from 'react-router-dom'
 
 function House () {
   const [house, setHouse] = useState(null)
-  const houseName = useParams().name
+  const houseName = useParams()
 
   useEffect(() => {
+    console.log('that', houseName)
     getHouse(houseName)
       .then(results => {
         setHouse(results)
@@ -14,7 +15,6 @@ function House () {
       })
       .catch(err => console.log(err))
   }, [])
-
   return (
     <>
       {house &&
