@@ -69,7 +69,7 @@ function AddHouseForm () {
           <label htmlFor='phone_2'>Secondary Contact Number:</label>
           <input id='phone2' type='text' name="phone_2" onChange={handleChange}></input>
           <label htmlFor='notes'>Notes:</label>
-          <textarea onChange={handleChange} name="notes" id='notes' placeholder='Optional notes about room availabitity, usually used by refuge cooridinators.'></textarea>
+          <textarea onChange={handleChange} name="notes" id='notes' placeholder='Optional notes about room availabitity, usually used by refuge coordinators.'></textarea>
           <button type='button' onClick={onSubmit}>NEXT</button>
           <button type='button' onClick={() => { history.push('/') }}>CANCEL</button>
         </form>
