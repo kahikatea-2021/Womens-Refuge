@@ -24,7 +24,14 @@ export default function ManageHouseForm (props) {
   function handleSubmit (e) {
     e.preventDefault()
     editHouse(id, form)
-    history.push(`/house/${props.house.name}`)
+      .then(() => {
+        history.push(`/house/${props.house.name}`)
+        return null
+      })
+      .catch(err => {
+        console.log(err)
+        if (err.message === 'Unauthorized') history.push('/')
+      })
   }
 
   return (
@@ -32,7 +39,7 @@ export default function ManageHouseForm (props) {
     <>
       <form>
         <label htmlFor='phone1'>Primary Contact Number: </label>
-        <input id='phone1' name='phone_1' value={form.phone_1} type='text'onChange={handleChange}></input>
+        <input id='phone1' name='phone_1' value={form.phone_1} type='text' onChange={handleChange}></input>
         <label htmlFor='phone2'>Secondary Contact Number: </label>
         <input id='phone2' name='phone_2' type="text" value={form.phone_2} onChange={handleChange}></input>
         <label htmlFor='notes'>Notes: </label>

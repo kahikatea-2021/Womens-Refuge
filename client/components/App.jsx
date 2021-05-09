@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Link, Route } from 'react-router-dom'
+import React from 'react'
+import { Route } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import Login from './Login'
 import Home from './Home'
@@ -13,34 +13,48 @@ import House from './House'
 import ManageHouse from './ManageHouse'
 import AddHouseForm from './Forms/AddHouseForm'
 import { setUserState } from './userStateHelper'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 // import AddRoomForm from './Forms/AddRoomForm'
 
 function App () {
-  const { isAuthenticated, isLoading, user } = useAuth0()
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
   const dispatch = useDispatch()
+
+  const isWaiting = useSelector(state => state.wait)
+
   if (isLoading) {
     return <img src="../../images/loading.gif"></img>
   }
 
-  setUserState(user, dispatch)
+  if (isAuthenticated) {
+    getAccessTokenSilently()
+      .then(token => {
+        setUserState(user, token, dispatch)
+        return null
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   return (
     <>
-      <Header />
-      {!isAuthenticated && <Login />}
-      <Route exact path='/' component={Home} />
-      <Route path='/northisland' component={NorthIsland} />
-      <Route path='/southisland' component={SouthIsland} />
-      <Route exact path='/houses' component={AllSafehouses} />
-      <Route path='/houses/add' component={AddHouseForm} />
-      <Route path='/region/:name' component={Region} />
-      <Route exact path='/house/:name' component={House} />
-      <Route path='/house/manage/:id' component={ManageHouse} />
-      <Footer />
-
+      {isWaiting ? <img src="../../images/loading.gif"></img> : <div>
+        <Header />
+        {!isAuthenticated && <Login />}
+        <Route exact path='/' component={Home} />
+        <Route path='/northisland' component={NorthIsland} />
+        <Route path='/southisland' component={SouthIsland} />
+        <Route exact path='/houses' component={AllSafehouses} />
+        <Route path='/houses/add' component={AddHouseForm} />
+        <Route path='/region/:name' component={Region} />
+        <Route exact path='/house/:name' component={House} />
+        <Route path='/house/manage/:id' component={ManageHouse} />
+        <Footer />
+      </div>}
     </>
+
   )
 }
 

@@ -39,6 +39,7 @@ router.patch('/:id', checkJwt, (req, res) => {
   const userId = req.user.sub
   userDb.getUser(userId)
     .then(user => {
+      console.log(user)
       if (Number(user?.house_id) === Number(houseId)) {
         return houseDb.updateHouseById(houseId, houseDetails)
       } else {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-// import { getRoomsByHouseId } from '../apis/houses'
 import { getHouseById } from '../apis/regions'
 import ManageHouseForm from './Forms/ManageHouseForm'
 import ManageRoomForm from './Forms/ManageRoomForm'
@@ -39,11 +38,6 @@ function ManageHouse () {
 
     <>
       <h1>Manage {house[0].name}</h1>
-      {/* {house.map(room => {
-        return <p key={room.id}>
-          <ManageRoomForm room={room}/>
-        </p>
-      })} */}
       {house[0] && house.map((room, i) => {
         return <div key={i}>
           <ManageRoomForm room={room} n={i + 1} />
