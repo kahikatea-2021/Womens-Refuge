@@ -3,7 +3,6 @@ const houseDb = require('../db/houses')
 const roomDb = require('../db/rooms')
 const router = express.Router()
 const userDb = require('../db/users')
-const checkJwt = require('./jwtMiddleware')
 
 module.exports = router
 
@@ -36,17 +35,13 @@ router.patch('/:id', (req, res) => {
   console.log('in house patch')
   const houseDetails = req.body
   const houseId = req.params.id
-  const userId = req.user.sub
-  userDb.getUser(userId)
-    .then(user => {
-      console.log(user)
-      if (Number(user[0]?.house_id) === Number(houseId)) {
-        return houseDb.updateHouseById(houseId, houseDetails)
-      } else {
-        res.status(401).send('You do not have access to this resource.')
-      }
-      return null
-    })
+  const userHouseId = req.user.house_id
+
+  if (Number(userHouseId) !== Number(houseId)) {
+    res.status(401).send()
+  }
+
+  houseDb.updateHouseById(houseId, houseDetails)
     .then(() => {
       return houseDb.getHouseById(houseId)
     })
