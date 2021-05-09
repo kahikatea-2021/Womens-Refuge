@@ -41,7 +41,7 @@ router.patch('/:id/description', (req, res) => {
 
 router.patch('/:id/availability', (req, res) => {
   const id = req.params.id || -1
-  console.log(id, req.body.available)
+  console.log('route', id, 'avai:', req.body.available)
   roomDb.updateRoomAvailability(id, req.body.available)
     .then(() => {
       console.log('updated')

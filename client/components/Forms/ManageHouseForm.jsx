@@ -25,10 +25,6 @@ export default function ManageHouseForm (props) {
     e.preventDefault()
     editHouse(id, form)
     history.push(`/house/${props.house.name}`)
-    // .then(response => {
-    //   console.log(response)
-    // })
-    // .catch(err => console.log(err))
   }
 
   return (
@@ -46,5 +42,3 @@ export default function ManageHouseForm (props) {
     </>
   )
 }
-
-// export default ManageHouseForm
