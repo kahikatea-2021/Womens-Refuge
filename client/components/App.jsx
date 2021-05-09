@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Link, Route } from 'react-router-dom'
+import React from 'react'
+import { Route } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import Login from './Login'
 import Home from './Home'
@@ -23,7 +23,7 @@ function App () {
   }
 
   return (
-    <>
+    <div className='relative h-screen'>
       <Header />
       {!isAuthenticated && <Login />}
       <Route exact path='/' component={Home} />
@@ -36,7 +36,7 @@ function App () {
       <Route path='/house/manage/:id' component={ManageHouse} />
       <Footer />
 
-    </>
+    </div>
   )
 }
 
