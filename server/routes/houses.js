@@ -2,6 +2,8 @@ const express = require('express')
 const houseDb = require('../db/houses')
 const roomDb = require('../db/rooms')
 const router = express.Router()
+const userDb = require('../db/users')
+const checkJwt = require('./jwtMiddleware')
 
 module.exports = router
 
@@ -19,7 +21,7 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.post('/', (req, res) => {
+router.post('/', checkJwt, (req, res) => {
   const house = req.body
 
   houseDb.addHouse(house)
@@ -30,11 +32,21 @@ router.post('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.patch('/:id', (req, res) => {
+router.patch('/:id', checkJwt, (req, res) => {
   console.log('in house patch')
   const houseDetails = req.body
   const houseId = req.params.id
-  houseDb.updateHouseById(houseId, houseDetails)
+  const userId = req.user.sub
+  userDb.getUser(userId)
+    .then(user => {
+      console.log(user)
+      if (Number(user[0]?.house_id) === Number(houseId)) {
+        return houseDb.updateHouseById(houseId, houseDetails)
+      } else {
+        res.status(401).send('You do not have access to this resource.')
+      }
+      return null
+    })
     .then(() => {
       return houseDb.getHouseById(houseId)
     })
@@ -45,7 +57,7 @@ router.patch('/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.put('/', (req, res) => {
+router.put('/', checkJwt, (req, res) => {
   const house = {}
   house.id = req.body.id
   house.name = req.body.name
@@ -53,7 +65,6 @@ router.put('/', (req, res) => {
   house.phone_1 = req.body.phone_1
   house.phone_2 = req.body.phone_2
   house.notes = req.body.note
-
   houseDb.updateHouseById(house.id)
     .then(() => {
       res.status(200).send()
@@ -62,7 +73,7 @@ router.put('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkJwt, (req, res) => {
   houseDb.deleteHouseById(req.params.id)
     .then(() => {
       res.status(200).send()
