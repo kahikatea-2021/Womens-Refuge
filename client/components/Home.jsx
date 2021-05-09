@@ -4,30 +4,15 @@ import SouthIslandButton from '../components/Buttons/SouthIslandButton'
 import ViewAllButton from '../components/Buttons/ViewAllButton'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
-import { getUser } from '../apis/users'
-import { setUser, deleteUser } from '../actions/user'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 function Home () {
-  const { isLoading, isAuthenticated, user } = useAuth0()
-  // const [ourUser, setOurUser] = useState(null)
+  const { isLoading, isAuthenticated } = useAuth0()
 
   const ourUser = useSelector(state => state.user)
-  const dispatch = useDispatch()
 
   if (isLoading) {
     return <img src="../../images/loading.gif"></img>
-  }
-
-  if (isAuthenticated && !ourUser) {
-    getUser(user.sub)
-      .then(res => {
-        dispatch(setUser(res))
-        return null
-      })
-      .catch(err => console.log(err))
-  } else if (!isAuthenticated && ourUser) {
-    dispatch(deleteUser())
   }
 
   return (

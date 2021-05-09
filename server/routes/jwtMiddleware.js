@@ -20,4 +20,5 @@ const checkJwt = jwt({
   issuer: ['https://dev-xfbt5qv8.au.auth0.com/'],
   algorithms: ['RS256']
 })
+
 module.exports = checkJwt

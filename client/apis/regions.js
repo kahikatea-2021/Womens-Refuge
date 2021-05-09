@@ -1,9 +1,13 @@
 import request from 'superagent'
+import { getState } from '../store'
 const rootUrl = '/api/v1/houses/'
+const token = 'Bearer ' + getState().user?.token
 
 export function getAllRegions (island) {
+  console.log('region', token)
   return request.get('/api/v1/regions')
     .query({ island: island })
+    .set({ authorization: token })
     .then(res => {
       return res.body
     })

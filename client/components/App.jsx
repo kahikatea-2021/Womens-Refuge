@@ -12,31 +12,54 @@ import Region from './Region'
 import House from './House'
 import ManageHouse from './ManageHouse'
 import AddHouseForm from './Forms/AddHouseForm'
+import { setUserState } from './userStateHelper'
+import { useDispatch, useSelector } from 'react-redux'
+import ErrorMessage from './ErrorMessage'
+import { setErrorMsg } from '../actions/error'
 
 // import AddRoomForm from './Forms/AddRoomForm'
 
 function App () {
-  const { isAuthenticated, isLoading } = useAuth0()
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
+  const dispatch = useDispatch()
+  const isWaiting = useSelector(state => state.wait)
 
   if (isLoading) {
     return <img src="../../images/loading.gif"></img>
   }
 
-  return (
-    <div className='relative h-screen'>
-      <Header />
-      {!isAuthenticated && <Login />}
-      <Route exact path='/' component={Home} />
-      <Route path='/northisland' component={NorthIsland} />
-      <Route path='/southisland' component={SouthIsland} />
-      <Route exact path='/houses' component={AllSafehouses} />
-      <Route path='/houses/add' component={AddHouseForm} />
-      <Route path='/region/:name' component={Region} />
-      <Route exact path='/house/:name' component={House} />
-      <Route path='/house/manage/:id' component={ManageHouse} />
-      <Footer />
+  if (isAuthenticated) {
+    console.log('auth')
+    getAccessTokenSilently()
+      .then(token => {
+        setUserState(user, token, dispatch)
+        return null
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
+  return (
+
+      {isWaiting ? <img src="../../images/loading.gif"></img> : <div>
+     <div className='relative h-screen'>
+        <Header />
+        <ErrorMessage />
+        {!isAuthenticated && <Login />}
+        <Route exact path='/' component={Home} />
+        <Route path='/northisland' component={NorthIsland} />
+        <Route path='/southisland' component={SouthIsland} />
+        <Route exact path='/houses' component={AllSafehouses} />
+        <Route path='/houses/add' component={AddHouseForm} />
+        <Route path='/region/:name' component={Region} />
+        <Route exact path='/house/:name' component={House} />
+        <Route path='/house/manage/:id' component={ManageHouse} />
+        <Footer />
     </div>
+      </div>}
+    </>
+
   )
 }
 
