@@ -1,6 +1,12 @@
 import React from 'react'
 
-function ManageHouseForm (house) {
+export function ManageHouseForm (house) {
+  const [form, setForm] = useState(props.formData || {
+    phone1: '',
+    phone2: '',
+    notes: ''
+  })
+
   return (
 
     <>
@@ -11,9 +17,10 @@ function ManageHouseForm (house) {
         <input id='phone2' type="text" value={house.house.phone_2}></input>
         <label htmlFor='notes'>Notes: </label>
         <textarea id='notes' type="text" value={house.house.notes}></textarea>
+        <button >SUBMIT</button>
       </form>
     </>
   )
 }
 
-export default ManageHouseForm
+// export default ManageHouseForm
