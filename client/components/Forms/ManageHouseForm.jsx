@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router'
 import { editHouse } from '../../apis/houses'
+import { useHistory } from 'react-router-dom'
 
 export default function ManageHouseForm (props) {
+  const history = useHistory()
   const id = useParams().id
   console.log('id', id)
   const [form, setForm] = useState({
@@ -22,6 +24,7 @@ export default function ManageHouseForm (props) {
   function handleSubmit (e) {
     e.preventDefault()
     editHouse(id, form)
+    history.push(`/house/${props.house.name}`)
     // .then(response => {
     //   console.log(response)
     // })

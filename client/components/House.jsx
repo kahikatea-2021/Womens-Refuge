@@ -7,16 +7,13 @@ function House () {
   const houseName = useParams()
 
   useEffect(() => {
-    console.log('useffect in house.jsx', houseName)
     getHouse(houseName.name)
       .then(results => {
-        console.log('after getHouse', results)
         setHouse(results)
         return null
       })
       .catch(err => console.log(err))
   }, [])
-  console.log('house in house.jsx', house)
   return (
     <>
       {house &&
