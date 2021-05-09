@@ -4,11 +4,12 @@ function isAdmin (db = connection) {
 
 }
 
-function isHost (db = connection) {
-
+function getUser (sub, db = connection) {
+  return db('users')
+    .where('id', '=', sub)
 }
 
 module.exports = {
   isAdmin,
-  isHost
+  getUser
 }

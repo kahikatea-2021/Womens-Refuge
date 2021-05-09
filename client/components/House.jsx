@@ -1,50 +1,66 @@
 import React, { useEffect, useState } from 'react'
 import { getHouse } from '../apis/regions'
 import { useParams } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function House () {
   const [house, setHouse] = useState(null)
-  const houseName = useParams().name
+  const houseName = useParams()
+  const { isLoading, isAuthenticated, user } = useAuth0()
 
   useEffect(() => {
-    getHouse(houseName)
+    getHouse(houseName.name)
       .then(results => {
-        console.log('house', results)
         setHouse(results)
         return null
       })
       .catch(err => console.log(err))
   }, [])
 
-  return (
-    <>
-      {house && <p>
-        <p>You are viewing: <b>{house[0].name}</b> house, in <b>{house[0].region}</b></p>
-        {house[0].available === 1 && <p>This house currently <b>has</b> availablity</p>}
-        {house[0].available === 0 && <p>This house currently has <b>no</b> availablity</p>}
+  if (!isAuthenticated) {
+    return <p>Unauthorised access</p>
+  }
+
+  if (isLoading) {
+    return <img src="../../images/loading.gif"></img>
+  }
+
+  if (isAuthenticated && user) {
+    return (
+      <>
+        {house &&
+      <div>
+        <p className="text-center text-3xl font-bold">{house[0].name}</p>
+        {house[0].available === 1 && <p className="text-center">available</p>}
+        {house[0].available === 0 && <p className="text-center">available</p>}
         <br />
-        <table>
-          <tr>
-            <th>Rooms</th>
-          </tr>
-          <tr>
-            <td>
-              <ul>
-                {house[0] && house.map((h, i) => {
-                  return <li key={i}><span>Room {i + 1} is <span><b>available</b> {h.available ? '' : 'no'}</span></span> and has {h.description} </li>
-                })}
-              </ul>
-            </td>
-          </tr>
-        </table>
-        <br />
+        <b>{house[0].region}</b>
         <p>Primary Contact Number: <b>{house[0].phone_1}</b></p>
         <p>Secondary Contact Number: <b>{house[0].phone_2}</b></p>
         <br />
-        {house[0]?.notes && <p>Additional Information: <b>{house[0].notes}</b></p>}
-      </p>}
-    </>
-  )
+        <div>
+          {house[0] && house.map((h, i) => {
+            return <div className='border-2' key={i}>
+              <div><b>Room {i + 1}</b>
+                <div className='inline'>
+                  <div>
+                    {h.available ? <i>Available</i> : <b>Currently Unavailable</b>}
+                  </div>
+                  <br />
+                  <img className='w-8' src='../../images/bed.png' />
+                  {h.description}
+                </div>
+              </div>
+            </div>
+          })}
+        </div>
+        <br />
+        {house[0]?.notes && <p>Additional Information: <br/> <b>{house[0].notes}</b></p>}
+      </div>
+        }
+      </>
+    )
+  }
 }
 
 export default House

@@ -32,7 +32,6 @@ export function getHousesInRegion (region) {
 export function getHouse (house) {
   return request.get(rootUrl + 'name/' + house)
     .then(res => {
-      // console.log(res.body)
       return res.body
     })
 }
@@ -40,7 +39,7 @@ export function getHouse (house) {
 export function getHouseById (id) {
   return request.get(rootUrl + 'id/' + id)
     .then(res => {
-      // console.log(res.body)
+      console.log('house id rooms', res.body)
       return res.body
     })
 }

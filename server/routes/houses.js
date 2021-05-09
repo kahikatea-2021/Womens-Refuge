@@ -20,26 +20,26 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const rooms = [].concat(req.body.room)
-  const house = {}
-  house.name = req.body.name
-  house.region_id = req.body.region
-  house.phone_1 = req.body.phone_1
-  house.phone_2 = req.body.phone_2
-  house.notes = req.body.note
+  const house = req.body
 
   houseDb.addHouse(house)
-    .then(ids => {
-      return rooms.map(room => {
-        room.house_id = ids[0]
-        return room
-      })
+    .then((house) => {
+      res.status(200).json(house)
+      return null
     })
-    .then(rooms => {
-      return roomDb.addRooms(rooms)
-    })
+    .catch(err => console.log(err))
+})
+
+router.patch('/:id', (req, res) => {
+  console.log('in house patch')
+  const houseDetails = req.body
+  const houseId = req.params.id
+  houseDb.updateHouseById(houseId, houseDetails)
     .then(() => {
-      res.status(200).send()
+      return houseDb.getHouseById(houseId)
+    })
+    .then(house => {
+      res.status(200).json(house[0])
       return null
     })
     .catch(err => console.log(err))
@@ -86,6 +86,7 @@ router.get('/name/:name', (req, res) => {
   const name = req.params.name
   houseDb.getHouseByName(name)
     .then(house => {
+      console.log('db', house)
       res.status(200).json(house)
       return null
     })
