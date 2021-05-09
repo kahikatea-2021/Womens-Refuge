@@ -5,45 +5,43 @@ import ViewAllButton from '../components/Buttons/ViewAllButton'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 import { getUser } from '../apis/users'
+import { setUser, deleteUser } from '../actions/user'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Home () {
   const { isLoading, isAuthenticated, user } = useAuth0()
-  const [ourUser, setOurUser] = useState(null)
-  useEffect(() => {
-    if (!isLoading && ourUser === null && isAuthenticated) {
-      getUser(user.sub) // function name is an estimate
-        .then(results => {
-          setOurUser(results)
-          return null
-        })
-        .catch(err => console.log(err))
-    }
-  })
+  // const [ourUser, setOurUser] = useState(null)
+
+  const ourUser = useSelector(state => state.user)
+  const dispatch = useDispatch()
+
   if (isLoading) {
     return <p>Loading...</p>
-  } else {
-    console.log('user', user)
-    console.log('ourUser', ourUser)
-    // getUser(user.sub) // function name is an estimate
-    //   .then(results => {
-    //     setOurUser(results)
-    //     return null
-    //   })
-    //   .catch(err => console.log(err))
+  }
+
+  if (isAuthenticated && !ourUser) {
+    getUser(user.sub)
+      .then(res => {
+        dispatch(setUser(res))
+        return null
+      })
+      .catch(err => console.log(err))
+  } else if (!isAuthenticated && ourUser) {
+    dispatch(deleteUser())
   }
 
   return (
     <>
       {isAuthenticated &&
-      <div>
-        <h1>Safehouse Search Options:</h1>
-        {ourUser?.house_id &&
-          <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
-        }
-        <NorthIslandButton />
-        <SouthIslandButton />
-        <ViewAllButton />
-      </div>}
+        <div>
+          <h1>Safehouse Search Options:</h1>
+          {ourUser?.house_id &&
+            <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
+          }
+          <NorthIslandButton />
+          <SouthIslandButton />
+          <ViewAllButton />
+        </div>}
     </>
   )
 }

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, Route } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import Login from './Login'
 import Home from './Home'
@@ -12,10 +12,15 @@ import Region from './Region'
 import House from './House'
 import ManageHouse from './ManageHouse'
 import AddHouseForm from './Forms/AddHouseForm'
+
 // import AddRoomForm from './Forms/AddRoomForm'
 
 function App () {
-  const { isAuthenticated } = useAuth0()
+  const { isAuthenticated, isLoading } = useAuth0()
+
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
 
   return (
     <>
@@ -30,7 +35,7 @@ function App () {
       <Route exact path='/house/:name' component={House} />
       <Route path='/house/manage/:id' component={ManageHouse} />
       <Footer />
-      {/* <ManageHouse houseId={32} /> */}
+
     </>
   )
 }
