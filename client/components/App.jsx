@@ -12,8 +12,7 @@ import Region from './Region'
 import House from './House'
 import ManageHouse from './ManageHouse'
 import AdminAddHouse from './AdminAddHouse'
-
-// import AddRoomForm from './Forms/AddRoomForm'
+import AdminAddRoom from './AdminAddRoom'
 
 function App () {
   const { isAuthenticated, isLoading } = useAuth0()
@@ -34,6 +33,7 @@ function App () {
       <Route path='/region/:name' component={Region} />
       <Route exact path='/house/:name' component={House} />
       <Route path='/house/manage/:id' component={ManageHouse} />
+      <Route path='/rooms/add' component={AdminAddRoom} />
       <Footer />
 
     </>

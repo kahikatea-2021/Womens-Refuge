@@ -8,7 +8,6 @@ function AddHouseForm () {
   const regions = useSelector(state => state.regions)
   const { isLoading, isAuthenticated, user } = useAuth0()
 
-  console.log(regions)
   const [form, setForm] = useState({
     name: '',
     region_id: '',
@@ -26,6 +25,7 @@ function AddHouseForm () {
 
   function onSubmit (evt) {
     evt.preventDefault()
+
     console.log(form)
     addNewHouse(form)
       .then(id => {
@@ -47,7 +47,7 @@ function AddHouseForm () {
   }
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <img src="/images/loading.gif"></img>
   }
 
   if (isAuthenticated && user) {

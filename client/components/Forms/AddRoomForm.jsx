@@ -32,9 +32,9 @@ function AddRoomForm () {
         <h1>ADD A ROOM</h1>
         <form>
           <label htmlFor='house'>House:</label>
-          <input readOnly isRequired id='house' value={house.name} type='text'></input>
+          <input readOnly isrequired='true' id='house' value={house.name} type='text'></input>
           <label htmlFor='description'>Description:</label>
-          <textarea isRequired id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange}></textarea>
+          <textarea isrequired='true' id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange}></textarea>
           <button type='button' onClick={handleAddroom}>{addedRooms.length <= 0 ? 'ADD ROOM' : 'ADD ANOTHER'}</button>
           <Link to={`/house/${house.name}`} ><button type='button'>FINISHED</button></Link>
         </form>
