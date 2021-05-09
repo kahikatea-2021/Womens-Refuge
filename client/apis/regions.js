@@ -30,9 +30,10 @@ export function getHousesInRegion (region) {
 
 // Get a house
 export function getHouse (house) {
+  console.log('gethouse api param', house)
   return request.get(rootUrl + 'name/' + house)
     .then(res => {
-      console.log('thed', res.body)
+      console.log('gethouse api res', res)
       return res.body
     })
 }
