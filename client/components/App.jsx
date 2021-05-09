@@ -29,7 +29,6 @@ function App () {
   }
 
   if (isAuthenticated) {
-    console.log('auth')
     getAccessTokenSilently()
       .then(token => {
         setUserState(user, token, dispatch)
@@ -42,7 +41,7 @@ function App () {
 
   return (
     <>
-      {isWaiting ? <img src="../../images/loading.gif"/>
+      {isWaiting ? <img src="../../images/loading.gif" />
         : <div>
           <div className='relative h-screen'>
             <Header />

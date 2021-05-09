@@ -5,6 +5,7 @@ import { getUser } from '../apis/users'
 export function setUserState (user, token, dispatch) {
   setWait(true)
   if (user) {
+    localStorage.setItem('access-token', token)
     getUser(user.sub, token)
       .then(userInfo => {
         userInfo.token = token
@@ -18,6 +19,7 @@ export function setUserState (user, token, dispatch) {
       })
   } else {
     setWait(false)
+    localStorage.removeItem('access-token')
     deleteUser()
   }
 }
