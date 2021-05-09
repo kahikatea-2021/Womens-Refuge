@@ -29,6 +29,7 @@ function App () {
   }
 
   if (isAuthenticated) {
+    console.log('auth')
     getAccessTokenSilently()
       .then(token => {
         setUserState(user, token, dispatch)

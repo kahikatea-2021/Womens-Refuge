@@ -5,7 +5,7 @@ import { getUser } from '../apis/users'
 export function setUserState (user, token, dispatch) {
   setWait(true)
   if (user) {
-    getUser(user.sub)
+    getUser(user.sub, token)
       .then(userInfo => {
         userInfo.token = token
         dispatch(setUser(userInfo))

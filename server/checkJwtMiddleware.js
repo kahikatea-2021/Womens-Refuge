@@ -12,12 +12,12 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: 'https://dev-onpk9d05.au.auth0.com/.well-known/jwks.json'
+    jwksUri: 'https://dev-xfbt5qv8.au.auth0.com/.well-known/jwks.json'
   }),
 
   // Validate the audience and the issuer.
-  audience: 'https://eda-finalproject-safehouses.com',
-  issuer: ['https://dev-onpk9d05.au.auth0.com/'],
+  audience: 'https://dev-xfbt5qv8.au.auth0.com/api/v2/',
+  issuer: ['https://dev-xfbt5qv8.au.auth0.com/'],
   algorithms: ['RS256']
 })
 module.exports = checkJwt
