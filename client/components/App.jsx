@@ -41,8 +41,9 @@ function App () {
   }
 
   return (
-    <>
+
       {isWaiting ? <img src="../../images/loading.gif"></img> : <div>
+     <div className='relative h-screen'>
         <Header />
         <ErrorMessage />
         {!isAuthenticated && <Login />}
@@ -55,6 +56,7 @@ function App () {
         <Route exact path='/house/:name' component={House} />
         <Route path='/house/manage/:id' component={ManageHouse} />
         <Footer />
+    </div>
       </div>}
     </>
 
