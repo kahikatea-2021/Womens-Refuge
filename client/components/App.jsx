@@ -14,8 +14,7 @@ import ManageHouse from './ManageHouse'
 import AddHouseForm from './Forms/AddHouseForm'
 import { setUserState } from './userStateHelper'
 import { useDispatch, useSelector } from 'react-redux'
-import ErrorMessage from './ErrorMessage'
-import { setErrorMsg } from '../actions/error'
+// import ErrorMessage from './ErrorMessage'
 
 // import AddRoomForm from './Forms/AddRoomForm'
 
@@ -45,7 +44,7 @@ function App () {
         : <div>
           <div className='relative h-screen'>
             <Header />
-            <ErrorMessage />
+            {/* <ErrorMessage /> */}
             {!isAuthenticated && <Login />}
             <Route exact path='/' component={Home} />
             <Route path='/northisland' component={NorthIsland} />

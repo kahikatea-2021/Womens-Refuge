@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.post('/', checkJwt, (req, res) => {
+router.post('/', (req, res) => {
   const house = req.body
 
   houseDb.addHouse(house)
@@ -32,7 +32,7 @@ router.post('/', checkJwt, (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.patch('/:id', checkJwt, (req, res) => {
+router.patch('/:id', (req, res) => {
   console.log('in house patch')
   const houseDetails = req.body
   const houseId = req.params.id
@@ -57,7 +57,7 @@ router.patch('/:id', checkJwt, (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.put('/', checkJwt, (req, res) => {
+router.put('/', (req, res) => {
   const house = {}
   house.id = req.body.id
   house.name = req.body.name
@@ -73,7 +73,7 @@ router.put('/', checkJwt, (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.delete('/:id', checkJwt, (req, res) => {
+router.delete('/:id', (req, res) => {
   houseDb.deleteHouseById(req.params.id)
     .then(() => {
       res.status(200).send()
