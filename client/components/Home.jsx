@@ -22,8 +22,6 @@ function Home () {
   if (isLoading) {
     return <p>Loading...</p>
   } else {
-    console.log('user', user)
-    console.log('ourUser', ourUser)
     // getUser(user.sub) // function name is an estimate
     //   .then(results => {
     //     setOurUser(results)

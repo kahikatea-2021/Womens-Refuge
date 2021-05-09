@@ -6,7 +6,7 @@ function ManageRoom (props) {
     <>
       <p>Room {props.n}</p>
       <p>{props.room.description}</p>
-      <MakeAvailableButton available={props.room.available}/>
+      <MakeAvailableButton available={props.room.available} room={props.n}/>
     </>
   )
 }
