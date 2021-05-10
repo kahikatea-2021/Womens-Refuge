@@ -6,6 +6,7 @@ import LoadingIcon from './LoadingIcon'
 import ViewAllButton from './Buttons/ViewAllButton'
 import ManageHouseButton from './Buttons/ManageHouseButton'
 import AddHouseButton from './Buttons/AddHouseButton'
+import SearchButton from './Buttons/SearchButton'
 import { useSelector } from 'react-redux'
 
 function Header () {
@@ -25,10 +26,12 @@ function Header () {
             <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
             <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
           </Link>
+          <SearchButton />
         </div>
 
         <div className='mt-4 space-x-4 flex w-full justify-center md:justify-end w-4/5'>
-          {ourUser?.isMasterAdmin === 1 && <AddHouseButton/>}
+
+          {ourUser?.isMasterAdmin === 1 && <AddHouseButton />}
           {ourUser?.house_id && <ManageHouseButton />}
           <ViewAllButton />
           <LogoutButton />
@@ -39,11 +42,13 @@ function Header () {
   } else {
     return (
       <>
-        <div className='flex w-full justify-center'>
-          <Link to='/' className='flex-col items-center'>
-            <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
-            <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
-          </Link>
+        <div className='md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200'>
+          <div className='flex w-full justify-center'>
+            <Link to='/' className='flex-col items-center'>
+              <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
+              <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
+            </Link>
+          </div>
         </div>
       </>
     )

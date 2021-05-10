@@ -1,7 +1,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable('houses', table => {
     table.increments('id').primary()
-    table.int('region_id').references('regions.id')
+    table.integer('region_id').references('regions.id')
     table.string('name')
     table.string('phone_1')
     table.string('phone_2')

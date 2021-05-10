@@ -5,7 +5,7 @@ const rootUrl = '/api/v1/houses/'
 const token = 'Bearer ' + getState().user?.token
 
 export function getAllRegions (island) {
-  console.log('region', token)
+  // console.log('region', token)
   return request.get('/api/v1/regions')
     .query({ island: island })
     .set(getAccessHeader())
@@ -26,6 +26,7 @@ export function getAllHouses (house) {
 
 // Get all the houses in a particular region
 export function getHousesInRegion (region) {
+  console.log('in regions api', region)
   return request.get(rootUrl)
     .query({ region: region })
     .set(getAccessHeader())
@@ -48,7 +49,7 @@ export function getHouseById (id) {
   return request.get(rootUrl + 'id/' + id)
     .set(getAccessHeader())
     .then(res => {
-      console.log('house id rooms', res.body)
+      // console.log('house id rooms', res.body)
       return res.body
     })
 }
