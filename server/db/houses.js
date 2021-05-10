@@ -22,7 +22,7 @@ function getHouseById (id, db = connection) {
   return db.raw(query)
 }
 
-function genearlQuery (island, regions, exclude, db = connection) {
+function genearlQuery (island, regions, exclude, available = 1, db = connection) {
   console.log(regions, exclude, island)
   if (island === 'all') island = '%'
   let query = baseQuery +
@@ -37,6 +37,14 @@ function genearlQuery (island, regions, exclude, db = connection) {
   }
 
   query += 'GROUP BY houses.id '
+
+  if (available === 2) {
+    query += 'HAVING COUNT(rooms.house_id) > 0 '
+  }
+  if (available === 0) {
+    query += 'HAVING COUNT(rooms.house_id) = 0 '
+  }
+
   console.log(query)
   return db.raw(query)
 }
