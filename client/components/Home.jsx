@@ -20,13 +20,13 @@ function Home () {
       {isAuthenticated &&
         <div>
           <div>
-          <h1>Safehouse Search Options:</h1>
+          <h1 className='flex justify-center font-extrabold my-8 mt-20 text-2xl'>Safehouse Search Options:</h1>
           {ourUser?.house_id
             ? <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
             : null
           }
           {ourUser?.isMasterAdmin
-            ? <Link to='/houses/add'>Add New House</Link>
+            ? <Link className='flex justify-center' to='/houses/add'>Add New House</Link>
             : null
           }
           <NorthIslandButton />
