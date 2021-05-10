@@ -16,6 +16,7 @@ import AdminAddRoom from './AdminAddRoom'
 import { setUserState } from './userStateHelper'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingIcon from './LoadingIcon'
+import BackButton from './Buttons/BackButton'
 
 function App () {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
@@ -53,20 +54,22 @@ function App () {
     <>
       {isWaiting ? <LoadingIcon />
         : <div>
-          <div className='relative h-screen flex flex-col'>
+          <div className='flex flex-col'>
             <Header />
-            {/* <ErrorMessage /> */}
-            {!isAuthenticated && <Login />}
-            <Route exact path='/' component={Home} />
-            <Route path='/northisland' component={NorthIsland} />
-            <Route path='/southisland' component={SouthIsland} />
-            <Route exact path='/houses' component={AllSafehouses} />
-            <Route path='/region/:name' component={Region} />
-            <Route exact path='/house/:name' component={House} />
-            <Route path='/house/manage/:id' component={ManageHouse} />
-            <Route path='/houses/add' component={AdminAddHouse} />
-            <Route path='/rooms/add' component={AdminAddRoom} />
-            <Footer />
+            <main className='pb-0 pt-4 px-8'>
+              <BackButton />
+              {!isAuthenticated && <Login />}
+              <Route exact path='/' component={Home} />
+              <Route path='/northisland' component={NorthIsland} />
+              <Route path='/southisland' component={SouthIsland} />
+              <Route exact path='/houses' component={AllSafehouses} />
+              <Route path='/region/:name' component={Region} />
+              <Route exact path='/house/:name' component={House} />
+              <Route path='/house/manage/:id' component={ManageHouse} />
+              <Route path='/houses/add' component={AdminAddHouse} />
+              <Route path='/rooms/add' component={AdminAddRoom} />
+              <Footer />
+            </main>
           </div>
         </div>}
     </>
