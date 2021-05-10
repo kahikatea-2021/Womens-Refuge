@@ -36,6 +36,7 @@ function AddRoomForm () {
       {!house.name ? <p>No House Selected</p> : <div>
         <p>House: {house.name}</p>
         <h1>Add Room Details</h1>
+        <br />
         <ol>Please provide details about:
           <li>- the number of rooms available in the house; and</li>
           <li>- the sleeping arrangements in each room.</li>
@@ -47,22 +48,32 @@ function AddRoomForm () {
           <br />
           <button>{addedRooms.length <= 0 ? 'Add Room 1' : ''}</button>
           <br />
-          {/* <label htmlFor='description'>Room 2 Details:</label>
+          </form>
+
+          <form onSubmit={handleAddroom}>
+        <label htmlFor='description'>Room 2 Details:</label>
           <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange} cols="40" rows="1"></input>
           <br />
           <button>{addedRooms.length <= 1 ? 'Add Room 2' : ''}</button>
           <br />
-          <label htmlFor='description'>Room 3 Details:</label>
+          </form>
+
+          <form onSubmit={handleAddroom}>
+        <label htmlFor='description'>Room 3 Details:</label>
           <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange} cols="40" rows="1"></input>
           <br />
           <button>{addedRooms.length <= 2 ? 'Add Room 3' : ''}</button>
           <br />
-          <label htmlFor='description'>Room 4 Details:</label>
+          </form>
+
+          <form onSubmit={handleAddroom}>
+        <label htmlFor='description'>Room 4 Details:</label>
           <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange} cols="40" rows="1"></input>
           <br />
-          <button>{addedRooms.length <= 3 ? 'Add Room 4' : ''}</button> */}
-
-        </form>
+          <button>{addedRooms.length <= 3 ? 'Add Room 4' : ''}</button>
+          <br />
+          </form>
+    
         <br />
         {addedRooms.length > 0 && <h1><b>Rooms:</b></h1>}
         <ul>

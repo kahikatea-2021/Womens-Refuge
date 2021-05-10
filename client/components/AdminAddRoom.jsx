@@ -33,7 +33,7 @@ function AdminAddRoom () {
     <>
       {ourUser?.isMasterAdmin
         ? <><AddRoomForm /> 
-        <AddRoomForm /></>
+ </>
         : <p>Unauthorised Access</p>}
     </>
   )
