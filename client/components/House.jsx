@@ -51,7 +51,7 @@ function House () {
         <div>
           <div>
             <p className='text-center text-base md:text-xl'><b >{house[0].region}</b></p>
-            <p className="text-center text-3xl md:text-5xl font-bold">{house[0].name}</p>
+            <p className="text-center text-3xl md:text-5xl font-bold my-1 md:my-2">{house[0].name}</p>
             <div className='flex justify-center'>{count > 0 && <div className="flex flex-row">available<img className='ml-2 w-6' src='/images/tickGreen.png' /></div>}</div>
             <div className='flex justify-center'>{count === 0 && <div className="flex flex-row">unavailable<img className='ml-2 w-6' src='/images/crossRed.svg' /></div>}</div>
 

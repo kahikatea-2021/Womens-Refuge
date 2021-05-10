@@ -1,13 +1,14 @@
 import React from 'react'
 import NorthIslandButton from '../components/Buttons/NorthIslandButton'
 import SouthIslandButton from '../components/Buttons/SouthIslandButton'
+import LoadingIcon from './LoadingIcon'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function Home () {
   const { isLoading, isAuthenticated } = useAuth0()
 
   if (isLoading) {
-    return <img src="/images/loading.gif"></img>
+    return <LoadingIcon />
   }
 
   return (
