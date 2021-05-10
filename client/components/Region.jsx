@@ -33,10 +33,10 @@ function Region () {
       <>
         <div className=''>
           <div className='flex flex-col ml-10 md:flex-row md:justify-center md:ml-1'>
-            <div className='flex items-center mx-5'>
+            <div className='flex items-center mx-5 mb-1'>
               <img src="/images/tickGreen.png" className="h-8 w-8 mr-2" alt="" /><p>Room available</p>
             </div>
-            <div className='flex items-center mx-5'>
+            <div className='flex items-center mx-5 mb-1'>
               <img src="/images/crossRed.png" className="h-8 w-8 mr-2" alt="" /><p>No room available</p>
             </div>
           </div>
