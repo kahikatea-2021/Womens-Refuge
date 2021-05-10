@@ -22,7 +22,7 @@ function NorthIsland () {
   })
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <img src="/images/loading.gif"></img>
   }
 
   if (!isAuthenticated || !user) {

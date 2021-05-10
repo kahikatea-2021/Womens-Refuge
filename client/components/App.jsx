@@ -11,10 +11,14 @@ import AllSafehouses from './AllSafehouses'
 import Region from './Region'
 import House from './House'
 import ManageHouse from './ManageHouse'
-import AddHouseForm from './Forms/AddHouseForm'
+import AdminAddHouse from './AdminAddHouse'
+import AdminAddRoom from './AdminAddRoom'
+// import AddHouseForm from './Forms/AddHouseForm'
 import { setUserState } from './userStateHelper'
 import { useDispatch, useSelector } from 'react-redux'
 // import ErrorMessage from './ErrorMessage'
+import LoadingIcon from './LoadingIcon'
+// import { setErrorMsg } from '../actions/error'
 
 // import AddRoomForm from './Forms/AddRoomForm'
 
@@ -24,7 +28,7 @@ function App () {
   const isWaiting = useSelector(state => state.wait)
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <LoadingIcon />
   }
 
   if (isAuthenticated) {
@@ -42,7 +46,7 @@ function App () {
 
   return (
     <>
-      {isWaiting ? <img src="../../images/loading.gif" />
+      {isWaiting ? <LoadingIcon />
         : <div>
           <div className='relative h-screen'>
             <Header />
@@ -52,10 +56,11 @@ function App () {
             <Route path='/northisland' component={NorthIsland} />
             <Route path='/southisland' component={SouthIsland} />
             <Route exact path='/houses' component={AllSafehouses} />
-            <Route path='/houses/add' component={AddHouseForm} />
             <Route path='/region/:name' component={Region} />
             <Route exact path='/house/:name' component={House} />
             <Route path='/house/manage/:id' component={ManageHouse} />
+            <Route path='/houses/add' component={AdminAddHouse} />
+            <Route path='/rooms/add' component={AdminAddRoom} />
             <Footer />
           </div>
         </div>}
