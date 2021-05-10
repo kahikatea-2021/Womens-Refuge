@@ -11,6 +11,7 @@ function Region () {
   useEffect(() => {
     return getHousesInRegion(regionName)
       .then(houses => {
+        console.log('houses', houses)
         setHouses(houses)
         return null
       })

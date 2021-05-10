@@ -37,6 +37,7 @@ function genearlQuery (island, regions, exclude, db = connection) {
   }
 
   query += 'GROUP BY houses.id '
+  console.log(query)
   return db.raw(query)
 }
 
@@ -47,7 +48,7 @@ function updateHouseById (houseId, house, db = connection) {
 }
 
 function addHouse (house, db = connection) {
-  console.log('add a house')
+  console.log('add a house', house)
   return db('houses')
     .insert(house)
     .then(ids => {
