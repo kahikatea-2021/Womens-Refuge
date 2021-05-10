@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer () {
   return (
-    <p className='absolute bottom-10'>&copy; Tuohunga 2021</p>
+    <p className='mt-3'>&copy; Tuohunga 2021</p>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Route } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import Login from './Login'
@@ -13,14 +13,9 @@ import House from './House'
 import ManageHouse from './ManageHouse'
 import AdminAddHouse from './AdminAddHouse'
 import AdminAddRoom from './AdminAddRoom'
-// import AddHouseForm from './Forms/AddHouseForm'
 import { setUserState } from './userStateHelper'
 import { useDispatch, useSelector } from 'react-redux'
-// import ErrorMessage from './ErrorMessage'
 import LoadingIcon from './LoadingIcon'
-// import { setErrorMsg } from '../actions/error'
-
-// import AddRoomForm from './Forms/AddRoomForm'
 
 function App () {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
