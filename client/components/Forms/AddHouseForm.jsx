@@ -73,6 +73,7 @@ function AddHouseForm () {
           <button >NEXT</button>
           <button type='button' onClick={() => { history.push('/') }}>CANCEL</button>
         </form>
+
       </>
     )
   }
