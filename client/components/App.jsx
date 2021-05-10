@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, useHistory } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import Login from './Login'
 import Home from './Home'
@@ -34,10 +34,11 @@ function App () {
             </div>
           </div>
         </div>
-        <LoadingIcon/>
+        <LoadingIcon />
       </>
     )
   }
+  console.log(window.location.pathname)
 
   if (isAuthenticated) {
     console.log('authenticated')
@@ -72,6 +73,7 @@ function App () {
               <Route path='/rooms/add' component={AdminAddRoom} />
               <Footer />
             </main>
+
           </div>
         </div>}
     </>
