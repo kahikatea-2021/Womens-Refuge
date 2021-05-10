@@ -40,7 +40,7 @@ function AddRoomForm () {
           <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange}></input>
           <button >{addedRooms.length <= 0 ? 'ADD ROOM' : 'ADD ANOTHER'}</button>
         </form>
-        <Link to={`/house/${house.name}`} ><button type='button'>FINISHED</button></Link>
+        <Link to={`/house/${house.name}`}><button type='button'>FINISHED</button></Link>
         {addedRooms.length > 0 && <h1>Rooms Added</h1>}
         <ul>
           {addedRooms.map((room, i) => {
