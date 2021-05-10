@@ -19,6 +19,9 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const room = req.body
+  if (!req.user.isMasterAdmin) {
+    res.status(403).send()
+  }
   roomDb.addRooms(room)
     .then(() => {
       res.status(200).send()
@@ -30,7 +33,15 @@ router.post('/', (req, res) => {
 router.patch('/:id/description', (req, res) => {
   const id = req.params.id || -1
   console.log(id, req.body.description)
-  roomDb.updateRoomDescription(id, req.body.description)
+  roomDb.getRoomById(id)
+    .then(rooms => {
+      if (rooms[0].house_id !== Number(req.user.house_id)) {
+        res.status(403).send()
+      } else {
+        return roomDb.updateRoomDescription(id, req.body.description)
+      }
+      return null
+    })
     .then(() => {
       console.log('updated')
       res.status(200).send()
@@ -42,7 +53,15 @@ router.patch('/:id/description', (req, res) => {
 router.patch('/:id/availability', (req, res) => {
   const id = req.params.id || -1
   console.log('route', id, 'avai:', req.body.available)
-  roomDb.updateRoomAvailability(id, req.body.available)
+  roomDb.getRoomById(id)
+    .then(rooms => {
+      if (rooms[0].house_id !== Number(req.user.house_id)) {
+        res.status(403).send()
+      } else {
+        return roomDb.updateRoomAvailability(id, req.body.available)
+      }
+      return null
+    })
     .then(() => {
       console.log('updated')
       res.status(200).send()

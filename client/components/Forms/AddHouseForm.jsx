@@ -56,23 +56,24 @@ function AddHouseForm () {
         <h1>ADD A HOUSE</h1>
         <form onSubmit={onSubmit}>
           <label htmlFor='region_id'>Region:</label>
-          {regions && <select value={form.region_id} onChange={handleChange} name="region_id" id='region'>
+          {regions && <select required value={form.region_id} onChange={handleChange} name="region_id" id='region'>
             <option value='' disabled>Select Region</option>
             {regions.map(region => {
               return <option value={region.id} key={region.id}>{region.region}</option>
             })}
           </select>}
           <label htmlFor='name'>House Name:</label>
-          <input id='name' name="name" type='text' onChange={handleChange}></input>
+          <input required id='name' name="name" type='text' onChange={handleChange}></input>
           <label htmlFor='phone_1'>Primary Contact Number:</label>
-          <input id='phone1' type='text' name="phone_1" onChange={handleChange}></input>
+          <input required id='phone1' type='text' name="phone_1" onChange={handleChange}></input>
           <label htmlFor='phone_2'>Secondary Contact Number:</label>
           <input id='phone2' type='text' name="phone_2" onChange={handleChange}></input>
           <label htmlFor='notes'>Notes:</label>
           <textarea onChange={handleChange} name="notes" id='notes' placeholder='Optional notes about room availabitity, usually used by refuge coordinators.'></textarea>
-          <button type='button' onClick={onSubmit}>NEXT</button>
+          <button >NEXT</button>
           <button type='button' onClick={() => { history.push('/') }}>CANCEL</button>
         </form>
+
       </>
     )
   }
