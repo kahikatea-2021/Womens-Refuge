@@ -6,6 +6,7 @@ import BackButton from './Buttons/BackButton'
 import LoadingIcon from './LoadingIcon'
 import ViewAllButton from './Buttons/ViewAllButton'
 import ManageHouseButton from './Buttons/ManageHouseButton'
+// import AddHouseButton from './Buttons/AddHouseButton'
 function Header () {
   const { isLoading, isAuthenticated } = useAuth0()
 
@@ -30,6 +31,7 @@ function Header () {
           </div>
 
           <div className='flex w-full justify-end'>
+            {/* <AddHouseButton /> */}
             <ManageHouseButton />
             <ViewAllButton />
             <LogoutButton className='flex fill-current inline-block w-1/2 content-center'/>
