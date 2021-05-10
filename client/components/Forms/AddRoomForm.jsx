@@ -20,7 +20,6 @@ function AddRoomForm () {
   }
 
   function handleAddroom (e) {
-    console.log('hi')
     e.preventDefault()
     addRoom(form)
       .then(() => {
@@ -33,56 +32,45 @@ function AddRoomForm () {
 
   return (
     <>
-      {!house.name ? <p>No House Selected</p> : <div>
-        <p>House: {house.name}</p>
-        <h1>Add Room Details</h1>
-        <br />
-        <ol>Please provide details about:
-          <li>- the number of rooms available in the house; and</li>
-          <li>- the sleeping arrangements in each room.</li>
+
+    <p className='text-center text-base md:text-xl'><b>In Progress:</b></p>
+      {!house.name ? <h1 className='flex justify-center font-extrabold my-8 mt-20 text-xl md:text-2xl'>No House Selected</h1> : <div>
+      <p className="text-center text-3xl md:text-5xl font-bold my-1 md:my-2">{house.name} House</p>
+        <br /> 
+
+        {/* <div className='text-base md:text-xl'>
+          <ol>
+            <b>Required Information:</b>
+        <li>- the number of rooms available in the house; and</li>
+        <li>- the sleeping arrangements in each room.</li>
         </ol>
+        </div> */}
+
         <br />
-        <form onSubmit={handleAddroom}>
-        <label htmlFor='description'>Room 1 Details:</label>
-          <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange} cols="40" rows="1"></input>
-          <br />
-          <button>{addedRooms.length <= 0 ? 'Add Room 1' : ''}</button>
-          <br />
-          </form>
 
-          <form onSubmit={handleAddroom}>
-        <label htmlFor='description'>Room 2 Details:</label>
-          <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange} cols="40" rows="1"></input>
-          <br />
-          <button>{addedRooms.length <= 1 ? 'Add Room 2' : ''}</button>
-          <br />
-          </form>
+        <div className='flex justify-center items-center'>
 
-          <form onSubmit={handleAddroom}>
-        <label htmlFor='description'>Room 3 Details:</label>
-          <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange} cols="40" rows="1"></input>
-          <br />
-          <button>{addedRooms.length <= 2 ? 'Add Room 3' : ''}</button>
-          <br />
-          </form>
+ <form onSubmit={handleAddroom}>
 
-          <form onSubmit={handleAddroom}>
-        <label htmlFor='description'>Room 4 Details:</label>
-          <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange} cols="40" rows="1"></input>
-          <br />
-          <button>{addedRooms.length <= 3 ? 'Add Room 4' : ''}</button>
-          <br />
-          </form>
+    <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange} type="text" />
+
+    <button   className="py-2 ml-4 self-start bg-poroporo hover:bg-poroporo text-white w-16 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">{addedRooms.length <= 0 ? 'Add First Room' : 'Add Another Room'}</button>
+
     
-        <br />
+  <br />
         {addedRooms.length > 0 && <h1><b>Rooms:</b></h1>}
         <ul>
           {addedRooms.map((room, i) => {
             return <li key={i}>Room {i + 1}: {room.description}</li>
           })}
         </ul>
+ 
+
         <br />
-        <Link to={`/house/${house.name}`}><button type='button'>{addedRooms.length <= 0 ? '' : 'Submit'}</button></Link>
+        {addedRooms.length <= 0 ? '' : <button className="m-2 py-4 md:w-1/3 w-2/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out"><Link to={`/house/${house.name}`}>Submit</Link></button>}
+  
+        </form>
+        </div>
       </div>}
     </>
   )
