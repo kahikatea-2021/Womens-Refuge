@@ -1,8 +1,6 @@
 import request from 'superagent'
-import { getState } from '../store'
 import getAccessHeader from './tokenHelper'
 const rootUrl = '/api/v1/houses/'
-const token = 'Bearer ' + getState().user?.token
 
 export function getAllRegions (island) {
   // console.log('region', token)
