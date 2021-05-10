@@ -54,7 +54,7 @@ function House () {
 
             <div>
               {house[0] && house.map((h, i) => {
-                return <div className='border-2 p-1 mb-2' key={i}>
+                return <div className='border-2 rounded-lg p-1 mb-2' key={i}>
                   <div><b>Room {i + 1}</b>
                     <div className=''>
                       <div>
