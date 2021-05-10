@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 export default function AddHouseButton () {
@@ -7,14 +7,12 @@ export default function AddHouseButton () {
 
   return (
     <>
-      <div className="items-center">
-        {ourUser?.isMasterAdmin
-          ? <Link to='/houses/add'>
-            <button className="py-2 self-center bg-poroporo hover:bg-poroporo text-white w-20 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Add a Whare</button>
-          </Link>
-          : null
-        }
-      </div>
+      {ourUser?.isMasterAdmin
+        ? <Link to='/houses/add'>
+          <button className="py-2 self-center bg-poroporo hover:bg-poroporo text-white w-20 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Add Whare</button>
+        </Link>
+        : null
+      }
     </>
   )
 }
