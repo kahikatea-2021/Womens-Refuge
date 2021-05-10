@@ -8,30 +8,28 @@ function House () {
   const [house, setHouse] = useState(null)
   const houseName = useParams()
   const ourUser = useSelector(state => state.user)
-  const { isLoading, isAuthenticated, user } = useAuth0()
+  const { isLoading, isAuthenticated } = useAuth0()
 
   useEffect(() => {
-    getHouse(houseName.name)
-      .then(results => {
-        setHouse(results)
-        return null
-      })
-      .catch(err => console.log(err))
-  }, [])
+    if (ourUser && !house) {
+      getHouse(houseName.name)
+        .then(results => {
+          setHouse(results)
+          return null
+        })
+        .catch(err => console.log(err))
+    }
+  })
 
-  if (!house) {
-    return null
+  if (isLoading) {
+    return <img src="/images/loading.gif"></img>
   }
 
   if (!isAuthenticated) {
     return <p>Unauthorised access</p>
   }
 
-  if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
-  }
-
-  if (isAuthenticated && user) {
+  if (ourUser) {
     return (
       <>
         {ourUser.house_id === house[0].id &&
