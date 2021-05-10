@@ -50,10 +50,10 @@ function addHouse (house, db = connection) {
   console.log('add a house')
   return db('houses')
     .insert(house)
-    // .then(ids => {
-    //   house.id = ids[0]
-    //   return house
-    // })
+    .then(ids => {
+      house.id = ids[0]
+      return house
+    })
 }
 
 function deleteHouseById (houseId, db = connection) {
