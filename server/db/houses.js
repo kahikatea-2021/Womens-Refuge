@@ -15,11 +15,10 @@ function getHouseByName (name, db = connection) {
 
 // when a user clicks on a house to view the house details
 function getHouseById (id, db = connection) {
-  // const query = 'SELECT *, rooms.id ' +
-  //   'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
-  //   'JOIN regions on houses.region_id = regions.id ' +
-  //   `WHERE houses.id = ${id} `
-  const query = baseQuery + `WHERE houses.id = ${id}`
+  const query = 'SELECT *, rooms.id as room_id ' +
+    'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
+    'LEFT JOIN regions on houses.region_id = regions.id ' +
+    `WHERE houses.id = ${id}`
   return db.raw(query)
 }
 
