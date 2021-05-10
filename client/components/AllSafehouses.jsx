@@ -11,6 +11,7 @@ function AllSafehouses () {
     getAllHouses()
       .then(results => {
         setHouses(results)
+        console.log('jared test', results)
         return null
       })
       .catch(err => console.log(err))
