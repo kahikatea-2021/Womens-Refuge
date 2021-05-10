@@ -9,9 +9,10 @@ router.get('/', (req, res) => {
   const island = req.query.island ? req.query.island : 'all'
   const regions = req.query.region ? [].concat(req.query.region) : []
   const excludedRegions = req.query.exclude ? [].concat(req.query.exclude) : []
+  const available = Number(req.query.available)
 
   console.log('regions: ', regions)
-  houseDb.genearlQuery(island, regions, excludedRegions)
+  houseDb.genearlQuery(island, regions, excludedRegions, available)
     .then(result => {
       console.log('regions result', result)
       res.status(200).json(result)

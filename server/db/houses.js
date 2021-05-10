@@ -6,7 +6,7 @@ const baseQuery = 'SELECT *, COUNT(rooms.house_id) as rooms_available ' +
 
 // when a user searches for a specific house name, that house is returned
 function getHouseByName (name, db = connection) {
-  const query = 'SELECT *, rooms.id as room_id ' +
+  const query = 'SELECT *,houses.id as houseId, rooms.id as room_id ' +
     'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
     'LEFT JOIN regions on houses.region_id = regions.id ' +
     `WHERE name = "${name}"`
@@ -15,15 +15,14 @@ function getHouseByName (name, db = connection) {
 
 // when a user clicks on a house to view the house details
 function getHouseById (id, db = connection) {
-  // const query = 'SELECT *, rooms.id ' +
-  //   'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
-  //   'JOIN regions on houses.region_id = regions.id ' +
-  //   `WHERE houses.id = ${id} `
-  const query = baseQuery + `WHERE houses.id = ${id}`
+  const query = 'SELECT *,houses.id as houseId, rooms.id as room_id ' +
+    'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
+    'LEFT JOIN regions on houses.region_id = regions.id ' +
+    `WHERE houses.id = ${id}`
   return db.raw(query)
 }
 
-function genearlQuery (island, regions, exclude, db = connection) {
+function genearlQuery (island, regions, exclude, available = 1, db = connection) {
   console.log(regions, exclude, island)
   if (island === 'all') island = '%'
   let query = baseQuery +
@@ -38,6 +37,14 @@ function genearlQuery (island, regions, exclude, db = connection) {
   }
 
   query += 'GROUP BY houses.id '
+
+  if (available === 2) {
+    query += 'HAVING COUNT(rooms.house_id) > 0 '
+  }
+  if (available === 0) {
+    query += 'HAVING COUNT(rooms.house_id) = 0 '
+  }
+
   console.log(query)
   return db.raw(query)
 }
