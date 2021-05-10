@@ -19,6 +19,8 @@ server.use('/api/v1', jwtCheck, (req, res, next) => {
   userDb.getUser(req.user.sub)
     .then(results => {
       if (results.length > 0) {
+        req.user = { ...req.user, ...results[0] }
+        console.log(req.user)
         next()
       } else {
         res.status(401).send()

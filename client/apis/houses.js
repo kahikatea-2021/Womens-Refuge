@@ -1,17 +1,14 @@
 import request from 'superagent'
-import { getState } from '../store'
-import getAccessToken from './tokenHelper'
+import getAccessHeader from './tokenHelper'
 
 const acceptJsonHeader = 'application/json'
 const rootUrl = '/api/v1/houses/'
 
 // Host can edit information about their house
 export function editHouse (houseId, house) {
-  const user = getState().user
-  console.log('user', user)
   return request.patch(rootUrl + houseId)
     .accept(acceptJsonHeader)
-    .set({ authorization: getAccessToken() })
+    .set(getAccessHeader())
     .send(house)
     .then(res => res.body)
 }
@@ -19,11 +16,12 @@ export function editHouse (houseId, house) {
 export function addHouse (house) {
   return request.post(rootUrl)
     .send(house)
-    .set({ authorization: getAccessToken() })
+    .set(getAccessHeader())
 }
 
 export function getAllRoomsInHouse (houseId) {
   return request.get(rootUrl + `house/${houseId}/rooms`)
+    .set(getAccessHeader())
     .then(res => {
       return res.body
     })
