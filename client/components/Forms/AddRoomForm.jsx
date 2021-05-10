@@ -39,7 +39,7 @@ function AddRoomForm () {
       <p className="text-center text-3xl md:text-5xl font-bold my-1 md:my-2">{house.name} House</p>
         <br /> 
 
-        <p className='text-center text-base md:text-xl'><b>{house.region_id}</b></p>
+ 
         <p className='text-center text-base md:text-xl'><b>{house.phone_1}</b></p>
         <p className='text-center text-base md:text-xl'><b>{house.phone_2}</b></p>
         <p className='text-center text-base md:text-xl'><b>{house.notes}</b></p>
