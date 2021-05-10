@@ -46,6 +46,7 @@
     "jwks-rsa": "^2.0.3",
     "knex": "^0.21.12",
     "pg": "^8.5.1",
+    "react-hook-form": "^7.5.1",
     "superagent": "^6.1.0"
   },
   "devDependencies": {

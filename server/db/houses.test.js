@@ -39,3 +39,35 @@ test('getHouseById should return house with that id', () => {
       return null
     })
 })
+//test fails for now
+test('updateHouseById should return updated house with this id', () => {
+  const updateHouse = {
+    id: 6, 
+    region_id: 2,
+    name: 'Pohutukawas',
+    phone_1: 1234567890,
+    phone_2: 1234567890,
+  }
+  return houseDb.updateHouseById(updateHouse.id, updateHouse, testDb)
+  .then(house => {
+    return houseDb.getHouseById(8)
+  })
+  .then(house => {
+    expect(house.id).toBe()
+    expect(house.region_id).toBe(2)
+    expect(house.name).toBe('Pohutukawas')
+    expect(house.phone_1).toBe(1234567890)
+    expect(house.phone_2).toBe(1234567890)
+    return null
+  })
+})
+
+test('deleteHouseById should delete house with that id', () => {
+  const id = 4
+  return houseDb.deleteHouseById(id, testDb)
+    .then(house => {
+      expect(house.name).toBe(undefined)
+      return null
+    })
+})
+
