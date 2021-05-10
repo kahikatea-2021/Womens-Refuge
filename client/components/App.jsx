@@ -22,7 +22,6 @@ function App () {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
   const dispatch = useDispatch()
   const isWaiting = useSelector(state => state.wait)
-  const history = useHistory()
 
   if (isLoading) {
     return (
