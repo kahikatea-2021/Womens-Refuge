@@ -17,6 +17,7 @@ import { setUserState } from './userStateHelper'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingIcon from './LoadingIcon'
 import BackButton from './Buttons/BackButton'
+import RefineSearch from './RefineSearch'
 
 function App () {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
@@ -71,6 +72,7 @@ function App () {
               <Route path='/house/manage/:id' component={ManageHouse} />
               <Route path='/houses/add' component={AdminAddHouse} />
               <Route path='/rooms/add' component={AdminAddRoom} />
+              <Route path ='/search' component={RefineSearch} />
               <Footer />
             </main>
 
