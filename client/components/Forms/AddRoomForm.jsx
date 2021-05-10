@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { addRoom } from '../../apis/rooms'
-import { Link, useParams } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 function AddRoomForm () {
   const [addedRooms, setAddedRooms] = useState([])
-  const { register, handleSubmit, watch, formState: { errors } } = useForm()
   const house = useSelector(state => state.house)
   const [form, setForm] = useState({
     house_id: house.id,
@@ -41,9 +39,8 @@ function AddRoomForm () {
           <label htmlFor='description'>Description:</label>
           <input required id='notes' name="description" placeholder='E.g: 1 queen bed, 2 single beds.' value={form.description} onChange={handleChange}></input>
           <button >{addedRooms.length <= 0 ? 'ADD ROOM' : 'ADD ANOTHER'}</button>
-
         </form>
-        <Link to={`/house/${house.name}`} ><button type='button'>FINISHED</button></Link>
+        <Link to={`/house/${house.name}`}><button type='button'>FINISHED</button></Link>
         {addedRooms.length > 0 && <h1>Rooms Added</h1>}
         <ul>
           {addedRooms.map((room, i) => {

@@ -2,7 +2,6 @@ const express = require('express')
 const houseDb = require('../db/houses')
 const roomDb = require('../db/rooms')
 const router = express.Router()
-const userDb = require('../db/users')
 
 module.exports = router
 
@@ -14,6 +13,7 @@ router.get('/', (req, res) => {
   console.log('regions: ', regions)
   houseDb.genearlQuery(island, regions, excludedRegions)
     .then(result => {
+      console.log('regions result', result)
       res.status(200).json(result)
       return null
     })
@@ -21,8 +21,11 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const house = req.body
+  if (!req.user.isMasterAdmin) {
+    res.status(403).send()
+  }
 
+  const house = req.body
   houseDb.addHouse(house)
     .then((house) => {
       res.status(200).json(house)
@@ -38,7 +41,7 @@ router.patch('/:id', (req, res) => {
   const userHouseId = req.user.house_id
 
   if (Number(userHouseId) !== Number(houseId)) {
-    res.status(401).send()
+    res.status(403).send()
   }
 
   houseDb.updateHouseById(houseId, houseDetails)
@@ -53,6 +56,9 @@ router.patch('/:id', (req, res) => {
 })
 
 router.put('/', (req, res) => {
+  if (Number(req.user.house_id) !== Number(req.body.id)) {
+    res.status(403).send()
+  }
   const house = {}
   house.id = req.body.id
   house.name = req.body.name
@@ -69,6 +75,9 @@ router.put('/', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
+  if (!req.user.isMasterAdmin) {
+    res.status(403).send()
+  }
   houseDb.deleteHouseById(req.params.id)
     .then(() => {
       res.status(200).send()

@@ -34,10 +34,11 @@ function App () {
             </div>
           </div>
         </div>
-        <LoadingIcon/>
+        <LoadingIcon />
       </>
     )
   }
+  console.log(window.location.pathname)
 
   if (isAuthenticated) {
     console.log('authenticated')
@@ -72,6 +73,7 @@ function App () {
               <Route path='/rooms/add' component={AdminAddRoom} />
               <Footer />
             </main>
+
           </div>
         </div>}
     </>
