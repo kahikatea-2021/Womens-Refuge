@@ -14,9 +14,11 @@ function Home () {
     <>
       {isAuthenticated &&
         <div>
-          <h1>Safehouse Search Options:</h1>
-          <NorthIslandButton />
-          <SouthIslandButton />
+          <div>
+            <h1 className='flex justify-center font-extrabold my-8 mt-20 text-2xl'>Safehouse Search Options:</h1>
+            <NorthIslandButton />
+            <SouthIslandButton />
+          </div>
         </div>}
     </>
   )

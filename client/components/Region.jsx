@@ -28,14 +28,16 @@ function Region () {
   if (isAuthenticated && user) {
     return (
       <>
-        {houses && houses.map(house => {
-          return <div key={house.house_id}><Link to={`/house/${house.name}`} >
-            <div className="text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-              {house.name}
+        <div className='mt-36'>
+          {houses && houses.map(house => {
+            return <div key={house.house_id}><Link className=' flex justify-center ' to={`/house/${house.name}`} >
+              <div className="text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                {house.name}
+              </div>
+            </Link>
             </div>
-          </Link>
-          </div>
-        })}
+          })}
+        </div>
       </>
     )
   }
