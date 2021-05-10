@@ -1,15 +1,10 @@
 import React from 'react'
 import NorthIslandButton from '../components/Buttons/NorthIslandButton'
 import SouthIslandButton from '../components/Buttons/SouthIslandButton'
-import ViewAllButton from '../components/Buttons/ViewAllButton'
 import { useAuth0 } from '@auth0/auth0-react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 function Home () {
   const { isLoading, isAuthenticated } = useAuth0()
-
-  const ourUser = useSelector(state => state.user)
 
   if (isLoading) {
     return <img src="/images/loading.gif"></img>
