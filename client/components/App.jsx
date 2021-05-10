@@ -26,10 +26,12 @@ function App () {
   if (isLoading) {
     return (
       <>
-        <div className='flex w-full justify-center'>
-          <div className='flex-col items-center'>
-            <img className='mx-auto self-center w-20' src="../../images/logo.png"></img>
-            <h1 className='mx-auto self-center font-bold text-poroporo text-xl'>Tuohunga</h1>
+        <div className='md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200'>
+          <div className='flex w-full justify-center'>
+            <div to='/' className='flex-col items-center'>
+              <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
+              <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
+            </div>
           </div>
         </div>
         <LoadingIcon/>
