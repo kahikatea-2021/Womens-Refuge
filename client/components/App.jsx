@@ -13,14 +13,9 @@ import House from './House'
 import ManageHouse from './ManageHouse'
 import AdminAddHouse from './AdminAddHouse'
 import AdminAddRoom from './AdminAddRoom'
-// import AddHouseForm from './Forms/AddHouseForm'
 import { setUserState } from './userStateHelper'
 import { useDispatch, useSelector } from 'react-redux'
-import ErrorMessage from './ErrorMessage'
 import LoadingIcon from './LoadingIcon'
-// import { setErrorMsg } from '../actions/error'
-
-// import AddRoomForm from './Forms/AddRoomForm'
 
 function App () {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
@@ -42,8 +37,10 @@ function App () {
   }
 
   if (isAuthenticated) {
+    console.log('authenticated')
     getAccessTokenSilently()
       .then(token => {
+        console.log('in tokens', token)
         setUserState(user, token, dispatch)
         return null
       })
@@ -56,9 +53,9 @@ function App () {
     <>
       {isWaiting ? <LoadingIcon />
         : <div>
-          <div className='relative h-screen'>
+          <div className='relative h-screen flex flex-col'>
             <Header />
-            <ErrorMessage />
+            {/* <ErrorMessage /> */}
             {!isAuthenticated && <Login />}
             <Route exact path='/' component={Home} />
             <Route path='/northisland' component={NorthIsland} />
