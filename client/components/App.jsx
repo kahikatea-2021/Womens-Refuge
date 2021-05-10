@@ -27,10 +27,12 @@ function App () {
   if (isLoading) {
     return (
       <>
-        <div className='flex w-full justify-center'>
-          <div className='flex-col items-center'>
-            <img className='mx-auto self-center w-20' src="../../images/logo.png"></img>
-            <h1 className='mx-auto self-center font-bold text-poroporo text-xl'>Tuohunga</h1>
+        <div className='md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200'>
+          <div className='flex w-full justify-center'>
+            <div to='/' className='flex-col items-center'>
+              <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
+              <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
+            </div>
           </div>
         </div>
         <LoadingIcon />
@@ -56,11 +58,11 @@ function App () {
     <>
       {isWaiting ? <LoadingIcon />
         : <div>
-          <div className='flex flex-col h-screen'>
+          <div className='h-screen flex flex-col'>
             <Header />
-            <main className='pb-0 pt-4 px-8 flex flex-col h-full'>
-              <Route path='/*' component={BackButton} />
-              {!isAuthenticated && <Login />}
+            {!isAuthenticated && <Login />}
+            <Route path='/*' component={BackButton} />
+            <main className='flex flex-col h-full pb-0 pt-4 px-8'>
               <Route exact path='/' component={Home} />
               <Route path='/northisland' component={NorthIsland} />
               <Route path='/southisland' component={SouthIsland} />

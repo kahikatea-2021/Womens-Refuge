@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getHouse } from '../apis/regions'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -33,10 +33,10 @@ function House () {
 
   return (
     <>
-      {house && ourUser?.house_id === house[0].id &&
+      {/* {house && ourUser?.house_id === house[0].id &&
         <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
 
-      }
+      } */}
 
       {house &&
         <div>

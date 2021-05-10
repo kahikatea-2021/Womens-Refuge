@@ -2,7 +2,9 @@ import React from 'react'
 
 function Footer () {
   return (
-    <p className='mt-auto text-center'>&copy; Tuohunga 2021</p>
+    <div className='mt-auto'>
+      <footer className='m-8'>&copy; Tuohunga 2021</footer>
+    </div>
   )
 }
 
