@@ -53,7 +53,7 @@ function House () {
             </div>
 
             <div>
-              {(house[0].available > 0 || house.length > 1) ? house.map((h, i) => {
+              {(house[0].room_id || house.length > 1) ? house.map((h, i) => {
                 return <div className='border-2 rounded-lg p-1 mb-2' key={i}>
                   <div><b>Room {i + 1}</b>
                     <div className=''>
