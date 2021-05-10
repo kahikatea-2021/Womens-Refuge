@@ -26,7 +26,17 @@ function App () {
   const isWaiting = useSelector(state => state.wait)
 
   if (isLoading) {
-    return <LoadingIcon/>
+    return (
+      <>
+        <div className='flex w-full justify-center'>
+          <div className='flex-col items-center'>
+            <img className='mx-auto self-center w-20' src="../../images/logo.png"></img>
+            <h1 className='mx-auto self-center font-bold text-poroporo text-xl'>Tuohunga</h1>
+          </div>
+        </div>
+        <LoadingIcon/>
+      </>
+    )
   }
 
   if (isAuthenticated) {
