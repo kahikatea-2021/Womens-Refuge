@@ -27,7 +27,7 @@ function AllSafehouses () {
   if (isAuthenticated && user) {
     return (
       <>
-        <h1 className=' text-center my-8 mt-20 '>All Safehouses</h1>
+        <h1 className=' text-center my-8 mt-20 font-extrabold text-2xl'>All Safehouses:</h1>
         {houses.map(house => {
           return <div key={house.name}>
             <Link className='flex justify-center' to={`/house/${house.name}`}>
