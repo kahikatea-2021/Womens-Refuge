@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getHouse } from '../apis/regions'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -33,10 +33,10 @@ function House () {
 
   return (
     <>
-      {house && ourUser?.house_id === house[0].id &&
+      {/* {house && ourUser?.house_id === house[0].id &&
         <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
 
-      }
+      } */}
 
       {house &&
         <div>
@@ -53,7 +53,7 @@ function House () {
             </div>
 
             <div>
-              {house[0] && house.map((h, i) => {
+              {(house[0].room_id || house.length > 1) ? house.map((h, i) => {
                 return <div className='border-2 rounded-lg p-1 mb-2' key={i}>
                   <div><b>Room {i + 1}</b>
                     <div className=''>
@@ -66,7 +66,7 @@ function House () {
                     </div>
                   </div>
                 </div>
-              })}
+              }) : <p className='text-center'>No rooms available.</p>}
             </div>
             {house[0]?.notes && <p>Additional Information: <br /> <b>{house[0].notes}</b></p>}
           </div>
