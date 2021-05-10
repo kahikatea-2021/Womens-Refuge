@@ -41,11 +41,11 @@ function House () {
       {house &&
         <div>
           <div>
+            <p className='text-center'><b >{house[0].region}</b></p>
             <p className="text-center text-3xl font-bold">{house[0].name}</p>
             {house[0].available === 1 && <p className="text-center">available</p>}
             {house[0].available === 0 && <p className="text-center">available</p>}
 
-            <b>{house[0].region}</b>
             <div className="m-2">
               <h5>Contacts:</h5>
               <p>Primary: <b>{house[0].phone_1}</b></p>

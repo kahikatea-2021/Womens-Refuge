@@ -43,7 +43,7 @@ function App () {
     <>
       {isWaiting ? <LoadingIcon />
         : <div>
-          <div className='relative h-screen'>
+          <div className='relative h-screen flex flex-col'>
             <Header />
             {/* <ErrorMessage /> */}
             {!isAuthenticated && <Login />}
