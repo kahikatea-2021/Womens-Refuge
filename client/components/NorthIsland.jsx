@@ -31,10 +31,10 @@ function NorthIsland () {
 
   return (
     <>
-      <h1>North Island Regions:</h1>
+      <div><h1 className='font-extrabold'>North Island Regions:</h1>
       {regions.map(region => {
         return <div key={region.region}>
-          <Link to={`/region/${region.region}`}>
+          <Link className=' flex justify-center ' to={`/region/${region.region}`}>
             <div className="text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
               {region.region}
             </div>

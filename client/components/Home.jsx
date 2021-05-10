@@ -18,14 +18,16 @@ function Home () {
   return (
     <>
       {isAuthenticated &&
-        <div>
-          <h1>Safehouse Search Options:</h1>
+        <div  className=' container mx-auto '>
+          <div className='object-center'>
+          <h1 className='my-8 mt-20 text-center font-extrabold'>Safehouse Search Options:</h1>
           {ourUser?.house_id &&
             <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
           }
           <NorthIslandButton />
           <SouthIslandButton />
           <ViewAllButton />
+          </div>
         </div>}
     </>
   )
