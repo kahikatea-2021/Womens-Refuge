@@ -39,11 +39,13 @@ function Header () {
   } else {
     return (
       <>
-        <div className='flex w-full justify-center'>
-          <Link to='/' className='flex-col items-center'>
-            <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
-            <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
-          </Link>
+        <div className='md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200'>
+          <div className='flex w-full justify-center'>
+            <Link to='/' className='flex-col items-center'>
+              <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
+              <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
+            </Link>
+          </div>
         </div>
       </>
     )
