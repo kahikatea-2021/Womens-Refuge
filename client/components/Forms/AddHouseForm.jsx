@@ -55,7 +55,8 @@ function AddHouseForm () {
       <>
         <h1 className='font-extrabold'>ADD A HOUSE</h1>
         <form onSubmit={onSubmit}>
-          <label className='font-bold' htmlFor='region_id'>Region:</label>
+        <div class="container mx-auto px-4">
+          <label className='font-bold object-left-top' htmlFor='region_id'>Region:</label>
           {regions && <select value={form.region_id} onChange={handleChange} name="region_id" id='region'>
             <option value='' disabled>Select Region</option>
             {regions.map(region => {
@@ -72,6 +73,7 @@ function AddHouseForm () {
           <textarea onChange={handleChange} name="notes" id='notes' placeholder='Optional notes about room availabitity, usually used by refuge coordinators.'></textarea>
           <button className='font-bold' type='button' onClick={onSubmit}>NEXT</button>
           <button className='font-bold' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
+          </div>
         </form>
 
       </>
