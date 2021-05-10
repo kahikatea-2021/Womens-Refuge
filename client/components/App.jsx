@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, useHistory } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import Login from './Login'
 import Home from './Home'
@@ -22,6 +22,7 @@ function App () {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
   const dispatch = useDispatch()
   const isWaiting = useSelector(state => state.wait)
+  const history = useHistory()
 
   if (isLoading) {
     return (
@@ -36,6 +37,7 @@ function App () {
       </>
     )
   }
+  console.log(window.location.pathname)
 
   if (isAuthenticated) {
     console.log('authenticated')
@@ -54,10 +56,10 @@ function App () {
     <>
       {isWaiting ? <LoadingIcon />
         : <div>
-          <div className='flex flex-col'>
+          <div className='flex flex-col h-screen'>
             <Header />
-            <main className='pb-0 pt-4 px-8'>
-              <BackButton />
+            <main className='pb-0 pt-4 px-8 flex flex-col h-full'>
+              <Route path='/*' component={BackButton} />
               {!isAuthenticated && <Login />}
               <Route exact path='/' component={Home} />
               <Route path='/northisland' component={NorthIsland} />
@@ -70,6 +72,7 @@ function App () {
               <Route path='/rooms/add' component={AdminAddRoom} />
               <Footer />
             </main>
+
           </div>
         </div>}
     </>

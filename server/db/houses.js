@@ -1,8 +1,8 @@
 const connection = require('./connection')
 
-const baseQuery = 'SELECT *, COUNT(houses.id) as rooms_available ' +
-  'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
-  'JOIN regions on houses.region_id = regions.id '
+const baseQuery = 'SELECT *, COUNT(rooms.house_id) as rooms_available ' +
+  'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
+  'LEFT JOIN regions on houses.region_id = regions.id '
 
 // when a user searches for a specific house name, that house is returned
 function getHouseByName (name, db = connection) {
@@ -15,10 +15,11 @@ function getHouseByName (name, db = connection) {
 
 // when a user clicks on a house to view the house details
 function getHouseById (id, db = connection) {
-  const query = 'SELECT *, rooms.id ' +
-    'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
-    'JOIN regions on houses.region_id = regions.id ' +
-    `WHERE houses.id = ${id} `
+  // const query = 'SELECT *, rooms.id ' +
+  //   'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
+  //   'JOIN regions on houses.region_id = regions.id ' +
+  //   `WHERE houses.id = ${id} `
+  const query = baseQuery + `WHERE houses.id = ${id}`
   return db.raw(query)
 }
 
