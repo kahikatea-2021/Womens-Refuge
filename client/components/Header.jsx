@@ -26,13 +26,13 @@ function Header () {
             <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
             <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
           </Link>
-          <SearchButton />
         </div>
 
         <div className='mt-4 space-x-4 flex w-full justify-center md:justify-end w-4/5'>
 
           {ourUser?.isMasterAdmin === 1 && <AddHouseButton />}
           {ourUser?.house_id && <ManageHouseButton />}
+          <SearchButton />
           <ViewAllButton />
           <LogoutButton />
         </div>
