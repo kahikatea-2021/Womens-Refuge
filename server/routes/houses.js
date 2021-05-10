@@ -43,6 +43,7 @@ router.patch('/:id', (req, res) => {
 
   if (Number(userHouseId) !== Number(houseId)) {
     res.status(403).send()
+    return
   }
 
   houseDb.updateHouseById(houseId, houseDetails)
@@ -59,32 +60,34 @@ router.patch('/:id', (req, res) => {
 router.put('/', (req, res) => {
   if (Number(req.user.house_id) !== Number(req.body.id)) {
     res.status(403).send()
+  } else {
+    const house = {}
+    house.id = req.body.id
+    house.name = req.body.name
+    house.region_id = req.body.region
+    house.phone_1 = req.body.phone_1
+    house.phone_2 = req.body.phone_2
+    house.notes = req.body.note
+    houseDb.updateHouseById(house.id)
+      .then(() => {
+        res.status(200).send()
+        return null
+      })
+      .catch(err => console.log(err))
   }
-  const house = {}
-  house.id = req.body.id
-  house.name = req.body.name
-  house.region_id = req.body.region
-  house.phone_1 = req.body.phone_1
-  house.phone_2 = req.body.phone_2
-  house.notes = req.body.note
-  houseDb.updateHouseById(house.id)
-    .then(() => {
-      res.status(200).send()
-      return null
-    })
-    .catch(err => console.log(err))
 })
 
 router.delete('/:id', (req, res) => {
   if (!req.user.isMasterAdmin) {
     res.status(403).send()
+  } else {
+    houseDb.deleteHouseById(req.params.id)
+      .then(() => {
+        res.status(200).send()
+        return null
+      })
+      .catch(err => console.log(err))
   }
-  houseDb.deleteHouseById(req.params.id)
-    .then(() => {
-      res.status(200).send()
-      return null
-    })
-    .catch(err => console.log(err))
 })
 
 // get houses by region

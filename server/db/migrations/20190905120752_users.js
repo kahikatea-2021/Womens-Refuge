@@ -1,10 +1,12 @@
 exports.up = function (knex) {
   return knex.schema.createTable('users', table => {
-    table.string('id')
+    table.string('id').primary()
+    table.unique('id')
     table.string('email')
     table.boolean('isMasterAdmin')
     table.boolean('isRefugeCoordinator')
-    table.int('house_id').references('houses.id')
+    table.integer('house_id')
+    table.foreign('house_id').references('houses.id').onDelete('SET NULL')
   })
 }
 
