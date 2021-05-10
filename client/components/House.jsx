@@ -8,7 +8,7 @@ function House () {
   const [house, setHouse] = useState(null)
   const houseName = useParams()
   const ourUser = useSelector(state => state.user)
-  const { isLoading, isAuthenticated} = useAuth0()
+  const { isLoading, isAuthenticated } = useAuth0()
 
   useEffect(() => {
     if (ourUser && !house) {
@@ -23,9 +23,6 @@ function House () {
 
   if (isLoading) {
     return <img src="/images/loading.gif"></img>
-  }
-  if (!house) {
-    return <></>
   }
 
   if (!isAuthenticated) {

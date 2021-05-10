@@ -56,7 +56,6 @@ function App () {
             <Route path='/region/:name' component={Region} />
             <Route exact path='/house/:name' component={House} />
             <Route path='/house/manage/:id' component={ManageHouse} />
-            <Route exact path='/' component={Home} />
             <Route path='/houses/add' component={AdminAddHouse} />
             <Route path='/rooms/add' component={AdminAddRoom} />
             <Footer />
