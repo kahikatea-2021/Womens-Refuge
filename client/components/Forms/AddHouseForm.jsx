@@ -8,7 +8,6 @@ function AddHouseForm () {
   const regions = useSelector(state => state.regions)
   const { isLoading, isAuthenticated, user } = useAuth0()
 
-  console.log(regions)
   const [form, setForm] = useState({
     name: '',
     region_id: '',
@@ -26,6 +25,7 @@ function AddHouseForm () {
 
   function onSubmit (evt) {
     evt.preventDefault()
+
     console.log(form)
     addNewHouse(form)
       .then(id => {
@@ -47,7 +47,7 @@ function AddHouseForm () {
   }
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <img src="/images/loading.gif"></img>
   }
 
   if (isAuthenticated && user) {
@@ -69,7 +69,7 @@ function AddHouseForm () {
           <label htmlFor='phone_2'>Secondary Contact Number:</label>
           <input id='phone2' type='text' name="phone_2" onChange={handleChange}></input>
           <label htmlFor='notes'>Notes:</label>
-          <textarea onChange={handleChange} name="notes" id='notes' placeholder='Optional notes about room availabitity, usually used by refuge cooridinators.'></textarea>
+          <textarea onChange={handleChange} name="notes" id='notes' placeholder='Optional notes about room availabitity, usually used by refuge coordinators.'></textarea>
           <button type='button' onClick={onSubmit}>NEXT</button>
           <button type='button' onClick={() => { history.push('/') }}>CANCEL</button>
         </form>

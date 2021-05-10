@@ -12,7 +12,7 @@ function Home () {
   const ourUser = useSelector(state => state.user)
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <img src="/images/loading.gif"></img>
   }
 
   return (
@@ -20,8 +20,13 @@ function Home () {
       {isAuthenticated &&
         <div>
           <h1>Safehouse Search Options:</h1>
-          {ourUser?.house_id &&
-            <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
+          {ourUser?.house_id
+            ? <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
+            : null
+          }
+          {ourUser?.isMasterAdmin
+            ? <Link to='/houses/add'>Add New House</Link>
+            : null
           }
           <NorthIslandButton />
           <SouthIslandButton />
