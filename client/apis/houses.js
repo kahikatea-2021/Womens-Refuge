@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { accessHeader } from './tokenHelper'
+import getAccessHeader from './tokenHelper'
 
 const acceptJsonHeader = 'application/json'
 const rootUrl = '/api/v1/houses/'
@@ -8,7 +8,7 @@ const rootUrl = '/api/v1/houses/'
 export function editHouse (houseId, house) {
   return request.patch(rootUrl + houseId)
     .accept(acceptJsonHeader)
-    .set(accessHeader)
+    .set(getAccessHeader())
     .send(house)
     .then(res => res.body)
 }
@@ -16,12 +16,12 @@ export function editHouse (houseId, house) {
 export function addHouse (house) {
   return request.post(rootUrl)
     .send(house)
-    .set(accessHeader)
+    .set(getAccessHeader())
 }
 
 export function getAllRoomsInHouse (houseId) {
   return request.get(rootUrl + `house/${houseId}/rooms`)
-    .set(accessHeader)
+    .set(getAccessHeader())
     .then(res => {
       return res.body
     })

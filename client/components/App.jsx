@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import Login from './Login'
@@ -28,8 +28,10 @@ function App () {
   }
 
   if (isAuthenticated) {
+    console.log('authenticated')
     getAccessTokenSilently()
       .then(token => {
+        console.log('in tokens', token)
         setUserState(user, token, dispatch)
         return null
       })
