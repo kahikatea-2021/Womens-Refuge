@@ -7,8 +7,8 @@ const baseQuery = 'SELECT *, COUNT(rooms.house_id) as rooms_available ' +
 // when a user searches for a specific house name, that house is returned
 function getHouseByName (name, db = connection) {
   const query = 'SELECT *, rooms.id ' +
-    'FROM houses JOIN rooms on houses.id = rooms.house_id ' +
-    'JOIN regions on houses.region_id = regions.id ' +
+    'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
+    'LEFT JOIN regions on houses.region_id = regions.id ' +
     `WHERE name = "${name}"`
   return db.raw(query)
 }
