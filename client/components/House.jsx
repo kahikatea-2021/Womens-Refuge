@@ -62,11 +62,10 @@ function House () {
             <div className='flex flex-col md:flex-row justify-center items-center md:space-x-8 my-8'>
               {(house[0].room_id || house.length > 1) && house.map((h, i) => {
                 return (
-                  <div className='border-4 border-purple-300 w-2/3 md:w-1/5 rounded-lg p-1 mb-2 my-4' key={i}>
+                  <div className='border-4 border-purple-300 shadow-lg w-2/3 md:w-1/5 rounded-lg p-1 mb-2 my-4' key={i}>
                     <div><b>Room {i + 1}</b>
-
                       <div>
-                        {h.available ? <i className='text-green-500'>Available</i> : <b className='text-red-500'>Currently Unavailable</b>}
+                        {h.available ? <i className='text-grass'>Available</i> : <b className='text-red-500'>Currently Unavailable</b>}
                       </div>
                       <br />
                       <img className='w-8' src='../../images/bed.png' />

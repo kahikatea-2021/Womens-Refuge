@@ -10,7 +10,7 @@ export default function AddHouseButton () {
       {ourUser?.isAdmin
         ? <Link to='/houses/add'>
           <button
-            className="py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+            className="shadow-xl py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
             ADD WHARE
           </button>
         </Link>
