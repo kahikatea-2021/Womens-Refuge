@@ -41,11 +41,6 @@ function House () {
 
   return (
     <>
-      {/* {house && ourUser?.house_id === house[0].id &&
-        <Link to={`/house/manage/${ourUser.house_id}`}>MANAGE MY HOUSE</Link>
-
-      } */}
-
       {house &&
         <div>
           <div>
