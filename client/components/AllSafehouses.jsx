@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getAllHouses } from '../apis/regions'
 import { useAuth0 } from '@auth0/auth0-react'
+import houseFormatter from './formatter'
 
 function AllSafehouses () {
   const [houses, setHouses] = useState([])
@@ -11,6 +12,7 @@ function AllSafehouses () {
     getAllHouses()
       .then(results => {
         setHouses(results)
+        console.log(houseFormatter(results))
         return null
       })
       .catch(err => console.log(err))
