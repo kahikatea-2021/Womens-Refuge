@@ -24,6 +24,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   if (!req.user.isMasterAdmin) {
     res.status(403).send()
+    return
   }
 
   const house = req.body
@@ -41,7 +42,7 @@ router.patch('/:id', (req, res) => {
   const houseId = req.params.id
   const userHouseId = req.user.house_id
 
-  if (Number(userHouseId) !== Number(houseId)) {
+  if (Number(userHouseId) !== Number(houseId) || !req.user.isMasterAdmin) {
     res.status(403).send()
     return
   }
@@ -58,7 +59,7 @@ router.patch('/:id', (req, res) => {
 })
 
 router.put('/', (req, res) => {
-  if (Number(req.user.house_id) !== Number(req.body.id)) {
+  if (Number(req.user.house_id) !== Number(req.body.id) || !req.user.isMasterAdmin) {
     res.status(403).send()
   } else {
     const house = {}
@@ -95,6 +96,7 @@ router.get('/region/:region', (req, res) => {
   const region = req.params.region
   houseDb.getAllRegionalHouses(region)
     .then(data => {
+      console.log('house region', data)
       res.json(data)
       return null
     })
