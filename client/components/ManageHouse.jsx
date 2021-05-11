@@ -37,8 +37,11 @@ function ManageHouse () {
 
     <div >
       {house && <div className=''>
-        <h1>Manage {house[0].name} stuff</h1>
-        <div className="flex flex-col md:flex-row items-end justify-center  md:space-x-8 my-8">
+        <p className='text-center text-base md:text-xl'><b>Manage</b></p>
+        <div className="flex items-center justify-center flex-col md:flex-row">
+          <p className="text-center text-3xl md:text-5xl font-bold">{house[0].name}</p>
+        </div>
+        <div className="flex flex-col md:flex-row items-center justify-center  space-y-8 md:space-y-0 md:space-x-8 my-8">
           {house[0] && house.map((room, i) => {
             return <div key={i} className="h-full">
               <ManageRoomForm room={room} n={i + 1} />
