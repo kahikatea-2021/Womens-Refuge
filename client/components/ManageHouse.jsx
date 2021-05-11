@@ -36,7 +36,7 @@ function ManageHouse () {
   return (
 
     <>
-      {house && <div>
+      {(house && house.length > 0) ? <div>
         <h1>Manage {house[0].name}</h1>
         {house[0] && house.map((room, i) => {
           return <div key={i}>
@@ -44,7 +44,7 @@ function ManageHouse () {
           </div>
         })}
         <ManageHouseForm house={house[0]} />
-      </div>}
+      </div> : <p className="text-2xl">This house does not exist</p>}
     </>
   )
 }
