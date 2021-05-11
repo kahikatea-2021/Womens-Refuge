@@ -15,6 +15,7 @@ function ManageHouse () {
     if (isAuthenticated) {
       getHouseById(houseId)
         .then(results => {
+          console.log(results)
           setHouse(results)
           return null
         })
