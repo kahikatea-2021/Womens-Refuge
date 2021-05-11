@@ -21,7 +21,7 @@ function Header () {
     return (
       <div className='md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200 shadow-lg'>
         <div className='w-full justify-start'>
-          <BigSearchButton/>
+          <BigSearchButton />
         </div>
         <div className='flex w-full justify-center md:justify-center w-1/5'>
           <Link to='/' className='md:flex-col items-center'>

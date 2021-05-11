@@ -56,7 +56,7 @@ router.patch('/:id', (req, res) => {
 })
 
 router.put('/', (req, res) => {
-  if (Number(req.user.house_id) !== Number(req.body.id) || !req.user.isAdmin) {
+  if (Number(req.user.house_id) !== Number(req.body.id) && !req.user.isAdmin) {
     res.status(403).send()
   } else {
     const house = {}
@@ -80,6 +80,19 @@ router.delete('/:id', (req, res) => {
     res.status(403).send()
   } else {
     houseDb.deleteHouseById(req.params.id)
+      .then(() => {
+        res.status(200).send()
+        return null
+      })
+      .catch(err => console.log(err))
+  }
+})
+
+router.put('/update-house', (req, res) => {
+  if (Number(req.user.house_id) !== Number(req.body.house.id) && !req.user.isAdmin) {
+    res.status(403).send()
+  } else {
+    roomDb.updateHouseAndRooms(req.body.rooms, req.body.house)
       .then(() => {
         res.status(200).send()
         return null

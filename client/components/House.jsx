@@ -20,7 +20,7 @@ function House () {
     if (ourUser && !house) {
       getHouse(houseName.name)
         .then(results => {
-          setHouse(results)
+          setHouse(results.sort((a, b) => a.room_id - b.room_id))
           console.log('check')
           console.log(results)
           return null
@@ -83,13 +83,13 @@ function House () {
             <div className='flex flex-col md:flex-row justify-center items-center md:space-x-8 my-8'>
               {(house[0].room_id || house.length > 1) && house.map((h, i) => {
                 return (
-                  <div className='border-4 border-purple-300 shadow-lg w-2/3 md:w-1/5 rounded-lg p-1 mb-2 my-4' key={i}>
+                  <div className='border-4 border-purple-300 shadow-lg md:h-56 w-2/3 md:w-1/5 rounded-lg p-3 mb-2 my-4 py-auto' key={i}>
                     <div><b>Room {i + 1}</b>
                       <div>
                         {h.available ? <i className='text-grass'>Available</i> : <b className='text-red-500'>Currently Unavailable</b>}
                       </div>
                       <br />
-                      <img className='w-8' src='../../images/bed.png' />
+                      <img className='w-12 md:w-16' src='../../images/bed.png' />
                       {h.description}
 
                     </div>

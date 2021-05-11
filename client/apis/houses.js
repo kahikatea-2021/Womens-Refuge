@@ -27,10 +27,15 @@ export function getAllRoomsInHouse (houseId) {
     })
 }
 
-
 export function deleteHouse (houseId) {
   return request.delete(rootUrl + houseId)
     .set(getAccessHeader())
+}
+
+export function updateHouseAndRooms (rooms, house) {
+  return request.put(rootUrl + 'update-house')
+    .set(getAccessHeader())
+    .send({ house, rooms })
 }
 
 export default function getHousesFromSearch (str) {
