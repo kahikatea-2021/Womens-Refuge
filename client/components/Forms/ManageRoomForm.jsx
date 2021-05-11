@@ -1,5 +1,5 @@
 import React from 'react'
-import MakeAvailableButton from '../Buttons/MakeAvaiableButton'
+import MakeAvailableButton from '../Buttons/MakeAvailableButton'
 
 function ManageRoom (props) {
   return (

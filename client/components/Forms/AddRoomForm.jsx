@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { addRoom } from '../../apis/rooms'
 import { Link, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-// import MakeAvailableButton from '../Buttons/MakeAvaiableButton'
 
 function AddRoomForm () {
   const regions = useSelector(state => state.regions)
@@ -36,7 +35,8 @@ function AddRoomForm () {
 
   return (
     <>
-      <div className="flex justify-center flex-col gap-6 mx-auto w-1/3  md:justify-start w-1/5'">
+
+      <div className="flex justify-center flex-col gap-6 mx-auto md:justify-start md:w-1/3">
 
         <p className='text-center text-base md:text-xl'><b>In Progress:</b></p>
         {!house.name ? <h1 className='flex justify-center font-extrabold my-8 mt-20 text-xl md:text-2xl'>No House Selected</h1> : <div>
@@ -63,12 +63,13 @@ function AddRoomForm () {
               })}
             </ul>
 
-            <div className='flex flex-row space-x-4 mt-8'>
+            <div className='flex flex-row md:space-x-4 mt-8'>
               <label htmlFor='description'><b>Room {addedRooms.length + 1} Details:</b></label>
 
               <input onChange={handleChange} value={form.description} placeholder="E.g. Two single beds" id='description' name="description" type="text" className="mt-1 block w-2/3"/>
 
               <button className="md:py-3 md:text-base md:w-40 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onClick={handleAddroom}>Add</button>
+
             </div>
             <br />
 

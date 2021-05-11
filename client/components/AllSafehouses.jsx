@@ -30,6 +30,14 @@ function AllSafehouses () {
     return (
       <>
         <h1 className='text-center my-8 mt-20 font-extrabold text-4xl'>All Safehouses</h1>
+        <div className='flex md:flex-row justify-center text-sm md:text-base mt-2 space-x-3'>
+          <div className='flex items-center md:mx-5 mb-1'>
+            <img src="/images/tickGreen.png" className="w-4 md:w-8 mr-1 md:mr-2" alt="" /><p>Available</p>
+          </div>
+          <div className='flex items-center md:mx-5 mb-1'>
+            <img src="/images/crossRed.png" className="w-4 md:w-8 mr-1 md:mr-2" alt="" /><p>Unavailable</p>
+          </div>
+        </div>
 
         {houses.map(island => {
           return (
