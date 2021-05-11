@@ -32,6 +32,12 @@ export function deleteHouse (houseId) {
     .set(getAccessHeader())
 }
 
+export function updateHouseAndRooms (rooms, house) {
+  request.put(rootUrl + 'update-house')
+    .set(getAccessHeader())
+    .send({ house, rooms })
+}
+
 export default function getHousesFromSearch (str) {
   console.log('api', rootUrl + str)
   return request.get(rootUrl + str)

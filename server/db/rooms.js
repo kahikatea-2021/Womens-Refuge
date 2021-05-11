@@ -6,6 +6,15 @@ function getRoomById (id, db = connection) {
     .where('id', '=', id)
 }
 
+function updateHouseAndRooms (rooms, house, db = connection) {
+  let query = `UPDATE houses SET phone_1=${house.phone_1} phone_2=${house.phone_2} notes="${house.notes}" WHERE id=${house.id}; `
+  rooms.forEach(room => {
+    query += `UPDATE rooms SET description="${room.description}", available=${room.available} WHERE id=${room.id}; `
+  })
+
+  return db.raw(query)
+}
+
 // when a user searches for a specific house name, that house is returned
 function getRoomsByHouse (name, db = connection) {
   return db('houses')
@@ -53,5 +62,6 @@ module.exports = {
   updateRoomAvailability,
   getRoomsByHouseId,
   addRooms,
-  deleteRoom
+  deleteRoom,
+  updateHouseAndRooms
 }
