@@ -3,6 +3,7 @@ import { getHouse } from '../apis/regions'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
+import ManageHouseButton from './Buttons/ManageHouseButton'
 
 function House () {
   const [house, setHouse] = useState(null)
@@ -16,6 +17,7 @@ function House () {
       getHouse(houseName.name)
         .then(results => {
           setHouse(results)
+          console.log(results)
           return null
         })
         .catch(err => console.log(err))
@@ -43,12 +45,15 @@ function House () {
     <>
       {house &&
         <div>
-          <div>
+          <div className="flex flex-col">
             <p className='text-center text-base md:text-xl'><b>{house[0].region}</b></p>
-            <p className="text-center text-3xl md:text-5xl font-bold my-1 md:my-2">{house[0].name}</p>
+            <div className="flex items-center justify-center flex-col md:flex-row">
+              {(ourUser && ourUser.isMasterAdmin === 1) && <div className="invisible hidden md:block mx-2"><ManageHouseButton text='EDIT' path={house[0].house_id} /></div>}
+              <p className="text-center text-3xl md:text-5xl font-bold">{house[0].name}</p>
+              {(ourUser && ourUser.isMasterAdmin === 1) && <div className="mx-2"><ManageHouseButton text='EDIT' path={house[0].house_id} /></div>}
+            </div>
             <div className='flex justify-center'>{count > 0 && <div className="flex flex-row">available<img className='ml-2 w-6' src='/images/tickGreen.png' /></div>}</div>
             <div className='flex justify-center'>{count === 0 && <div className="flex flex-row">unavailable<img className='ml-2 w-6' src='/images/crossRed.png' /></div>}</div>
-
             <div className="m-2 my-4 flex flex-col md:flex-row justify-center items-center">
               <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Primary:</b>{house[0].phone_1}</div>
               <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Secondary:</b>{house[0].phone_2}</div>
