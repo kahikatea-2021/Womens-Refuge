@@ -53,13 +53,12 @@ function AddHouseForm () {
   if (isAuthenticated && user) {
     return (
       <>
-        <h1 className='font-extrabold'>ADD A HOUSE</h1>
-        <form onSubmit={onSubmit}>
+        {/* <form onSubmit={onSubmit}>
         <div class="container mx-auto px-4">
-          <label className='font-bold object-left-top' htmlFor='region_id'>Region:</label>
-          {regions && <select value={form.region_id} onChange={handleChange} name="region_id" id='region'>
-            <option value='' disabled>Select Region</option>
-            {regions.map(region => {
+        <label className='font-bold object-left-top' htmlFor='region_id'>Region:</label>
+        {regions && <select value={form.region_id} onChange={handleChange} name="region_id" id='region'>
+        <option value='' disabled>Select Region</option>
+        {regions.map(region => {
               return <option value={region.id} key={region.id}>{region.region}</option>
             })}
           </select>}
@@ -74,7 +73,36 @@ function AddHouseForm () {
           <button className='font-bold' type='button' onClick={onSubmit}>NEXT</button>
           <button className='font-bold' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
           </div>
-        </form>
+        </form> */}
+        <div className="flex flex-col gap-6 mx-auto w-1/3 justify-center md:justify-start w-1/5'">
+          <h1 className='font-extrabold'>ADD A HOUSE</h1>
+          {regions && <select className='mt-1 block w-2/3' value={form.region_id} onChange={handleChange} name="region_id" id='region'>
+            <option value='' disabled>Select Region</option>
+            {regions.map(region => {
+              return <option value={region.id} key={region.id}>{region.region}</option>
+            })}
+          </select>}
+          <label className="block">
+            <span className="text-gray-700">House name</span>
+            <input className="mt-1 block w-2/3" id='name' name="name" type='text' onChange={handleChange}/>
+          </label>
+          <label className="block">
+            <span className="text-gray-700">Phone 1</span>
+            <input type="text" className="mt-1 block w-2/3"/>
+          </label>
+          <label className="block">
+            <span className="text-gray-700">Phone 2</span>
+            <input type="text" className="mt-1 block w-2/3"/>
+          </label>
+          <label className="block">
+            <span className="text-gray-700">Notes</span>
+            <textarea className=" mt-1 block w-2/3" rows="5"></textarea>
+          </label>
+          <div>
+            <button className='mr-20 font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={onSubmit}>NEXT</button>
+            <button className='ml-20 font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
+          </div>
+        </div>
 
       </>
     )
