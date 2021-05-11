@@ -74,7 +74,7 @@ function AddHouseForm () {
           <button className='font-bold' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
           </div>
         </form> */}
-        <div className="flex flex-col gap-6 mx-auto w-1/3 justify-center md:justify-start w-1/5'">
+        <div className="flex justify-center flex-col gap-6 mx-auto w-1/3  md:justify-start w-1/5'">
           <h1 className='font-extrabold'>ADD A HOUSE</h1>
           {regions && <select className='mt-1 block w-2/3' value={form.region_id} onChange={handleChange} name="region_id" id='region'>
             <option value='' disabled>Select Region</option>
@@ -88,15 +88,15 @@ function AddHouseForm () {
           </label>
           <label className="block">
             <span className="text-gray-700">Phone 1</span>
-            <input type="text" className="mt-1 block w-2/3"/>
+            <input onChange={handleChange} name="phone_1" type="text" className="mt-1 block w-2/3"/>
           </label>
           <label className="block">
             <span className="text-gray-700">Phone 2</span>
-            <input type="text" className="mt-1 block w-2/3"/>
+            <input onChange={handleChange} name="phone_2" type="text" className="mt-1 block w-2/3"/>
           </label>
           <label className="block">
             <span className="text-gray-700">Notes</span>
-            <textarea className=" mt-1 block w-2/3" rows="5"></textarea>
+            <textarea onChange={handleChange} name="notes" className=" mt-1 block w-2/3" rows="5"></textarea>
           </label>
           <div>
             <button className='mr-20 font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={onSubmit}>NEXT</button>
