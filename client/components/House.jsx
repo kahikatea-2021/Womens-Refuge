@@ -48,9 +48,9 @@ function House () {
           <div className="flex flex-col">
             <p className='text-center text-base md:text-xl'><b>{house[0].region}</b></p>
             <div className="flex items-center justify-center flex-col md:flex-row">
-              {(ourUser && ourUser.isMasterAdmin === 1) && <div className="invisible hidden md:block mx-2"><ManageHouseButton text='EDIT' path={house[0].house_id} /></div>}
+              {(ourUser && ourUser.isAdmin === 1) && <div className="invisible hidden md:block mx-2"><ManageHouseButton text='EDIT' path={house[0].house_id} /></div>}
               <p className="text-center text-3xl md:text-5xl font-bold">{house[0].name}</p>
-              {(ourUser && ourUser.isMasterAdmin === 1) && <div className="mx-2"><ManageHouseButton text='EDIT' path={house[0].house_id} /></div>}
+              {(ourUser && ourUser.isAdmin === 1) && <div className="mx-2"><ManageHouseButton text='EDIT' path={house[0].house_id} /></div>}
             </div>
             <div className='flex justify-center'>{count > 0 && <div className="flex flex-row">available<img className='ml-2 w-6' src='/images/tickGreen.png' /></div>}</div>
             <div className='flex justify-center'>{count === 0 && <div className="flex flex-row">unavailable<img className='ml-2 w-6' src='/images/crossRed.png' /></div>}</div>

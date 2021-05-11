@@ -28,7 +28,7 @@ function ManageHouse () {
 
   if (!isAuthenticated || !ourUser) {
     return <p>Unauthorised access</p>
-  } else if (ourUser && (Number(ourUser.house_id) !== Number(houseId) && !ourUser.isMasterAdmin)) {
+  } else if (ourUser && (Number(ourUser.house_id) !== Number(houseId) && !ourUser.isAdmin)) {
     console.log(ourUser?.house_id, houseId)
     return <p>Unauthorised access</p>
   }
