@@ -29,7 +29,8 @@ export default function RefineSearchForm () {
     Canterbury: false,
     'West Coast': false,
     Otago: false,
-    Southland: false
+    Southland: false,
+    available: false
   })
 
   function getNorth () {
@@ -82,7 +83,9 @@ export default function RefineSearchForm () {
         <input onClick={handleClickNorth} type="checkbox" id="north" name="north" value="north"/>
         <label htmlFor="north"> North Island </label><br/>
         <input onClick={handleClickSouth} type="checkbox" id="south" name="south" value="south"/>
-        <label htmlFor="south"> South Island </label><br/>
+        <label htmlFor="south"> South Island </label><br/><br/>
+        <input onClick={clickHandler} type="checkbox" id="available" name="available" value="available"/>
+        <label htmlFor="available"> Only Display Available Houses </label><br/>
       </form>
       <br/>
       <br/>
@@ -111,7 +114,7 @@ export default function RefineSearchForm () {
 
       {searchResults &&
         <>
-          <h2>Look What I made: </h2>
+          <h2>HOUSES MATCHING YOUR CRITERIA</h2>
           {searchResults.map(house => {
             return (
               <div key={house.id}>
