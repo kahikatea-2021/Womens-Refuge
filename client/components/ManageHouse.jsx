@@ -47,9 +47,11 @@ function ManageHouse () {
   }
 
   function handleRoomCallback (evt, id) {
+    const { name, value, checked } = evt.target
+    console.log(name, value)
     const updatedRooms = rooms.map(room => {
       if (Number(id) === Number(room.id)) {
-        return { ...room, description: evt.target.value }
+        return { ...room, [name]: name === 'description' ? value : checked }
       } else {
         return room
       }
