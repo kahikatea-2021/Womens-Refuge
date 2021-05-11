@@ -12,7 +12,7 @@ function ManageHouse () {
   const ourUser = useSelector(state => state.user)
   const { isLoading, isAuthenticated, user } = useAuth0()
   useEffect(() => {
-    if (isAuthenticated && !house) {
+    if (isAuthenticated) {
       getHouseById(houseId)
         .then(results => {
           setHouse(results)
@@ -20,29 +20,30 @@ function ManageHouse () {
         })
         .catch(err => console.log(err))
     }
-  })
+  }, [houseId])
 
   if (isLoading) {
     return <img src="../../images/loading.gif"></img>
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated || !ourUser) {
     return <p>Unauthorised access</p>
-  }
-
-  if (!house) {
-    return <img src="../../images/loading.gif"></img>
+  } else if (ourUser && (Number(ourUser.house_id) !== Number(houseId) && !ourUser.isMasterAdmin)) {
+    console.log(ourUser?.house_id, houseId)
+    return <p>Unauthorised access</p>
   }
   return (
 
     <>
-      <h1>Manage {house[0].name}</h1>
-      {house[0] && house.map((room, i) => {
-        return <div key={i}>
-          <ManageRoomForm room={room} n={i + 1} />
-        </div>
-      })}
-      <ManageHouseForm house={house[0]} />
+      {house && <div>
+        <h1>Manage {house[0].name}</h1>
+        {house[0] && house.map((room, i) => {
+          return <div key={i}>
+            <ManageRoomForm room={room} n={i + 1} />
+          </div>
+        })}
+        <ManageHouseForm house={house[0]} />
+      </div>}
     </>
   )
 }
