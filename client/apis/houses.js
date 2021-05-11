@@ -26,3 +26,8 @@ export function getAllRoomsInHouse (houseId) {
       return res.body
     })
 }
+
+export function deleteHouse (houseId) {
+  return request.delete(rootUrl + houseId)
+    .set(getAccessHeader())
+}
