@@ -12,7 +12,6 @@ function AllSafehouses () {
     getAllHouses()
       .then(results => {
         setHouses(houseFormatter(results))
-        console.log(houseFormatter(results))
         return null
       })
       .catch(err => console.log(err))
