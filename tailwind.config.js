@@ -11,7 +11,8 @@ module.exports = {
           light: '#f0eef5',
           DEFAULT: '#44247c'
         },
-        butter: '#ffde02'
+        butter: '#ffde02',
+        grass: '#30af00'
       }
     },
     variants: {

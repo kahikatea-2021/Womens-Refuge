@@ -3,7 +3,7 @@ exports.up = function (knex) {
     table.string('id').primary()
     table.unique('id')
     table.string('email')
-    table.boolean('isMasterAdmin')
+    table.boolean('isAdmin')
     table.boolean('isRefugeCoordinator')
     table.integer('house_id')
     table.foreign('house_id').references('houses.id').onDelete('SET NULL')
