@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getHouse } from '../apis/regions'
-import { useParams } from 'react-router-dom'
+import { deleteHouse } from '../apis/houses'
+import { useHistory, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 import ManageHouseButton from './Buttons/ManageHouseButton'
@@ -12,6 +13,8 @@ function House () {
   const ourUser = useSelector(state => state.user)
   const { isLoading, isAuthenticated } = useAuth0()
   const [confirmDelete, setConfirmDelete] = useState(false)
+  const [deleted, setDeleted] = useState(false)
+  const history = useHistory()
   let count = 0
 
   useEffect(() => {
@@ -46,6 +49,18 @@ function House () {
 
   function clickCallback () {
     setConfirmDelete(true)
+  }
+  function handleCancel () {
+    setConfirmDelete(false)
+  }
+
+  function handleDelete () {
+    deleteHouse(house[0].house_id)
+      .then(() => {
+        setDeleted(true)
+        return null
+      })
+      .catch(err => console.log(err))
   }
 
   return (
@@ -84,13 +99,17 @@ function House () {
               })}
             </div>
             {house[0]?.notes && <div className='text-base md:text-xl'><b>Additional Information:</b><br />{house[0].notes}</div>}
-            <div className="flex flex-col justify-center items-center">
+            {(ourUser && ourUser.isAdmin === 1) && <div className="flex flex-col justify-center items-center">
               {!confirmDelete ? <DeleteHouseButton text={confirmDelete ? 'Confirm' : null} callback={setConfirmDelete} /> : <p>Confirm Delete</p>}
-              {confirmDelete && <div className="flex mt-2">
-                <DeleteHouseButton text="YES" />
-                <DeleteHouseButton text="CANCELL" />
+              {(confirmDelete && !deleted) && <div className="flex mt-2">
+                <DeleteHouseButton text="YES" callback={handleDelete} />
+                <DeleteHouseButton text="CANCELL" callback={handleCancel} />
               </div>}
+            </div>}
+            {deleted && <div className="flex flex-col justify-center items-center">
+              <p className="text-red-600 text-2xl">House Deleted!</p>
             </div>
+            }
           </div>
         </div>
       }
