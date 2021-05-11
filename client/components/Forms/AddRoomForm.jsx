@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { addRoom } from '../../apis/rooms'
-import { Link, useParams } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 function AddRoomForm () {
-  const regions = useSelector(state => state.regions)
   const [addedRooms, setAddedRooms] = useState([])
-  const [count, setCount] = useState(1)
-  const { register, handleSubmit, watch, formState: { errors } } = useForm()
   const house = useSelector(state => state.house)
   const [form, setForm] = useState({
     house_id: house.id,
