@@ -22,6 +22,7 @@ function House () {
       getHouse(houseName.name)
         .then(results => {
           setHouse(results)
+          console.log('check')
           console.log(results)
           return null
         })

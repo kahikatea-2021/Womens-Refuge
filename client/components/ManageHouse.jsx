@@ -46,6 +46,7 @@ function ManageHouse () {
         <ManageHouseForm house={house[0]} />
       </div> : <p className="text-2xl">This house does not exist</p>}
     </>
+
   )
 }
 

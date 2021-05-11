@@ -6,7 +6,7 @@ function BackButton () {
   if (history.location.pathname === '/') return <></>
   return (
     <button
-      className="shadow-xl py-2 ml-4 self-start bg-poroporo hover:bg-poroporo text-white w-16 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => history.goBack()}>
+      className="shadow-2xl py-2 ml-4 self-start bg-poroporo hover:bg-poroporo text-white w-16 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onClick={() => history.goBack()}>
       BACK
     </button>
   )
