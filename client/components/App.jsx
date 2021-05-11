@@ -23,6 +23,7 @@ function App () {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0()
   const dispatch = useDispatch()
   const isWaiting = useSelector(state => state.wait)
+  const ourUser = useSelector(state => state.user)
   const history = useHistory()
 
   if (isLoading) {
@@ -61,7 +62,7 @@ function App () {
           <div className='h-screen flex flex-col'>
             <Header />
             {!isAuthenticated && <Login />}
-            <Route path='/*' component={BackButton} />
+            {ourUser && <Route path='/*' component={BackButton} />}
             <main className='flex flex-col h-full pb-0 pt-4 px-8'>
               <Route exact path='/' component={Home} />
               <Route path='/northisland' component={NorthIsland} />
