@@ -35,18 +35,24 @@ function ManageHouse () {
 
   return (
 
-    <>
-      {(house && house.length > 0) ? <div>
-        <h1>Manage {house[0].name}</h1>
-        {house[0] && house.map((room, i) => {
-          return <div key={i}>
-            <ManageRoomForm room={room} n={i + 1} />
-          </div>
-        })}
-        <ManageHouseForm house={house[0]} />
-      </div> : <p className="text-2xl">This house does not exist</p>}
-    </>
-
+    <div >
+      {house && <div className=''>
+        <p className='text-center text-base md:text-xl'><b>Manage</b></p>
+        <div className="flex items-center justify-center flex-col md:flex-row">
+          <p className="text-center text-3xl md:text-5xl font-bold">{house[0].name}</p>
+        </div>
+        <div className="flex flex-col md:flex-row items-center justify-center  space-y-8 md:space-y-0 md:space-x-8 my-8">
+          {house[0] && house.map((room, i) => {
+            return <div key={i} className="h-full">
+              <ManageRoomForm room={room} n={i + 1} />
+            </div>
+          })}
+        </div>
+        <div>
+          <ManageHouseForm house={house[0]} />
+        </div>
+      </div>}
+    </div>
   )
 }
 
