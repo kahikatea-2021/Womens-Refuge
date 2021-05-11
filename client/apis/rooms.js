@@ -17,7 +17,6 @@ export function addRoom (room) {
 }
 
 export function editRoom (roomId, available) {
-  console.log('hitting the api', roomId, available)
   return request.patch(baseURL + `${roomId}/availability`)
     .accept(acceptJsonHeader)
     .set(getAccessHeader())

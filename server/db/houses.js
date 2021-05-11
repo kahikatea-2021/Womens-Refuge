@@ -23,7 +23,6 @@ function getHouseById (id, db = connection) {
 }
 
 function genearlQuery (island, regions, exclude, available = 1, db = connection) {
-  console.log(regions, exclude, island)
   if (island === 'all') island = '%'
   let query = baseQuery +
     `WHERE LOWER(regions.island) LIKE "${island.toLowerCase()}" `
@@ -45,7 +44,6 @@ function genearlQuery (island, regions, exclude, available = 1, db = connection)
     query += 'HAVING COUNT(rooms.house_id) = 0 '
   }
 
-  console.log(query)
   return db.raw(query)
 }
 
@@ -56,7 +54,6 @@ function updateHouseById (houseId, house, db = connection) {
 }
 
 function addHouse (house, db = connection) {
-  console.log('add a house', house)
   return db('houses')
     .insert(house)
     .then(ids => {

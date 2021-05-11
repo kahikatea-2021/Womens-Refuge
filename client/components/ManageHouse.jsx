@@ -11,7 +11,6 @@ function ManageHouse () {
   const houseId = useParams().id
   const ourUser = useSelector(state => state.user)
   const { isLoading, isAuthenticated, user } = useAuth0()
-  console.log('houseid', houseId)
   useEffect(() => {
     if (isAuthenticated && !house) {
       getHouseById(houseId)

@@ -26,7 +26,6 @@ function AddHouseForm () {
   function onSubmit (evt) {
     evt.preventDefault()
 
-    console.log(form)
     addNewHouse(form)
       .then(id => {
         history.push('/rooms/add/')

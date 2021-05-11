@@ -17,7 +17,6 @@ function Header () {
   }
   if (isAuthenticated) {
     const ourUser = useSelector(state => state.user)
-    console.log(ourUser)
     return (
       <div className='md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200'>
         <div className='flex w-full justify-center md:justify-start w-1/5'>

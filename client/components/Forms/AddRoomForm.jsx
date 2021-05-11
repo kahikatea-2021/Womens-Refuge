@@ -25,7 +25,6 @@ function AddRoomForm () {
     e.preventDefault()
     addRoom(form)
       .then(() => {
-        console.log(form)
         setAddedRooms([...addedRooms, form])
         setForm({ ...form, description: '' })
         return null

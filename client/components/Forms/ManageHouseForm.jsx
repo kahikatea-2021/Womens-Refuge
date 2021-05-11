@@ -9,7 +9,6 @@ export default function ManageHouseForm (props) {
   const dispatch = useDispatch()
   const history = useHistory()
   const id = useParams().id
-  console.log('id', id)
   const [form, setForm] = useState({
     phone_1: props.house.phone_1,
     phone_2: props.house.phone_2,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link, useHistory } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { getHousesInRegion } from '../apis/regions'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -7,12 +7,10 @@ function Region () {
   const [houses, setHouses] = useState([])
   const regionName = useParams().name
   const { isLoading, isAuthenticated, user } = useAuth0()
-  const history = useHistory()
 
   useEffect(() => {
     return getHousesInRegion(regionName)
       .then(houses => {
-        console.log('houses', houses)
         setHouses(houses)
         return null
       })
@@ -27,11 +25,7 @@ function Region () {
     return <img src="../../images/loading.gif"></img>
   }
 
-  console.log(houses)
-
   if (isAuthenticated && user) {
-
-    
     return (
       <>
         <div className='flex md:flex-row justify-center text-sm md:text-base mt-2 space-x-3'>

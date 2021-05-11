@@ -57,9 +57,6 @@ export default function RefineSearchForm () {
       ? getSouth()
       : setSouthRegions([])
   }
-  console.log('handleclick north', northRegions)
-  console.log('handleclick south', southRegions)
-
   return (
     <>
       <h2 className=' flex justify-center font-extrabold text-2xl mt-20'>Step One - Select one or more Islands: </h2>

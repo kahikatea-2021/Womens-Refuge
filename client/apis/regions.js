@@ -24,7 +24,7 @@ export function getAllHouses (house) {
 
 // Get all the houses in a particular region
 export function getHousesInRegion (region) {
-  console.log('in regions api', region)
+  // console.log('in regions api', region)
   return request.get(rootUrl)
     .query({ region: region })
     .set(getAccessHeader())

@@ -20,7 +20,6 @@ function getRoomsByHouseId (houseId, db = connection) {
 }
 
 function updateRoomDescription (roomId, updateDescription, db = connection) {
-  console.log('db room')
   return db('rooms')
     .where('id', '=', roomId)
     .update({
@@ -29,7 +28,6 @@ function updateRoomDescription (roomId, updateDescription, db = connection) {
 }
 
 function updateRoomAvailability (roomId, updateAvailable, db = connection) {
-  console.log('hitting the db function')
   return db('rooms')
     .where('id', '=', roomId)
     .update({

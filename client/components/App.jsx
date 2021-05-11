@@ -39,13 +39,11 @@ function App () {
       </>
     )
   }
-  console.log(window.location.pathname)
+  // console.log(window.location.pathname)
 
   if (isAuthenticated) {
-    console.log('authenticated')
     getAccessTokenSilently()
       .then(token => {
-        console.log('in tokens', token)
         setUserState(user, token, dispatch)
         return null
       })

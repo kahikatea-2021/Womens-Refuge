@@ -27,7 +27,6 @@ function House () {
       house.forEach(element => {
         if (element.available === 1) {
           count++
-          console.log('count', count)
         }
       })
   }
@@ -39,7 +38,6 @@ function House () {
   if (!isAuthenticated) {
     return <p>Unauthorised access</p>
   }
-  console.log(house)
 
   return (
     <>

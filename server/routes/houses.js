@@ -11,10 +11,8 @@ router.get('/', (req, res) => {
   const excludedRegions = req.query.exclude ? [].concat(req.query.exclude) : []
   const available = Number(req.query.available)
 
-  console.log('regions: ', regions)
   houseDb.genearlQuery(island, regions, excludedRegions, available)
     .then(result => {
-      console.log('regions result', result)
       res.status(200).json(result)
       return null
     })
@@ -37,7 +35,6 @@ router.post('/', (req, res) => {
 })
 
 router.patch('/:id', (req, res) => {
-  console.log('in house patch')
   const houseDetails = req.body
   const houseId = req.params.id
   const userHouseId = req.user.house_id
@@ -96,7 +93,6 @@ router.get('/region/:region', (req, res) => {
   const region = req.params.region
   houseDb.getAllRegionalHouses(region)
     .then(data => {
-      console.log('house region', data)
       res.json(data)
       return null
     })
@@ -107,7 +103,6 @@ router.get('/name/:name', (req, res) => {
   const name = req.params.name
   houseDb.getHouseByName(name)
     .then(house => {
-      console.log('db', house)
       res.status(200).json(house)
       return null
     })
