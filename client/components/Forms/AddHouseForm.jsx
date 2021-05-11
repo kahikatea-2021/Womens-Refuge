@@ -73,28 +73,29 @@ function AddHouseForm () {
           <button className='font-bold' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
           </div>
         </form> */}
-        <div className="flex justify-center flex-col gap-6 mx-auto w-1/3  md:justify-start w-1/5'">
-          <h1 className='font-extrabold'>ADD A HOUSE</h1>
-          {regions && <select className='mt-1 block w-2/3' value={form.region_id} onChange={handleChange} name="region_id" id='region'>
+        <div className="flex justify-center flex-col gap-6 mx-auto w-1/3  md:justify-start w-3/5'">
+          <h1 className='font-extrabold flex justify-center'>ADD A HOUSE</h1>
+          {regions && <select className='mt-1 block w-2/3 flex justify-center' value={form.region_id} onChange={handleChange} name="region_id" id='region'>
             <option value='' disabled>Select Region</option>
             {regions.map(region => {
               return <option value={region.id} key={region.id}>{region.region}</option>
             })}
           </select>}
-          <label className="block">
-            <span className="text-gray-700">House name</span>
-            <input className="mt-1 block w-2/3" id='name' name="name" type='text' onChange={handleChange}/>
+          <label className="block flex justify-center">
+            <span className="text-gray-700 flex justify-center">House name</span>
+            <input className="mt-1 block w-2/3 flex justify-center" id='name' name="name" type='text' onChange={handleChange}/>
           </label>
-          <label className="block">
+          <label className="block flex justify-center">
             <span className="text-gray-700">Phone 1</span>
             <input onChange={handleChange} name="phone_1" type="text" className="mt-1 block w-2/3"/>
           </label>
-          <label className="block">
+          <label className="block flex justify-center">
             <span className="text-gray-700">Phone 2</span>
             <input onChange={handleChange} name="phone_2" type="text" className="mt-1 block w-2/3"/>
           </label>
-          <label className="block">
-            <span className="text-gray-700">Notes</span>
+          <div className="flex justify-start"><h2>Notes</h2></div>
+          <label className="block flex justify-center">
+            <span className="text-gray-700"></span>
             <textarea onChange={handleChange} name="notes" className=" mt-1 block w-2/3" rows="5"></textarea>
           </label>
           <div>
