@@ -48,7 +48,7 @@ export default function ManageHouseForm (props) {
         <input className='rounded-lg mt-2' id='phone2' name='phone_2' type="text" value={form.phone_2} onChange={handleChange}></input>
         <label className='mt-4' htmlFor='notes'>Notes: </label>
         <textarea className='mt-2 rounded-lg block w-full' id='notes' name='notes' rows="5" type="text" value={form.notes} onChange={handleChange}></textarea>
-        <button className=' font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={handleSubmit}>SUBMIT</button>
+        <button className='mt-6 font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={handleSubmit}>SUBMIT</button>
       </div>
     </>
   )
