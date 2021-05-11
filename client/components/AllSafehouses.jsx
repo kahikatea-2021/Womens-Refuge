@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getAllHouses } from '../apis/regions'
 import { useAuth0 } from '@auth0/auth0-react'
+import houseFormatter from './formatter'
 
 function AllSafehouses () {
   const [houses, setHouses] = useState([])
@@ -10,8 +11,7 @@ function AllSafehouses () {
   useEffect(() => {
     getAllHouses()
       .then(results => {
-        setHouses(results)
-        console.log('jared test', results)
+        setHouses(houseFormatter(results))
         return null
       })
       .catch(err => console.log(err))
@@ -28,7 +28,7 @@ function AllSafehouses () {
   if (isAuthenticated && user) {
     return (
       <>
-        <h1 className=' text-center my-8 mt-20 '>All Safehouses</h1>
+        <h1 className=' text-center my-8 mt-20 font-extrabold text-2xl'>All Safehouses:</h1>
         {houses.map(house => {
           return <div key={house.name}>
             <Link className='flex justify-center' to={`/house/${house.name}`}>
@@ -37,7 +37,7 @@ function AllSafehouses () {
               </div>
             </Link>
           </div>
-        })}
+        })} */}
       </>
     )
   }
