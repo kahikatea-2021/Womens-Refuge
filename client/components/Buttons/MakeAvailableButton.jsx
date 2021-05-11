@@ -8,15 +8,19 @@ function MakeAvailableButton (props) {
 
   function clickHandler () {
     setIsAvailable(!isAvailable)
-    isAvailable
+
+    // eslint-disable-next-line no-lone-blocks
+    { isAvailable
+
       ? availableNumber = 0
       : availableNumber = 1
 
     editRoom(roomId, availableNumber)
+
+    }
   }
   return (
-    // <button className="h-full" onClick={clickHandler}>Make {isAvailable ? 'unavailable' : 'available'}</button>
-    <input type="checkbox" name="" id="" />
+    <button onClick={clickHandler}>Make {isAvailable ? 'unavailable' : 'available'}</button>
   )
 }
 

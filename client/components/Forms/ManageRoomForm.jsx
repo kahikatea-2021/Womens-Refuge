@@ -1,6 +1,8 @@
+
 import React, { useState } from 'react'
 // import MakeAvailableButton from '../Buttons/MakeAvailableButton'
 import { editRoom } from '../../apis/rooms'
+
 
 function ManageRoom (props) {
   const [available, setAvailable] = useState(props.room.available)

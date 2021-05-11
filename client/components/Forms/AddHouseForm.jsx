@@ -53,53 +53,33 @@ function AddHouseForm () {
   if (isAuthenticated && user) {
     return (
       <>
-        {/* <form onSubmit={onSubmit}>
-        <div class="container mx-auto px-4">
-        <label className='font-bold object-left-top' htmlFor='region_id'>Region:</label>
-        {regions && <select value={form.region_id} onChange={handleChange} name="region_id" id='region'>
-        <option value='' disabled>Select Region</option>
-        {regions.map(region => {
-              return <option value={region.id} key={region.id}>{region.region}</option>
-            })}
-          </select>}
-          <label className='font-bold'htmlFor='name'>House Name:</label>
-          <input id='name' name="name" type='text' onChange={handleChange}></input>
-          <label className='font-bold' htmlFor='phone_1'>Primary Contact Number:</label>
-          <input id='phone1' type='text' name="phone_1" onChange={handleChange}></input>
-          <label className='font-bold' htmlFor='phone_2'>Secondary Contact Number:</label>
-          <input id='phone2' type='text' name="phone_2" onChange={handleChange}></input>
-          <label className='font-bold' htmlFor='notes'>Notes:</label>
-          <textarea onChange={handleChange} name="notes" id='notes' placeholder='Optional notes about room availabitity, usually used by refuge coordinators.'></textarea>
-          <button className='font-bold' type='button' onClick={onSubmit}>NEXT</button>
-          <button className='font-bold' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
-          </div>
-        </form> */}
+
         <div className="flex justify-center flex-col gap-6 mx-auto w-full  md:justify-start md:w-1/3">
-          <h1 className='mt-8 font-extrabold text-2xl'>ADD A HOUSE</h1>
+          <h1 className='mt-8 font-extrabold text-2xl'>Add a Safehouse</h1>
           {regions && <select className='mt-1 block w-full' value={form.region_id} onChange={handleChange} name="region_id" id='region'>
-            <option className='font-bold' value='' disabled>Select Region</option>
+            <option className='font-bold' value='' disabled>* Select Region</option>
             {regions.map(region => {
               return <option value={region.id} key={region.id}>{region.region}</option>
             })}
           </select>}
           <label className="block">
-            <span className="text-gray-700 font-bold">House name</span>
-            <input className="mt-1 block w-full rounded-lg" id='name' name="name" type='text' onChange={handleChange}/>
+            <span className="text-gray-700 font-bold">* House Name</span>
+            <input className="mt-1 block w-full rounded-lg" placeholder="E.g: Poroporo" id='name' name="name" type='text' onChange={handleChange}/>
           </label>
           <label className="block">
-            <span className="text-gray-700 font-bold">Phone 1</span>
-            <input onChange={handleChange} name="phone_1" type="tel" className="mt-1 block w-full rounded-lg"/>
+            <span className="text-gray-700 font-bold">* Primary Contact Number</span>
+            <input onChange={handleChange} placeholder="E.g: 021 123 4567" name="phone_1" type="tel" className="mt-1 block w-full rounded-lg"/>
           </label>
           <label className="block">
-            <span className="text-gray-700 font-bold">Phone 2</span>
-            <input onChange={handleChange} name="phone_2" type="tel" className="mt-1 block w-full rounded-lg"/>
+            <span className="text-gray-700 font-bold">Secondary Contact Number</span>
+            <input onChange={handleChange} placeholder="E.g: 027 897 2345" name="phone_2" type="tel" className="mt-1 block w-full rounded-lg"/>
           </label>
           <label className="block">
             <span className="text-gray-700 font-bold">Notes</span>
-            <textarea onChange={handleChange} name="notes" className=" rounded-lg mt-1 block w-full" rows="5"></textarea>
+            <textarea onChange={handleChange} placeholder="E.g: A cat lives here" name="notes" className=" rounded-lg mt-1 block w-full" rows="5"></textarea>
           </label>
           <div className='space-x-2 flex justify-evenly'>
-            <button className=' font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
+            <button className=' font-bold py-2 md:py-3 md:text-base self-center bg-purple-200 hover:bg-red-300 text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
             <button className='font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={onSubmit}>NEXT</button>
           </div>
         </div>
