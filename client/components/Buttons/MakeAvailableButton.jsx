@@ -12,8 +12,9 @@ function MakeAvailableButton (props) {
     { isAvailable
       ? availableNumber = 0
       : availableNumber = 1
-    }
+
     editRoom(roomId, availableNumber)
+    }
   }
   return (
     <button onClick={clickHandler}>Make {isAvailable ? 'unavailable' : 'available'}</button>

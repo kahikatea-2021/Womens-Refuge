@@ -38,12 +38,12 @@ function genearlQuery (island, regions, exclude, available = 1, db = connection)
   query += 'GROUP BY houses.id '
 
   if (available === 2) {
-    query += 'HAVING COUNT(rooms.house_id) > 0 '
+    query += 'HAVING available_rooms > 0 '
   }
   if (available === 0) {
     query += 'HAVING COUNT(rooms.house_id) = 0 '
   }
-
+console.log(query)
   return db.raw(query)
 }
 
