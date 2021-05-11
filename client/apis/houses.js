@@ -33,7 +33,7 @@ export function deleteHouse (houseId) {
 }
 
 export function updateHouseAndRooms (rooms, house) {
-  request.put(rootUrl + 'update-house')
+  return request.put(rootUrl + 'update-house')
     .set(getAccessHeader())
     .send({ house, rooms })
 }
