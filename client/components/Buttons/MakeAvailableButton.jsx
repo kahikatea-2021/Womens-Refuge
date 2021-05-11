@@ -8,14 +8,15 @@ function MakeAvailableButton (props) {
 
   function clickHandler () {
     setIsAvailable(!isAvailable)
-    { isAvailable
+    isAvailable
       ? availableNumber = 0
       : availableNumber = 1
-    }
+
     editRoom(roomId, availableNumber)
   }
   return (
-    <button onClick={clickHandler}>Make {isAvailable ? 'unavailable' : 'available'}</button>
+    // <button className="h-full" onClick={clickHandler}>Make {isAvailable ? 'unavailable' : 'available'}</button>
+    <input type="checkbox" name="" id="" />
   )
 }
 
