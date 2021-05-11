@@ -16,8 +16,8 @@ function Home () {
       {isAuthenticated &&
         <div>
           <div>
-            <h1 className='flex justify-center font-extrabold my-8 mt-16 text-2xl'>Select an Island</h1>
-            <img src='/images/map.svg' />
+            <h1 className='flex justify-center font-extrabold my-8 mt-16 text-2xl'>Select Island</h1>
+            {/* <img src='/images/map.svg' /> */}
             <NorthIslandButton />
             <SouthIslandButton />
           </div>
