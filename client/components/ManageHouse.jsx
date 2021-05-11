@@ -40,7 +40,7 @@ function ManageHouse () {
     return <img src="../../images/loading.gif"></img>
   }
 
-  if (!isAuthenticated || !ourUser) {
+  if (!isAuthenticated) {
     return <p>Unauthorised access</p>
   } else if (ourUser && (Number(ourUser.house_id) !== Number(houseId) && !ourUser.isAdmin)) {
     return <p>Unauthorised access</p>
