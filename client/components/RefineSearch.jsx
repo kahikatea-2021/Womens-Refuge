@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { getAllIslandRegions } from '../apis/islands'
-import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useSelector } from 'react-redux'
 import RefineSearchForm from './Forms/RefineSearchForm'
@@ -32,7 +31,10 @@ function RefineSearch () {
 
   return (
     <>
-      <h1 className=' flex justify-center font-extrabold text-2xl my-8 mt-20'>Refine Search:</h1>
+      <div className=' flex justify-center font-extrabold md:text-3xl my-10 md:mt-12 space-x-2'>
+        <h1>Advanced Search</h1>
+        <img className='md:w-8 md:h-8' src='/images/searchIconBlack.png'/>
+      </div>
       <RefineSearchForm />
 
     </>
