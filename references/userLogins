@@ -6,3 +6,6 @@ password: refugeCoordinator!
 
 email: generaluser@safehouse.com
 password: generalUser!
+
+
+api end point?exclude=region1&exclude=region2&island=north&region=region3&region=region4

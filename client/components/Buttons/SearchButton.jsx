@@ -5,8 +5,8 @@ function SearchButton () {
   return (
     <Link to='/search'>
       <button
-        className="md:py-3 md:text-base md:w-40 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs w-24 rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-        REFINE SEARCH
+        className="flex justify-center md:py-3 md:text-base w-8 md:w-12 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+        <img className='w-4 md:w-6' src='/images/searchIcon.png'/>
       </button>
     </Link>
   )

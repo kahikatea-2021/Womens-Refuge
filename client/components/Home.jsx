@@ -16,7 +16,7 @@ function Home () {
       {isAuthenticated &&
         <div>
           <div>
-            <h1 className='flex justify-center font-extrabold my-8 mt-20 text-xl md:text-2xl'>Safehouse Search Options:</h1>
+            <h1 className='flex justify-center font-extrabold my-8 mt-16 text-2xl'>Select an Island</h1>
             <NorthIslandButton />
             <SouthIslandButton />
           </div>
