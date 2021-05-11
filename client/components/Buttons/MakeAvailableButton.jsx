@@ -8,6 +8,7 @@ function MakeAvailableButton (props) {
 
   function clickHandler () {
     setIsAvailable(!isAvailable)
+    // eslint-disable-next-line no-lone-blocks
     { isAvailable
       ? availableNumber = 0
       : availableNumber = 1

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { addRoom } from '../../apis/rooms'
 import { Link, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-// import MakeAvailableButton from '../Buttons/MakeAvaiableButton'
+// import MakeAvailableButton from '../Buttons/MakeavailableButton'
 
 function AddRoomForm () {
   const regions = useSelector(state => state.regions)
