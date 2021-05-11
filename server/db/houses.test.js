@@ -73,7 +73,7 @@ test('deleteHouseById should delete house with that id', () => {
   const id = 4
   return houseDb.deleteHouseById(id, testDb)
     .then(house => {
-      expect(house.name).toBeUndefined()
+      expect(house).toBe(1)
       return null
     })
 })
