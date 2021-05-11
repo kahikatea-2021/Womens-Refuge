@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getHouse } from '../apis/regions'
 import { deleteHouse } from '../apis/houses'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 import ManageHouseButton from './Buttons/ManageHouseButton'
@@ -14,7 +14,6 @@ function House () {
   const { isLoading, isAuthenticated } = useAuth0()
   const [confirmDelete, setConfirmDelete] = useState(false)
   const [deleted, setDeleted] = useState(false)
-  const history = useHistory()
   let count = 0
 
   useEffect(() => {
@@ -47,9 +46,9 @@ function House () {
     return <p>Unauthorised access</p>
   }
 
-  function clickCallback () {
-    setConfirmDelete(true)
-  }
+  // function clickCallback () {
+  //   setConfirmDelete(true)
+  // }
   function handleCancel () {
     setConfirmDelete(false)
   }
