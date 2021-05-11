@@ -4,12 +4,14 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 import ManageHouseButton from './Buttons/ManageHouseButton'
+import DeleteHouseButton from './Buttons/DeleteHouseButton'
 
 function House () {
   const [house, setHouse] = useState(null)
   const houseName = useParams()
   const ourUser = useSelector(state => state.user)
   const { isLoading, isAuthenticated } = useAuth0()
+  const [confirmDelete, setConfirmDelete] = useState(false)
   let count = 0
 
   useEffect(() => {
@@ -41,10 +43,14 @@ function House () {
     return <p>Unauthorised access</p>
   }
 
+  function clickCallback () {
+    setConfirmDelete(true)
+  }
+
   return (
     <>
       {house &&
-        <div>
+        <div className="">
           <div className="flex flex-col">
             <p className='text-center text-base md:text-xl'><b>{house[0].region}</b></p>
             <div className="flex items-center justify-center flex-col md:flex-row">
@@ -77,6 +83,13 @@ function House () {
               })}
             </div>
             {house[0]?.notes && <div className='text-base md:text-xl'><b>Additional Information:</b><br />{house[0].notes}</div>}
+            <div className="flex flex-col justify-center items-center">
+              {!confirmDelete ? <DeleteHouseButton text={confirmDelete ? 'Confirm' : null} callback={setConfirmDelete} /> : <p>Confirm Delete</p>}
+              {confirmDelete && <div className="flex mt-2">
+                <DeleteHouseButton text="YES" />
+                <DeleteHouseButton text="CANCELL" />
+              </div>}
+            </div>
           </div>
         </div>
       }

@@ -27,6 +27,7 @@ export default function ManageHouseForm (props) {
     e.preventDefault()
     editHouse(id, form)
       .then(() => {
+        console.log('submit')
         history.push(`/house/${props.house.name}`)
         return null
       })
