@@ -8,7 +8,7 @@ export function setUserState (user, token, dispatch) {
     localStorage.setItem('access-token', token)
     getUser(user.sub, token)
       .then(userInfo => {
-        console.log(userInfo)
+        console.log('user', userInfo)
         dispatch(setUser(userInfo))
         setWait(false)
         return null
