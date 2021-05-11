@@ -19,7 +19,7 @@ function ManageHouse () {
     if (isAuthenticated) {
       getHouseById(houseId)
         .then(results => {
-          const roomInfo = results.map(({ description, house_id, room_id, available }) => ({ id: room_id, house_id, description, available }))
+          const roomInfo = results.map(({ description, house_id, room_id, available }) => ({ id: room_id, house_id, description, available })).sort((a, b) => a.room_id - b.room_id)
           setHouseInfo({
             id: results[0].house_id,
             region_id: results[0].region_id,
