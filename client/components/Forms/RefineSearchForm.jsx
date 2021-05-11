@@ -118,7 +118,7 @@ export default function RefineSearchForm () {
           {searchResults.map(house => {
             return (
               <div key={house.id}>
-                <p>{house.name}</p>
+                <Link to={`/house/${house.name}`}><p>{house.name}</p></Link>
               </div>
             )
           })}
