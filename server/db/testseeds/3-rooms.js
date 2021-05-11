@@ -1,9 +1,9 @@
 exports.seed = function (knex) {
   // Inserts seed entries
   return knex('rooms').insert([
-    { id: 1, house_id: 1, description: '1 single bed', available: true },
-    { id: 2, house_id: 1, description: '2 double beds, 1 bunk bed', available: true },
-    { id: 3, house_id: 1, description: '1 queen bed, 2 single beds', available: true },
+    { id: 1, house_id: 1, description: '1 single bed', available: false },
+    { id: 2, house_id: 1, description: '2 double beds, 1 bunk bed', available: false },
+    { id: 3, house_id: 1, description: '1 queen bed, 2 single beds', available: false },
     { id: 4, house_id: 2, description: '2 single beds', available: true },
     { id: 5, house_id: 2, description: '6 bunk beds', available: true },
     { id: 6, house_id: 3, description: '1 queen bed', available: true },

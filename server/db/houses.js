@@ -22,7 +22,7 @@ function getHouseById (id, db = connection) {
   return db.raw(query)
 }
 
-function genearlQuery (island, regions = [], exclude = [], available = 1, db = connection) {
+function genearlQuery (island = 'all', regions = [], exclude = [], available = 1, db = connection) {
   if (island === 'all') island = '%'
   let query = baseQuery +
     `WHERE LOWER(regions.island) LIKE "${island.toLowerCase()}" `
