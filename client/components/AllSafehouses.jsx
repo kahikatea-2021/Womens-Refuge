@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { getAllHouses } from '../apis/regions'
 import { useAuth0 } from '@auth0/auth0-react'
 import houseFormatter from './formatter'
@@ -7,6 +7,7 @@ import houseFormatter from './formatter'
 function AllSafehouses () {
   const [houses, setHouses] = useState([])
   const { isLoading, isAuthenticated, user } = useAuth0()
+  const history = useHistory()
 
   useEffect(() => {
     getAllHouses()
@@ -40,12 +41,10 @@ function AllSafehouses () {
                     <p className="pb-4 mt-12 text-center font-bold text-2xl">{region.name}</p>
                     {region.houses.map(house => {
                       return (
-                        <div key={house.name}>
-                          <Link className='flex justify-center' to={`/house/${house.name}`}>
-                            <div className="text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                              {house.name}
-                            </div>
-                          </Link>
+                        <div key={house.name} className=' flex justify-center '>
+                          <button onClick={() => { history.push(`/house/${house.name}`) }} className="px-5 flex justify-between items-center text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                            <p className="w-8"></p>{house.name} <img src={house.available_rooms > 0 ? '/images/tickWhite.png' : '/images/crossWhite.png'} className="w-6 md:w-8" alt="" />
+                          </button>
                         </div>
                       )
                     })}

@@ -42,6 +42,7 @@ function App () {
   // console.log(window.location.pathname)
 
   if (isAuthenticated) {
+    console.log(user)
     getAccessTokenSilently()
       .then(token => {
         setUserState(user, token, dispatch)
@@ -70,7 +71,7 @@ function App () {
               <Route path='/house/manage/:id' component={ManageHouse} />
               <Route path='/houses/add' component={AdminAddHouse} />
               <Route path='/rooms/add' component={AdminAddRoom} />
-              <Route path ='/search' component={RefineSearch} />
+              <Route path='/search' component={RefineSearch} />
               <Footer />
             </main>
 
