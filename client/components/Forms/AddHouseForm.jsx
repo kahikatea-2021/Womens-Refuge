@@ -53,26 +53,56 @@ function AddHouseForm () {
   if (isAuthenticated && user) {
     return (
       <>
-        <h1>ADD A HOUSE</h1>
-        <form onSubmit={onSubmit}>
-          <label htmlFor='region_id'>Region:</label>
-          {regions && <select required value={form.region_id} onChange={handleChange} name="region_id" id='region'>
+        {/* <form onSubmit={onSubmit}>
+        <div class="container mx-auto px-4">
+        <label className='font-bold object-left-top' htmlFor='region_id'>Region:</label>
+        {regions && <select value={form.region_id} onChange={handleChange} name="region_id" id='region'>
+        <option value='' disabled>Select Region</option>
+        {regions.map(region => {
+              return <option value={region.id} key={region.id}>{region.region}</option>
+            })}
+          </select>}
+          <label className='font-bold'htmlFor='name'>House Name:</label>
+          <input id='name' name="name" type='text' onChange={handleChange}></input>
+          <label className='font-bold' htmlFor='phone_1'>Primary Contact Number:</label>
+          <input id='phone1' type='text' name="phone_1" onChange={handleChange}></input>
+          <label className='font-bold' htmlFor='phone_2'>Secondary Contact Number:</label>
+          <input id='phone2' type='text' name="phone_2" onChange={handleChange}></input>
+          <label className='font-bold' htmlFor='notes'>Notes:</label>
+          <textarea onChange={handleChange} name="notes" id='notes' placeholder='Optional notes about room availabitity, usually used by refuge coordinators.'></textarea>
+          <button className='font-bold' type='button' onClick={onSubmit}>NEXT</button>
+          <button className='font-bold' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
+          </div>
+        </form> */}
+        <div className="flex justify-center flex-col gap-6 mx-auto w-1/3  md:justify-start w-1/5'">
+          <h1 className='font-extrabold'>ADD A HOUSE</h1>
+          {regions && <select className='mt-1 block w-2/3' value={form.region_id} onChange={handleChange} name="region_id" id='region'>
             <option value='' disabled>Select Region</option>
             {regions.map(region => {
               return <option value={region.id} key={region.id}>{region.region}</option>
             })}
           </select>}
-          <label htmlFor='name'>House Name:</label>
-          <input required id='name' name="name" type='text' onChange={handleChange}></input>
-          <label htmlFor='phone_1'>Primary Contact Number:</label>
-          <input required id='phone1' type='text' name="phone_1" onChange={handleChange}></input>
-          <label htmlFor='phone_2'>Secondary Contact Number:</label>
-          <input id='phone2' type='text' name="phone_2" onChange={handleChange}></input>
-          <label htmlFor='notes'>Notes:</label>
-          <textarea onChange={handleChange} name="notes" id='notes' placeholder='Optional notes about room availabitity, usually used by refuge coordinators.'></textarea>
-          <button >NEXT</button>
-          <button type='button' onClick={() => { history.push('/') }}>CANCEL</button>
-        </form>
+          <label className="block">
+            <span className="text-gray-700">House name</span>
+            <input className="mt-1 block w-2/3" id='name' name="name" type='text' onChange={handleChange}/>
+          </label>
+          <label className="block">
+            <span className="text-gray-700">Phone 1</span>
+            <input onChange={handleChange} name="phone_1" type="text" className="mt-1 block w-2/3"/>
+          </label>
+          <label className="block">
+            <span className="text-gray-700">Phone 2</span>
+            <input onChange={handleChange} name="phone_2" type="text" className="mt-1 block w-2/3"/>
+          </label>
+          <label className="block">
+            <span className="text-gray-700">Notes</span>
+            <textarea onChange={handleChange} name="notes" className=" mt-1 block w-2/3" rows="5"></textarea>
+          </label>
+          <div>
+            <button className='mr-20 font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={onSubmit}>NEXT</button>
+            <button className='ml-20 font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
+          </div>
+        </div>
 
       </>
     )
