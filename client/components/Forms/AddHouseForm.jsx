@@ -26,6 +26,7 @@ function AddHouseForm () {
   function onSubmit (evt) {
     evt.preventDefault()
 
+    console.log(form)
     addNewHouse(form)
       .then(id => {
         history.push('/rooms/add/')
@@ -73,33 +74,33 @@ function AddHouseForm () {
           <button className='font-bold' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
           </div>
         </form> */}
-        <div className="flex justify-center flex-col gap-6 mx-auto w-1/3  md:justify-start w-1/5'">
-          <h1 className='font-extrabold'>ADD A HOUSE</h1>
-          {regions && <select className='mt-1 block w-2/3' value={form.region_id} onChange={handleChange} name="region_id" id='region'>
-            <option value='' disabled>Select Region</option>
+        <div className="flex justify-center flex-col gap-6 mx-auto w-full  md:justify-start md:w-1/3">
+          <h1 className='mt-8 font-extrabold text-2xl'>ADD A HOUSE</h1>
+          {regions && <select className='mt-1 block w-full' value={form.region_id} onChange={handleChange} name="region_id" id='region'>
+            <option className='font-bold' value='' disabled>Select Region</option>
             {regions.map(region => {
               return <option value={region.id} key={region.id}>{region.region}</option>
             })}
           </select>}
           <label className="block">
-            <span className="text-gray-700">House name</span>
-            <input className="mt-1 block w-2/3" id='name' name="name" type='text' onChange={handleChange}/>
+            <span className="text-gray-700 font-bold">House name</span>
+            <input className="mt-1 block w-full rounded-lg" id='name' name="name" type='text' onChange={handleChange}/>
           </label>
           <label className="block">
-            <span className="text-gray-700">Phone 1</span>
-            <input onChange={handleChange} name="phone_1" type="text" className="mt-1 block w-2/3"/>
+            <span className="text-gray-700 font-bold">Phone 1</span>
+            <input onChange={handleChange} name="phone_1" type="tel" className="mt-1 block w-full rounded-lg"/>
           </label>
           <label className="block">
-            <span className="text-gray-700">Phone 2</span>
-            <input onChange={handleChange} name="phone_2" type="text" className="mt-1 block w-2/3"/>
+            <span className="text-gray-700 font-bold">Phone 2</span>
+            <input onChange={handleChange} name="phone_2" type="tel" className="mt-1 block w-full rounded-lg"/>
           </label>
           <label className="block">
-            <span className="text-gray-700">Notes</span>
-            <textarea onChange={handleChange} name="notes" className=" mt-1 block w-2/3" rows="5"></textarea>
+            <span className="text-gray-700 font-bold">Notes</span>
+            <textarea onChange={handleChange} name="notes" className=" rounded-lg mt-1 block w-full" rows="5"></textarea>
           </label>
-          <div>
-            <button className='mr-20 font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={onSubmit}>NEXT</button>
-            <button className='ml-20 font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
+          <div className='space-x-2 flex justify-evenly'>
+            <button className=' font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={() => { history.push('/') }}>CANCEL</button>
+            <button className='font-bold py-2 md:py-3 md:text-base self-center bg-poroporo hover:bg-poroporo text-white w-20 md:w-32 text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' type='button' onClick={onSubmit}>NEXT</button>
           </div>
         </div>
 
