@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link, useHistory } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { getHousesInRegion } from '../apis/regions'
 import { useAuth0 } from '@auth0/auth0-react'
 
