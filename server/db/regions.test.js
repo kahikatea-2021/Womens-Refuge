@@ -13,11 +13,11 @@ beforeEach(() => {
 })
 
 test('getIslandRegions should return coresponding region', () => {
-    const island = 'north'
-    return regionDb.getIslandRegions(island, testDb)
-      .then(region => {
-        expect(region[0].island).toBe('north')
-        expect(region).toHaveLength(9)
-        return null
-      })
-  })
+  const island = 'north'
+  return regionDb.getIslandRegions(island, testDb)
+    .then(region => {
+      expect(region[0].island).toBe('north')
+      expect(region).toHaveLength(9)
+      return null
+    })
+})
