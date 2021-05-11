@@ -8,10 +8,10 @@ function MakeAvailableButton (props) {
 
   function clickHandler () {
     setIsAvailable(!isAvailable)
-    { isAvailable
+    isAvailable
       ? availableNumber = 0
       : availableNumber = 1
-    }
+
     editRoom(roomId, availableNumber)
   }
   return (
