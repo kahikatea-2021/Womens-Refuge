@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const room = req.body
-  if (!req.user.isMasterAdmin) {
+  if (!req.user.isAdmin) {
     res.status(403).send()
     return
   }
@@ -35,7 +35,7 @@ router.patch('/:id/description', (req, res) => {
   const id = req.params.id || -1
   roomDb.getRoomById(id)
     .then(rooms => {
-      if (rooms[0].house_id !== Number(req.user.house_id) || !req.user.isMasterAdmin) {
+      if (rooms[0].house_id !== Number(req.user.house_id) || !req.user.isAdmin) {
         res.status(403).send()
       } else {
         return roomDb.updateRoomDescription(id, req.body.description)

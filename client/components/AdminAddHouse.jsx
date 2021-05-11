@@ -31,7 +31,7 @@ function AdminAddHouse () {
 
   return (
     <>
-      {ourUser?.isMasterAdmin
+      {ourUser?.isAdmin
         ? <AddHouseForm />
         : <p>Unauthorised Access</p>}
     </>
