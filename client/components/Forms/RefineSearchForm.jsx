@@ -9,6 +9,7 @@ export default function RefineSearchForm () {
   const { isLoading, isAuthenticated } = useAuth0()
   const [northRegions, setNorthRegions] = useState([])
   const [southRegions, setSouthRegions] = useState([])
+  const [query, setQuery] = useState([])
 
   // useEffect(() => {
   //   if (isAuthenticated && northRegions.length <= 0) {
@@ -61,16 +62,36 @@ export default function RefineSearchForm () {
 
   return (
     <>
-      <h2>Select an Island: </h2>
+      <h2 className=' flex justify-center font-extrabold text-2xl mt-20'>Step One - Select one or more Islands: </h2>
       <form action="/action_page.php">
         <input onClick={handleClickNorth} type="checkbox" id="north" name="north" value="north"/>
         <label htmlFor="north"> North Island </label><br/>
         <input onClick={handleClickSouth} type="checkbox" id="south" name="south" value="south"/>
         <label htmlFor="south"> South Island </label><br/>
       </form>
-
-      {/* <div>North Island</div>
-      <div>South Island</div> */}
+      <br/>
+      <br/>
+      <h3 className='flex justify-center font-extrabold text-2xl mt-20'>Step Two - Select regions to exclude from your search: </h3>
+      <form>
+        {northRegions.map(region => {
+          return (
+            <div key={region.id}>
+              <input type="checkbox" id={region.region} name={region.region} value={region.region}></input>
+              <label htmlFor={region.region}>{region.region}</label>
+              <br/>
+            </div>
+          )
+        })}
+        {southRegions.map(region => {
+          return (
+            <div key={region.id}>
+              <input type="checkbox" id={region.region} name={region.region} value={region.region}></input>
+              <label htmlFor={region.region}>{region.region}</label>
+              <br/>
+            </div>
+          )
+        })}
+      </form>
 
     </>
   )
