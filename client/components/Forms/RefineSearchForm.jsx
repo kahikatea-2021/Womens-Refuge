@@ -3,13 +3,18 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getAllIslandRegions } from '../../apis/islands'
 import { useAuth0 } from '@auth0/auth0-react'
+import stringMaker from './refineSearchFormHelper'
+import getHousesFromSearch from '../../apis/houses'
 
 export default function RefineSearchForm () {
   const ourUser = useSelector(state => state.user)
   const { isLoading, isAuthenticated } = useAuth0()
   const [northRegions, setNorthRegions] = useState([])
   const [southRegions, setSouthRegions] = useState([])
+  const [searchResults, setSearchResults] = useState([])
   const [queryObject, setQueryObject] = useState({
+    north: false,
+    south: false,
     Northland: false,
     Auckland: false,
     'Bay of Plenty': false,
@@ -37,6 +42,7 @@ export default function RefineSearchForm () {
   }
 
   function handleClickNorth (e) {
+    clickHandler(e);
     (isAuthenticated && northRegions.length <= 0)
       ? getNorth()
       : setNorthRegions([])
@@ -52,6 +58,7 @@ export default function RefineSearchForm () {
   }
 
   function handleClickSouth (e) {
+    clickHandler(e);
     (isAuthenticated && southRegions.length <= 0)
       ? getSouth()
       : setSouthRegions([])
@@ -60,6 +67,12 @@ export default function RefineSearchForm () {
   function clickHandler (e) {
     const currentVal = queryObject[e.target.name]
     setQueryObject({ ...queryObject, [e.target.name]: !currentVal })
+  }
+
+  function submitHandler () {
+    getHousesFromSearch(stringMaker(queryObject))
+      .then(result => setSearchResults(result))
+      .catch(err => console.log(err))
   }
 
   return (
@@ -94,6 +107,20 @@ export default function RefineSearchForm () {
           )
         })}
       </form>
+      <button onClick={submitHandler}>SUBMIT SEARCH</button>
+
+      {searchResults &&
+        <>
+          <h2>Look What I made: </h2>
+          {searchResults.map(house => {
+            return (
+              <div key={house.id}>
+                <p>{house.name}</p>
+              </div>
+            )
+          })}
+        </>
+      }
 
     </>
   )
