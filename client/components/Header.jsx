@@ -20,33 +20,29 @@ function Header () {
     console.log(ourUser)
     return (
       <div className='md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200'>
-
         <div className='flex w-full justify-center md:justify-start w-1/5'>
-          <Link to='/' className='flex-col items-center'>
-            <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
-            <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
+          <Link to='/' className='flex-row md:flex-col items-center'>
+            <img className='mx-auto self-center w-12 md:w-20' src="/images/logo.png"></img>
+            <h1 className='mx-auto self-center text-poroporo font-bold text-lg md:text-xl'>Tuohunga</h1>
           </Link>
         </div>
-
         <div className='mt-4 space-x-4 flex w-full justify-center md:justify-end w-4/5'>
-
           {ourUser?.isMasterAdmin === 1 && <AddHouseButton />}
           {ourUser?.house_id && <ManageHouseButton />}
-          <SearchButton />
           <ViewAllButton />
+          <SearchButton />
           <LogoutButton />
         </div>
-
       </div>
     )
   } else {
     return (
       <>
         <div className='md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200'>
-          <div className='flex w-full justify-center'>
-            <Link to='/' className='flex-col items-center'>
-              <img className='mx-auto self-center w-20' src="/images/logo.png"></img>
-              <h1 className='mx-auto self-center text-poroporo font-bold text-xl'>Tuohunga</h1>
+          <div className='flex w-full justify-center md:justify-start w-1/5'>
+            <Link to='/' className='flex-row md:flex-col items-center'>
+              <img className='mx-auto self-center w-12 md:w-20' src="/images/logo.png"></img>
+              <h1 className='mx-auto self-center text-poroporo font-bold text-lg md:text-xl'>Tuohunga</h1>
             </Link>
           </div>
         </div>

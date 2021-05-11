@@ -9,7 +9,7 @@ export function addNewHouse (house) {
   dispatch(setWait())
   return addHouse(house)
     .then(newHouse => {
-      house.id = newHouse.body
+      house.id = newHouse.body.id
       dispatch(setHouse(house))
       dispatch(setWait(false))
       return newHouse.body.id
