@@ -10,7 +10,7 @@ function ManageHouse () {
   const [house, setHouse] = useState(null)
   const houseId = useParams().id
   const ourUser = useSelector(state => state.user)
-  const { isLoading, isAuthenticated, user } = useAuth0()
+  const { isLoading, isAuthenticated } = useAuth0()
   useEffect(() => {
     if (isAuthenticated) {
       getHouseById(houseId)
@@ -32,6 +32,7 @@ function ManageHouse () {
     console.log(ourUser?.house_id, houseId)
     return <p>Unauthorised access</p>
   }
+
   return (
 
     <>
