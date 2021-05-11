@@ -11,7 +11,7 @@ function AllSafehouses () {
   useEffect(() => {
     getAllHouses()
       .then(results => {
-        setHouses(results)
+        setHouses(houseFormatter(results))
         console.log(houseFormatter(results))
         return null
       })
@@ -39,6 +39,7 @@ function AllSafehouses () {
             </Link>
           </div>
         })}
+
       </>
     )
   }
