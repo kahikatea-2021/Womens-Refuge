@@ -26,3 +26,12 @@ export function getAllRoomsInHouse (houseId) {
       return res.body
     })
 }
+
+export default function getHousesFromSearch (str) {
+  console.log('api', rootUrl + str)
+  return request.get(rootUrl + str)
+    .set(getAccessHeader())
+    .then(res => {
+      return res.body
+    })
+}

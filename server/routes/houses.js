@@ -39,7 +39,7 @@ router.patch('/:id', (req, res) => {
   const houseId = req.params.id
   const userHouseId = req.user.house_id
 
-  if (Number(userHouseId) !== Number(houseId) || !req.user.isAdmin) {
+  if (Number(userHouseId) !== Number(houseId) && !req.user.isAdmin) {
     res.status(403).send()
     return
   }
