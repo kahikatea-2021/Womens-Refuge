@@ -11,6 +11,9 @@ function getHouseByName (name, db = connection) {
     'LEFT JOIN regions on houses.region_id = regions.id ' +
     `WHERE name = '${name}'`
   return db.raw(query)
+    .then(result => {
+      return result.rows ? result.rows : result
+    })
 }
 
 // when a user clicks on a house to view the house details
@@ -20,6 +23,9 @@ function getHouseById (id, db = connection) {
     'LEFT JOIN regions on houses.region_id = regions.id ' +
     `WHERE houses.id = ${id}`
   return db.raw(query)
+    .then(result => {
+      return result.rows ? result.rows : result
+    })
 }
 
 function genearlQuery (island = 'all', regions = [], exclude = [], available = 1, db = connection) {
@@ -45,6 +51,9 @@ function genearlQuery (island = 'all', regions = [], exclude = [], available = 1
   }
   console.log(query)
   return db.raw(query)
+    .then(results => {
+      return results.rows ? results.rows : results
+    })
 }
 
 function updateHouseById (houseId, house, db = connection) {
