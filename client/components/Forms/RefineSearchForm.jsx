@@ -38,6 +38,7 @@ export default function RefineSearchForm () {
   function getNorth () {
     getAllIslandRegions('north')
       .then(results => {
+        console.log(results)
         setNorthRegions(results)
         return null
       })
@@ -70,8 +71,22 @@ export default function RefineSearchForm () {
   function clickHandler (e) {
     const { checked, name } = e.target
     setQueryObject({ ...queryObject, [name]: checked })
-    if (!queryObject.north) setNorthRegions([])
-    if (!queryObject.south) setSouthRegions([])
+    if (name === 'north' && !checked) {
+      const tempObject = { north: false }
+      northRegions.forEach(regName => {
+        tempObject[regName.region] = false
+      })
+      setQueryObject({ ...queryObject, ...tempObject })
+    }
+
+    if (name === 'south' && !checked) {
+      const tempObject = { south: false }
+      southRegions.forEach(regName => {
+        tempObject[regName.region] = false
+      })
+      console.log('temp', tempObject)
+      setQueryObject({ ...queryObject, ...tempObject })
+    }
 
     console.log(checked, name)
   }
