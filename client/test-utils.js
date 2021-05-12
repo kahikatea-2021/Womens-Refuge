@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { MemoryRouter as Router, Route } from 'react-router-dom'
 import { render } from '@testing-library/react'
+import reducers from './reducers'
 
 
 export function renderWithRouter (
@@ -29,7 +30,7 @@ export function renderWithRedux (
     initialEntries = ['/'],
     route = '/',
     initialState,
-    store = createStore(reducer, initialState)
+    store = createStore(reducers, initialState)
   } = {}
 ) {
   return {
