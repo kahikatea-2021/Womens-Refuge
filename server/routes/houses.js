@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
 
   houseDb.genearlQuery(island, regions, excludedRegions, available)
     .then(result => {
-      res.status(200).json(result)
+      const houses = result.rows ? result.rows : result
+      res.status(200).json(houses)
       return null
     })
     .catch(err => console.log(err))
