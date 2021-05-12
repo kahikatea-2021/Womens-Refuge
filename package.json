@@ -43,6 +43,7 @@
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "express-jwt-authz": "^2.4.1",
+    "jest-dom": "^4.0.0",
     "jwks-rsa": "^2.0.3",
     "knex": "^0.21.12",
     "pg": "^8.5.1",
