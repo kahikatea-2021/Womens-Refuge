@@ -25,7 +25,10 @@ function Region () {
   if (isLoading) {
     return <img src="../../images/loading.gif"></img>
   }
-  console.log('in regions', houses.rows)
+
+  if (houses.length > 0) {
+    console.log(houses[0].name)
+  }
 
   if (isAuthenticated && user) {
     return (
