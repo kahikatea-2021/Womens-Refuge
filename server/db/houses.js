@@ -1,6 +1,6 @@
 const connection = require('./connection')
 
-const baseQuery = 'SELECT island,region, rooms.id as room_id, regions.id as region_id, name, phone_1, phone_2, notes, available, houses.id as house_id, COUNT(rooms.id) as rooms_available, SUM(CASE WHEN rooms.available = true THEN 1 ELSE 0 END) as available_rooms ' +
+const baseQuery = 'SELECT island,region, regions.id as region_id, name, phone_1, phone_2, notes, available, houses.id as house_id, COUNT(*) as rooms_available, SUM(CASE WHEN rooms.available = true THEN 1 ELSE 0 END) as available_rooms ' +
   'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
   'LEFT JOIN regions on houses.region_id = regions.id '
 
