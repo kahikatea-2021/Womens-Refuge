@@ -5,11 +5,13 @@ const mockUsers = require('./testUsers')
 
 jest.mock('../checkJwtMiddleware', () => (req, res, next) => {
   // console.log('header', req.headers)
-  req.user = req.headers.authorization
-  if (req.user !== mockUsers.generalUser) {
+  req.user = { name: req.headers.authorization }
+  const userType = req.user.name
+  if (userType !== mockUsers.generalUser && userType !== mockUsers.coordinator && userType !== mockUsers.admin) {
     res.status(401).send()
     return
   }
+
   next()
 })
 
@@ -17,7 +19,7 @@ jest.mock('../db/users')
 
 test('should pass with authorisations', () => {
   userDb.getUser.mockImplementation((sub, db = 'whatever') => {
-    return Promise.resolve(mockUsers.generalUser)
+    return Promise.resolve([mockUsers.generalUser])
   })
   return request(server)
     .get('/api/v1/test')

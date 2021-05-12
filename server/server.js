@@ -8,7 +8,7 @@ const houseRoutes = require('./routes/houses')
 const regionRoutes = require('./routes/regions')
 const roomRoutes = require('./routes/rooms')
 const userRoutes = require('./routes/users')
-const testRoutes = require('./routes/test')
+const testRoutes = require('./routes/testRoute')
 
 const server = express()
 
