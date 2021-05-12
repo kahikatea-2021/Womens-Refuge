@@ -51,10 +51,8 @@ router.patch('/:id/description', (req, res) => {
 
 router.patch('/:id/availability', (req, res) => {
   const id = req.params.id || -1
-  console.log('availa')
   roomDb.getRoomById(id)
     .then(rooms => {
-      console.log('romm stuff')
       if (Number(rooms[0].house_id) !== Number(req.user.house_id) && !req.user.isAdmin) {
         res.status(403).send()
         return null
