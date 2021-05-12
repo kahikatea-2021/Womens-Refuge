@@ -41,9 +41,8 @@ function App () {
       </>
     )
   }
-  // console.log(window.location.pathname)
 
-  if (isAuthenticated) {
+  if (isAuthenticated && !ourUser) {
     console.log(user)
     getAccessTokenSilently()
       .then(token => {

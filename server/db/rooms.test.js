@@ -32,17 +32,17 @@ test('getRoomsbyHouseId should return rooms corresponding to house id', () => {
 })
 
 test('getRoomsbyHouse should return rooms corresponding to house name', () => {
-  const house_id = 7
+  const house_name = 'Keke'
   return roomDb.getRoomsByHouse(house_name, testDb)
     .then(room => {
-      expect(room[0].id).toBe(12)
-      expect(room).toHaveLength(4)
+      expect(room[0].id).toBe(7)
+      expect(room).toHaveLength(1)
       return null
     })
 })
 
 test('addRoom should add a room', () => {
-  const room = { id: 666, house_id: 667, description: 'new room yo', available: 0 }
+  const room = { house_id: 6, description: 'new room yo', available: 0 }
   return roomDb.addRooms(room, testDb)
     .then(ids => {
       expect(ids).toHaveLength(1)
@@ -77,17 +77,28 @@ test('deleteRoom should delete room with that id', () => {
 test('updateRoomDescription', () => {
   const updateRoomDescription = {
     id: 1,
-    house_id: 1,
     description: 'Leshgoooooo!',
-    available: 0
   }
 
-  return roomDb.updateRoomDescription(updateRoomDescription, testDb)
-    .then(room => {
-      expect(room[0].id).toBe(1)
-      expect(room[0].house_id).toBe(1)
-      expect(room[0].description).toBe('Leshgoooooo!')
-      expect(room[0].available).toBe(1)
-      return null
-    })
+  return roomDb.updateRoomDescription(updateRoomDescription.id, updateRoomDescription.description, testDb)
+
+.then(room => {
+    return roomDb.getRoomById(updateRoomDescription.id, testDb)
+})
+  .then(rooms => {
+    
+    const room = rooms[0]
+    expect(room.id).toBe(1)
+    expect(room.description).toBe('Leshgoooooo!')
+    return null
+  })
+    // .then(room => {
+    //   console.log(room)
+    //   expect(room[0].id).toBe(1)
+    //   expect(room[0].house_id).toBe(1)
+    //   expect(room[0].description).toBe('Leshgoooooo!')
+    //   expect(room[0].available).toBe(1)
+    //   return roomDb.updateRoomDescription(updateRoomDescription.id, testDb)
+    // })
+   
 })
