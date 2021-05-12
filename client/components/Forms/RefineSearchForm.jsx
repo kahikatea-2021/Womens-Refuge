@@ -10,7 +10,7 @@ import formatter from '../formatter'
 export default function RefineSearchForm () {
   const history = useHistory()
   const { isAuthenticated } = useAuth0()
-  const [exclude, setExclude] = useState(true)
+  const [include, setExclude] = useState(false)
   const [northRegions, setNorthRegions] = useState([])
   const [southRegions, setSouthRegions] = useState([])
   const [houses, sethouses] = useState([])
@@ -84,15 +84,14 @@ export default function RefineSearchForm () {
       southRegions.forEach(regName => {
         tempObject[regName.region] = false
       })
-      console.log('temp', tempObject)
       setQueryObject({ ...queryObject, ...tempObject })
     }
 
     console.log(checked, name)
   }
 
-  if (houses?.length > 0) {
-    console.log(houses)
+  function handleIncludeClick (evt) {
+    setExclude(evt.target.checked)
   }
 
   // const formRef = useRef()
@@ -102,7 +101,7 @@ export default function RefineSearchForm () {
   // }
 
   function submitHandler () {
-    getHousesFromSearch(stringMaker(queryObject))
+    getHousesFromSearch(stringMaker(queryObject, include))
       .then(result => sethouses(formatter(result))
         // formScroll()
       )
@@ -118,6 +117,12 @@ export default function RefineSearchForm () {
   //     expanded = false
   //   }
   // }
+
+  function Capitalise (string) {
+    const stringArr = string.toLowerCase().split('')
+    stringArr[0].toUpperCase()
+    return stringArr.join('')
+  }
 
   return (
     <>
@@ -138,12 +143,16 @@ export default function RefineSearchForm () {
               <input onClick={clickHandler} type="checkbox" id="available" name="available" value="available" />
               <label htmlFor="available">Available Only</label>
             </div>
+            <div className='space-x-2'>
+              <input onChange={handleIncludeClick} checked={include} type="checkbox" id="available" name="available" value="available" />
+              <label htmlFor="available">Include</label>
+            </div>
           </form>
         </div>
 
         <div className='w-full md:w-3/5 my-6 justify-center'>
-          {(northRegions.length !== 0 || southRegions.length !== 0) && <h3 className='text-center font-bold text-lg w-full'>Select regions to <u>Exclude</u></h3>}
-          <div className={'font-bold text-lg w-full ' + (northRegions.length !== 0 && southRegions.length !== 0) ? 'invisible' : ''}>Select regions to <u>Exclude</u></div>
+          {(northRegions.length !== 0 || southRegions.length !== 0) && <h3 className='text-center font-bold text-lg w-full'>Select regions to <u>{!include ? 'Exclude' : 'Include'}</u></h3>}
+          <div className={'font-bold text-lg w-full ' + (northRegions.length !== 0 && southRegions.length !== 0) ? 'invisible' : ''}>Select regions to <u>{!include ? 'Exclude' : 'Include'}</u></div>
           <form action="/action_page.php">
             {northRegions.map(region => {
               return (
@@ -204,7 +213,7 @@ export default function RefineSearchForm () {
             {houses.map(island => {
               return (
                 <div className='flex flex-col justify-center w-full' key={island.island}>
-                  <p className="mt-16 p-8 pb-0 text-center font-extrabold text-3xl">{island.island === 'north' ? 'North Island' : 'South Island'}</p>
+                  <p className="mt-16 p-8 pb-0 text-center font-extrabold text-3xl">{Capitalise(island.island) + ' Island'}</p>
                   {island.regions.map(region => {
                     return (
                       <div key={region.name}>
