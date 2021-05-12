@@ -11,6 +11,7 @@ export function addNewHouse (house) {
   delete tempHouse.region
   return addHouse(tempHouse)
     .then(newHouse => {
+      console.log(newHouse)
       house.id = newHouse.body.id
       dispatch(setHouse(house))
       dispatch(setWait(false))

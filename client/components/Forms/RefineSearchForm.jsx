@@ -101,16 +101,16 @@ export default function RefineSearchForm () {
           <h2 className='font-bold text-lg text-center w-full mb-6'>Select at least one</h2>
           <form action="/action_page.php">
             <div className='space-x-2'>
-              <input onClick={handleClickNorth} type="checkbox" id="north" name="north" value="north"/>
+              <input onClick={handleClickNorth} type="checkbox" id="north" name="north" value="north" />
               <label htmlFor="north"> North Island </label>
             </div>
             <div className='space-x-2'>
-              <input onClick={handleClickSouth} type="checkbox" id="south" name="south" value="south"/>
+              <input onClick={handleClickSouth} type="checkbox" id="south" name="south" value="south" />
               <label htmlFor="south"> South Island </label>
             </div>
-            <br/><br/>
+            <br /><br />
             <div className='space-x-2'>
-              <input onClick={clickHandler} type="checkbox" id="available" name="available" value="available"/>
+              <input onClick={clickHandler} type="checkbox" id="available" name="available" value="available" />
               <label htmlFor="available">Available Only</label>
             </div>
           </form>
@@ -135,7 +135,7 @@ export default function RefineSearchForm () {
                 <div className='space-x-2' key={region.id}>
                   <input onClick={clickHandler} type="checkbox" id={region.region} name={region.region} value={region.region}></input>
                   <label htmlFor={region.region}>{region.region}</label>
-                  <br/>
+                  <br />
                 </div>
               )
             })}

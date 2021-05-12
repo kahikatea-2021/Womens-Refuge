@@ -13,13 +13,14 @@
     "dev": "run-p dev:client dev:server",
     "dev:client": "npm run webpack -- --watch",
     "dev:server": "nodemon --watch server server/index.js",
-    "build": "npm run build:server",
+    "build": "run-p build:client build:server",
     "build:client": "npm run webpack -- --mode production",
     "build:server": "npm run knex -- migrate:latest",
     "lint": "eslint --ext .js,.jsx .",
     "webpack": "webpack --config ./client/webpack.config.js",
     "knex": "knex --knexfile ./server/db/knexfile.js",
-    "tailbuild": "tailwindcss build ./client/styles/index.css -o server/public/main.css"
+    "tailbuild": "tailwindcss build ./client/styles/index.css -o server/public/main.css",
+    "test:e2e": "jest --verbose -c e2e.config.js"
   },
   "babel": {
     "presets": [
@@ -30,6 +31,14 @@
       "@babel/plugin-proposal-class-properties",
       "@babel/plugin-proposal-object-rest-spread",
       "@babel/plugin-transform-runtime"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom"
+    ],
+    "testPathIgnorePatterns": [
+      "/e2eTests/"
     ]
   },
   "eslintConfig": {
