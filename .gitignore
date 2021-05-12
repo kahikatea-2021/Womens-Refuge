@@ -6,3 +6,4 @@ server/public/bundle.js.map
 server/public/main.css
 .env
 tags
+tests/e2e/screenshots

@@ -2,7 +2,6 @@ import React from 'react'
 import LoginButton from './LoginButton'
 import { renderWithRedux } from '../../test-utils'
 import { screen } from '@testing-library/react'
-import '@testing-library/jest-dom'
 
 describe('ViewAllButton', () => {
   it('displays for admin', () => {
