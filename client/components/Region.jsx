@@ -25,6 +25,7 @@ function Region () {
   if (isLoading) {
     return <img src="../../images/loading.gif"></img>
   }
+  console.log('in regions', houses)
 
   if (isAuthenticated && user) {
     return (
