@@ -35,7 +35,7 @@ function genearlQuery (island = 'all', regions = [], exclude = [], available = 1
     query += 'AND LOWER(regions.region) NOT IN (' + exclude.map(region => `'${region.toLowerCase()}'`).join(' ,') + ') '
   }
 
-  query += 'GROUP BY houses.id '
+  query += 'GROUP BY houses.id, rooms.id '
 
   if (available === 2) {
     query += 'HAVING available_rooms > 0 '
