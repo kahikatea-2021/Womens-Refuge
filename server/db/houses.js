@@ -1,6 +1,6 @@
 const connection = require('./connection')
 
-const baseQuery = 'SELECT *, houses.id as house_id, COUNT(rooms.house_id) as rooms_available, SUM(CASE WHEN rooms.available = 1 THEN 1 ELSE 0 END) as available_rooms ' +
+const baseQuery = 'SELECT *, houses.id as house_id, COUNT(rooms.house_id) as rooms_available, SUM(CASE WHEN rooms.available = true THEN 1 ELSE 0 END) as available_rooms ' +
   'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
   'LEFT JOIN regions on houses.region_id = regions.id '
 
@@ -55,7 +55,7 @@ function updateHouseById (houseId, house, db = connection) {
 
 function addHouse (house, db = connection) {
   return db('houses')
-    .insert(house)
+    .insert(house, 'id')
     .then(ids => {
       house.id = ids[0]
       return house

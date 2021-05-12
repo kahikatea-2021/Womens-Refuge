@@ -31,8 +31,8 @@ function Header () {
         </div>
         <div className='mt-4 space-x-4 flex w-full justify-center md:justify-end w-4/5'>
           <LittleSearchButton />
-          {ourUser?.isAdmin === 1 && <AddHouseButton />}
-          {ourUser?.house_id && <ManageHouseButton text='MY WHARE' path={ourUser.house_id} />}
+          {ourUser?.isAdmin ? <AddHouseButton /> : null}
+          {ourUser?.house_id ? <ManageHouseButton text='MY WHARE' path={ourUser.house_id} /> : null}
           <ViewAllButton />
           <LogoutButton />
         </div>
