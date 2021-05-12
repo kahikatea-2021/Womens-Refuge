@@ -13,7 +13,7 @@ export default function RefineSearchForm () {
   const [exclude, setExclude] = useState(true)
   const [northRegions, setNorthRegions] = useState([])
   const [southRegions, setSouthRegions] = useState([])
-  const [searchResults, setSearchResults] = useState([])
+  const [houses, sethouses] = useState([])
   const [queryObject, setQueryObject] = useState({
     north: false,
     south: false,
@@ -68,12 +68,16 @@ export default function RefineSearchForm () {
   }
 
   function clickHandler (e) {
-    const currentVal = queryObject[e.target.name]
-    setQueryObject({ ...queryObject, [e.target.name]: !currentVal })
+    const { checked, name } = e.target
+    setQueryObject({ ...queryObject, [name]: checked })
+    if (!queryObject.north) setNorthRegions([])
+    if (!queryObject.south) setSouthRegions([])
+
+    console.log(checked, name)
   }
 
-  if (searchResults?.length > 0) {
-    console.log(searchResults)
+  if (houses?.length > 0) {
+    console.log(houses)
   }
 
   // const formRef = useRef()
@@ -84,7 +88,7 @@ export default function RefineSearchForm () {
 
   function submitHandler () {
     getHousesFromSearch(stringMaker(queryObject))
-      .then(result => setSearchResults(result)
+      .then(result => sethouses(formatter(result))
         // formScroll()
       )
       .catch(err => console.log(err))
@@ -129,7 +133,7 @@ export default function RefineSearchForm () {
             {northRegions.map(region => {
               return (
                 <>
-                  <div className='space-x-2' key={region.id}>
+                  <div className='space-x-2' key={region.region}>
                     <input onClick={clickHandler} type="checkbox" id={region.region} name={region.region} value={region.region}></input>
                     <label htmlFor={region.region}>{region.region}</label>
                   </div>
@@ -138,7 +142,7 @@ export default function RefineSearchForm () {
             })}
             {southRegions.map(region => {
               return (
-                <div className='space-x-2' key={region.id}>
+                <div className='space-x-2' key={region.region}>
                   <input onClick={clickHandler} type="checkbox" id={region.region} name={region.region} value={region.region}></input>
                   <label htmlFor={region.region}>{region.region}</label>
                   <br />
@@ -155,9 +159,9 @@ export default function RefineSearchForm () {
         </div>
       </div>
 
-      {searchResults &&
+      {houses &&
         <>
-          {(searchResults.length !== 0) && <div id='results' className=' flex justify-center font-extrabold text-center text-xl md:text-3xl my-10 md:pt-16'>
+          {(houses.length !== 0) && <div id='results' className=' flex justify-center font-extrabold text-center text-xl md:text-3xl my-10 md:pt-16'>
             <div className="flex flex-col">
               <h1>Houses Matching your Criteria</h1>
               <div className='flex md:flex-row justify-center text-sm md:text-base mt-2 space-x-3'>
@@ -173,7 +177,7 @@ export default function RefineSearchForm () {
 
           {/* <div className={'font-bold text-lg w-full ' + (northRegions.length !== 0 && southRegions.length !== 0) ? 'invisible' : ''}>Select regions to EXCLUDE</div> */}
           <div>
-            {searchResults.map(house => {
+            {/* {houses.map(house => {
               return (
                 <div className='flex justify-center' key={house.name}>
                   <button onClick={() => { history.push(`/house/${house.name}`) }} className="px-5 flex justify-between items-center text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
@@ -181,6 +185,28 @@ export default function RefineSearchForm () {
                   </button>
                 </div>
               )
+            })} */}
+            {houses.map(island => {
+              return (
+                <div className='flex flex-col justify-center w-full' key={island.island}>
+                  <p className="mt-16 p-8 pb-0 text-center font-extrabold text-3xl">{island.island === 'north' ? 'North Island' : 'South Island'}</p>
+                  {island.regions.map(region => {
+                    return (
+                      <div key={region.name}>
+                        <p className="pb-4 mt-12 text-center font-bold text-2xl">{region.name}</p>
+                        {region.houses.map(house => {
+                          return (
+                            <div key={house.name} className=' flex justify-center '>
+                              <button onClick={() => { history.push(`/house/${house.name}`) }} className="px-5 flex justify-between items-center text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                                <p className="w-8"></p>{house.name} <img src={house.available_rooms > 0 ? '/images/tickWhite.png' : '/images/crossWhite.png'} className="w-6 md:w-8" alt="" />
+                              </button>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )
+                  })}
+                </div>)
             })}
           </div>
 
