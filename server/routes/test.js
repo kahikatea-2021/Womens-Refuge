@@ -31,6 +31,6 @@ const checkJwt = require('../checkJwtMiddleware')
 
 module.exports = router
 
-router.get('/', checkJwt, (req, res) => {
+router.get('/', (req, res) => {
   res.send('hello from a protected place.')
 })

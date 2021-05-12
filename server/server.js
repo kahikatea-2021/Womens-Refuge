@@ -20,7 +20,6 @@ server.use('/api/v1', jwtCheck, (req, res, next) => {
     .then(results => {
       if (results.length > 0) {
         req.user = { ...req.user, ...results[0] }
-        console.log(req.user)
         next()
       } else {
         res.status(401).send()
