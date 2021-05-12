@@ -5,10 +5,12 @@ import { useAuth0 } from '@auth0/auth0-react'
 import stringMaker from './refineSearchFormHelper'
 import getHousesFromSearch from '../../apis/houses'
 import { useHistory } from 'react-router-dom'
+import formatter from '../formatter'
 
 export default function RefineSearchForm () {
   const history = useHistory()
   const { isAuthenticated } = useAuth0()
+  const [exclude, setExclude] = useState(true)
   const [northRegions, setNorthRegions] = useState([])
   const [southRegions, setSouthRegions] = useState([])
   const [searchResults, setSearchResults] = useState([])
@@ -68,6 +70,10 @@ export default function RefineSearchForm () {
   function clickHandler (e) {
     const currentVal = queryObject[e.target.name]
     setQueryObject({ ...queryObject, [e.target.name]: !currentVal })
+  }
+
+  if (searchResults?.length > 0) {
+    console.log(searchResults)
   }
 
   // const formRef = useRef()
@@ -152,19 +158,32 @@ export default function RefineSearchForm () {
       {searchResults &&
         <>
           {(searchResults.length !== 0) && <div id='results' className=' flex justify-center font-extrabold text-center text-xl md:text-3xl my-10 md:pt-16'>
-            <h1>Houses Matching your Criteria</h1>
+            <div className="flex flex-col">
+              <h1>Houses Matching your Criteria</h1>
+              <div className='flex md:flex-row justify-center text-sm md:text-base mt-2 space-x-3'>
+                <div className='flex items-center md:mx-5 mb-1'>
+                  <img src="/images/tickGreen.png" className="w-4 md:w-8 mr-1 md:mr-2" alt="" /><p>Available</p>
+                </div>
+                <div className='flex items-center md:mx-5 mb-1'>
+                  <img src="/images/crossRed.png" className="w-4 md:w-8 mr-1 md:mr-2" alt="" /><p>Unavailable</p>
+                </div>
+              </div>
+            </div>
           </div>}
 
           {/* <div className={'font-bold text-lg w-full ' + (northRegions.length !== 0 && southRegions.length !== 0) ? 'invisible' : ''}>Select regions to EXCLUDE</div> */}
-          {searchResults.map(house => {
-            return (
-              <div className='flex justify-center' key={house.name}>
-                <button onClick={() => { history.push(`/house/${house.name}`) }} className="px-5 flex justify-between items-center text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                  <p className="w-8"></p>{house.name} <img src={house.available_rooms > 0 ? '/images/tickWhite.png' : '/images/crossWhite.png'} className="w-6 md:w-8" alt="" />
-                </button>
-              </div>
-            )
-          })}
+          <div>
+            {searchResults.map(house => {
+              return (
+                <div className='flex justify-center' key={house.name}>
+                  <button onClick={() => { history.push(`/house/${house.name}`) }} className="px-5 flex justify-between items-center text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                    <p className="w-8"></p>{house.name} <img src={house.available_rooms > 0 ? '/images/tickWhite.png' : '/images/crossWhite.png'} className="w-6 md:w-8" alt="" />
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+
         </>
       }
     </>
