@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function ManageHouseButton (props) {
+export default function DeleteHouseButton (props) {
   return (
     <>
       <div className="items-center mx-1">

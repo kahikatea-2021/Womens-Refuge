@@ -4,10 +4,6 @@ import { renderWithRedux } from '../../test-utils'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-// import Header from '../components/Header'
-// import LoadingIcon from './LoadingIcon'
-// import { useAuth0 } from '@auth0/auth0-react'
-
 describe('Add House Button', () => {
     it('displays for admin', () => {
       renderWithRedux(<AddHouseButton />, 
