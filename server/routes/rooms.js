@@ -35,7 +35,7 @@ router.patch('/:id/description', (req, res) => {
   const id = req.params.id || -1
   roomDb.getRoomById(id)
     .then(rooms => {
-      if (rooms[0].house_id !== Number(req.user.house_id) || !req.user.isAdmin) {
+      if (rooms[0].house_id !== Number(req.user.house_id) && !req.user.isAdmin) {
         res.status(403).send()
       } else {
         return roomDb.updateRoomDescription(id, req.body.description)
@@ -53,7 +53,7 @@ router.patch('/:id/availability', (req, res) => {
   const id = req.params.id || -1
   roomDb.getRoomById(id)
     .then(rooms => {
-      if (Number(rooms[0].house_id) !== Number(req.user.house_id)) {
+      if (Number(rooms[0].house_id) !== Number(req.user.house_id) && !req.user.isAdmin) {
         res.status(403).send()
         return null
       } else {
@@ -61,7 +61,6 @@ router.patch('/:id/availability', (req, res) => {
       }
     })
     .then(() => {
-      console.log('updated')
       res.status(200).send()
       return null
     })
