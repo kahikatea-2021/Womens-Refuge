@@ -118,7 +118,7 @@ test('As a house coordinator, I can edit my house', async () => {
   expect(await page.url()).toMatch('http://localhost:3000/#/')
 })
 
-test('As an admin,', async () => {
+test('As an admin, I can add a house to the database', async () => {
   // Navigate to page
   await page.goto('localhost:3000')
   await Promise.all([page.click('button'), page.waitForNavigation('load')
@@ -143,11 +143,12 @@ test('As an admin,', async () => {
   await page.click('text=NEXT')
   await page.screenshot({ path: imgpath + 'adminsubmitaddhousebuttonsuccess.png' })
   expect(await page.url()).toMatch('http://localhost:3000/#/rooms/add/')
-  await page.fill('name=description', 'two single beds')
-  await page.click('text=Add')
-  await page.fill(':nth-match(text, 2)', '2 bunk beds')
-  await page.click('text=Add')
+  await page.fill('[type=text]', '2 bunk beds')
+  await page.click('text=Add Room')
   await page.click('text=Submit')
   await page.screenshot({ path: imgpath + 'addroomssuccess.png' })
   expect(await page.url()).toMatch('http://localhost:3000/#/house/Aroha')
+  await page.click('text=LOG OUT')
+  await page.screenshot({ path: imgpath + 'adminLOGOUTbuttonsuccess.png' })
+  expect(await page.url()).toMatch('http://localhost:3000/#/')
 })

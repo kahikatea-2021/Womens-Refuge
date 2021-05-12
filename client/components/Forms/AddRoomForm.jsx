@@ -65,7 +65,7 @@ function AddRoomForm () {
             <div className='flex flex-row md:space-x-4 mt-8'>
               <label htmlFor='description'><b>Room {addedRooms.length + 1} Details:</b></label>
               <input onChange={handleChange} value={form.description} placeholder="E.g. Two single beds" id='description' name="description" type="text" className="mt-1 block w-2/3" />
-              <button className="md:py-3 md:text-base md:w-40 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onClick={handleAddroom}>Add</button>
+              <button className="md:py-3 md:text-base md:w-40 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onClick={handleAddroom}>Add Room</button>
             </div>
             <br />
             <br />
