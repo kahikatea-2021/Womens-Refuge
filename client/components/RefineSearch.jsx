@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { getAllIslandRegions } from '../apis/islands'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useSelector } from 'react-redux'
 import RefineSearchForm from './Forms/RefineSearchForm'
 
 function RefineSearch () {
   const [regions, setRegions] = useState([])
   const { isLoading, isAuthenticated } = useAuth0()
-  const user = useSelector(state => state.user)
 
   useEffect(() => {
     if (isAuthenticated && regions.length <= 0) {
@@ -25,8 +23,6 @@ function RefineSearch () {
   }
 
   if (!isAuthenticated) {
-    return <p>Unauthorised access</p>
-  } else if (!user) {
     return <p>Unauthorised access</p>
   }
 
