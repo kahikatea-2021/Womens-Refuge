@@ -8,8 +8,6 @@ function RefineSearch () {
   const [regions, setRegions] = useState([])
   const { isLoading, isAuthenticated } = useAuth0()
 
-  const user = useSelector(state => state.user)
-
   useEffect(() => {
     if (isAuthenticated && regions.length <= 0) {
       getAllIslandRegions('north')
@@ -25,7 +23,9 @@ function RefineSearch () {
     return <img src="../../images/loading.gif"></img>
   }
 
-  if (!isAuthenticated || !user) {
+  if (!isAuthenticated) {
+    return <p>Unauthorised access</p>
+  } else if (!user) {
     return <p>Unauthorised access</p>
   }
 
@@ -33,7 +33,7 @@ function RefineSearch () {
     <>
       <div className=' flex justify-center font-extrabold text-xl md:text-3xl my-10 md:mt-12 space-x-2'>
         <h1>Advanced Search</h1>
-        <img className='w-6 h-6 md:w-8 md:h-8' src='/images/searchIconBlack.png'/>
+        <img className='w-6 h-6 md:w-8 md:h-8' src='/images/searchIconBlack.png' />
       </div>
       <RefineSearchForm />
 
