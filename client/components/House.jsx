@@ -102,7 +102,7 @@ function House () {
               {!confirmDelete ? <DeleteHouseButton text={confirmDelete ? 'Confirm' : null} callback={setConfirmDelete} /> : <p>Confirm Delete</p>}
               {(confirmDelete && !deleted) && <div className="flex mt-2">
                 <DeleteHouseButton text="YES" callback={handleDelete} />
-                <DeleteHouseButton text="CANCELL" callback={handleCancel} />
+                <DeleteHouseButton text="CANCEL" callback={handleCancel} />
               </div>}
             </div>}
             {deleted && <div className="flex flex-col justify-center items-center">
