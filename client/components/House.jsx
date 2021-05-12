@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getHouse } from '../apis/regions'
 import { deleteHouse } from '../apis/houses'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 import ManageHouseButton from './Buttons/ManageHouseButton'
@@ -75,7 +75,7 @@ function House () {
 
   return (
     <>
-      {house &&
+      {(house && house[0]) &&
         <div className="">
           <div className="flex flex-col">
             <p className='text-center text-base md:text-xl'><b>{house[0].region}</b></p>
@@ -118,7 +118,8 @@ function House () {
               </div>}
             </div>}
             {deleted && <div className="flex flex-col justify-center items-center">
-              <p className="text-red-600 text-2xl">House Deleted!</p>
+              <Link to="/"><p className="text-red-600 text-2xl">House Deleted!</p></Link>
+              <Link to="/"><p>Return to Homepage</p></Link>
             </div>
             }
           </div>
