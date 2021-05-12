@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <Auth0Provider
       domain="dev-xfbt5qv8.au.auth0.com"
       clientId="97odAuGdEYSDcteYHbDf98Nnco9tXUHi"
-      redirectUri='http://www.tuohunga.herokuapp.com/#/'
+      redirectUri={window.location.origin}
       audience="https://dev-xfbt5qv8.au.auth0.com/api/v2/"
       scope="read:current_user update:current_user_metadata"
     >
