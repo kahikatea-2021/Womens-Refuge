@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import ScrollIntoView from 'react-scroll-into-view'
 import { getAllIslandRegions } from '../../apis/islands'
 import { useAuth0 } from '@auth0/auth0-react'
 import stringMaker from './refineSearchFormHelper'
@@ -68,39 +68,69 @@ export default function RefineSearchForm () {
     setQueryObject({ ...queryObject, [e.target.name]: !currentVal })
   }
 
+  // const formRef = useRef()
+
+  // function formScroll () {
+  //   formRef.current.scrollIntoView({ behavior: 'smooth' })
+  // }
+
   function submitHandler () {
     getHousesFromSearch(stringMaker(queryObject))
-      .then(result => setSearchResults(result))
+      .then(result => setSearchResults(result)
+        // formScroll()
+      )
       .catch(err => console.log(err))
   }
 
+  // let expanded = true
+
+  // function showCheckboxes () {
+  //   if (!expanded) {
+  //     expanded = true
+  //   } else {
+  //     expanded = false
+  //   }
+  // }
+
   return (
     <>
-      <div className='bg-purple-200 flex flex-row justify-center self-center shadow-lg rounded-xl w-4/5 space-x-4 relative'>
-        <div className='m-6'>
-          <h2 className='font-bold text-lg w-full mb-4'>Select at least one</h2>
+      <div className='bg-purple-200 flex flex-row justify-center self-center shadow-lg rounded-xl w-2/3 space-x-8 relative px-8'>
+        <div className='w-2/5 my-6 justify-start'>
+          <h2 className='font-bold text-lg w-full mb-6'>Select at least one</h2>
           <form action="/action_page.php">
-            <input onClick={handleClickNorth} type="checkbox" id="north" name="north" value="north"/>
-            <label htmlFor="north"> North Island </label><br/>
-            <input onClick={handleClickSouth} type="checkbox" id="south" name="south" value="south"/>
-            <label htmlFor="south"> South Island </label>
+            <div className='space-x-2'>
+              <input onClick={handleClickNorth} type="checkbox" id="north" name="north" value="north"/>
+              <label htmlFor="north"> North Island </label>
+            </div>
+            <div className='space-x-2'>
+              <input onClick={handleClickSouth} type="checkbox" id="south" name="south" value="south"/>
+              <label htmlFor="south"> South Island </label>
+            </div>
+            <br/><br/>
+            <div className='space-x-2'>
+              <input onClick={clickHandler} type="checkbox" id="available" name="available" value="available"/>
+              <label htmlFor="available">Available Only</label>
+            </div>
           </form>
         </div>
 
-        <div className='m-6'>
-          <h3 className='font-bold text-lg w-full mb-4'>Select regions to EXCLUDE</h3>
+        <div className='w-3/5 my-6 justify-center'>
+          {(northRegions.length !== 0 || southRegions.length !== 0) && <h3 className='font-bold text-lg w-full'>Select regions to EXCLUDE</h3>}
+          <div className={'font-bold text-lg w-full ' + (northRegions.length !== 0 && southRegions.length !== 0) ? 'invisible' : ''}>Select regions to EXCLUDE</div>
           <form action="/action_page.php">
             {northRegions.map(region => {
               return (
-                <div key={region.id}>
-                  <input onClick={clickHandler} type="checkbox" id={region.region} name={region.region} value={region.region}></input>
-                  <label htmlFor={region.region}>{region.region}</label>
-                </div>
+                <>
+                  <div className='space-x-2' key={region.id}>
+                    <input onClick={clickHandler} type="checkbox" id={region.region} name={region.region} value={region.region}></input>
+                    <label htmlFor={region.region}>{region.region}</label>
+                  </div>
+                </>
               )
             })}
             {southRegions.map(region => {
               return (
-                <div key={region.id}>
+                <div className='space-x-2' key={region.id}>
                   <input onClick={clickHandler} type="checkbox" id={region.region} name={region.region} value={region.region}></input>
                   <label htmlFor={region.region}>{region.region}</label>
                   <br/>
@@ -109,25 +139,27 @@ export default function RefineSearchForm () {
             })}
           </form>
         </div>
-        <div className='mt-16 self-center'>
-          <input onClick={clickHandler} type="checkbox" id="available" name="available" value="available"/>
-          <label htmlFor="available">Available Houses Only</label><br/><br/>
-        </div>
-        <div className='flex justify-end'>
-          <button
-            className='absolute top-16 right-16 shadow-lg space-x-2 md:py-3 md:text-base w- md:w-24 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out'onClick={submitHandler}>
+        <div className='w-1/5 flex justify-end h-32'>
+          <ScrollIntoView selector="#results"
+            className='shadow-lg space-x-2 md:py-3 md:text-base text-center md:w-24 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' onClick={submitHandler}>
             SEARCH
-          </button>
+          </ScrollIntoView>
         </div>
       </div>
 
       {searchResults &&
         <>
-          <h2>HOUSES MATCHING YOUR CRITERIA</h2>
+          {(searchResults.length !== 0) && <div id='results' className=' flex justify-center font-extrabold md:text-3xl my-10 md:pt-16'>
+            <h1>Houses Matching your Criteria</h1>
+          </div>}
+
+          {/* <div className={'font-bold text-lg w-full ' + (northRegions.length !== 0 && southRegions.length !== 0) ? 'invisible' : ''}>Select regions to EXCLUDE</div> */}
           {searchResults.map(house => {
             return (
-              <div key={house.id}>
-                <Link to={`/house/${house.name}`}><p>{house.name}</p></Link>
+              <div className='flex justify-center' key={house.id}>
+                <button onClick={() => { history.push(`/house/${house.name}`) }} className="px-5 flex justify-between items-center text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                  <p className="w-8"></p>{house.name} <img src={house.available_rooms > 0 ? '/images/tickWhite.png' : '/images/crossWhite.png'} className="w-6 md:w-8" alt="" />
+                </button>
               </div>
             )
           })}
