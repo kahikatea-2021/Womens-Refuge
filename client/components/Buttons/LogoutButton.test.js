@@ -4,7 +4,7 @@ import { renderWithRedux } from '../../test-utils'
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-describe('Back Button', () => {
+describe('Logout Button', () => {
     it('displays for admin', () => {
       renderWithRedux(<LogoutButton />, 
         { 
