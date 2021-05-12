@@ -38,87 +38,87 @@ function waitForAmount (time) {
 
 // USER TESTS
 
-test('Home page should display the text Tuohunga', async () => {
-  await page.goto('localhost:3000')
-  expect(await page.title()).toMatch('Tuohunga')
-  await page.screenshot({ path: imgpath + 'home.png' })
-})
+// test('Home page should display the text Tuohunga', async () => {
+//   await page.goto('localhost:3000')
+//   expect(await page.title()).toMatch('Tuohunga')
+//   await page.screenshot({ path: imgpath + 'home.png' })
+// })
 
-test('Clicking Log In on home goes to auth0 login', async () => {
-  await page.goto('localhost:3000')
-  await Promise.all([page.click('button'), page.waitForNavigation('load')
-  ])
-  // console.log(await page.url())
+// test('Clicking Log In on home goes to auth0 login', async () => {
+//   await page.goto('localhost:3000')
+//   await Promise.all([page.click('button'), page.waitForNavigation('load')
+//   ])
+//   // console.log(await page.url())
 
-  expect(await page.url()).toMatch('https://dev-xfbt5qv8.au.auth0.com/')
-  await page.screenshot({ path: imgpath + 'registerpage.png' })
-})
+//   expect(await page.url()).toMatch('https://dev-xfbt5qv8.au.auth0.com/')
+//   await page.screenshot({ path: imgpath + 'registerpage.png' })
+// })
 
-test('As a police officer, I can search for a house manually', async () => {
-// Navigate to page
-  await page.goto('localhost:3000')
-  await Promise.all([page.click('button'), page.waitForNavigation('load')
-  ])
-  // Log in
-  expect(await page.url()).toMatch('https://dev-xfbt5qv8.au.auth0.com/')
-  await page.fill('[type=email]', 'generaluser@safehouse.com')
-  await page.fill('[type=password]', 'generalUser!')
-  await page.click('button')
-  await page.screenshot({ path: imgpath + 'policesigninsuccess.png' })
-  expect(await page.url()).toMatch('http://localhost:3000')
-  // Select an Island (North Island)
-  await page.click('text=North Island')
-  await page.screenshot({ path: imgpath + 'policeislandbuttonsuccess.png' })
-  expect(await page.url()).toMatch('http://localhost:3000/#/northisland')
-  // Select a region (Northland)
-  await page.click('text=Northland')
-  await page.screenshot({ path: imgpath + 'policeNorthlandbuttonsuccess.png' })
-  expect(await page.url()).toMatch('http://localhost:3000/#/region/Northland')
-  // Select a house (Kōwhai)
-  await page.click('text=Kōwhai')
-  await page.screenshot({ path: imgpath + 'policeKōwhaibuttonsuccess.png' })
-  expect(await page.url()).toMatch('http://localhost:3000/#/house/K%C5%8Dwhai')
-  // Select the log out button
-  await page.click('text=LOG OUT')
-  await page.screenshot({ path: imgpath + 'policeLOGOUTbuttonsuccess.png' })
-  expect(await page.url()).toMatch('http://localhost:3000/#/')
-})
+// test('As a police officer, I can search for a house manually', async () => {
+// // Navigate to page
+//   await page.goto('localhost:3000')
+//   await Promise.all([page.click('button'), page.waitForNavigation('load')
+//   ])
+//   // Log in
+//   expect(await page.url()).toMatch('https://dev-xfbt5qv8.au.auth0.com/')
+//   await page.fill('[type=email]', 'generaluser@safehouse.com')
+//   await page.fill('[type=password]', 'generalUser!')
+//   await page.click('button')
+//   await page.screenshot({ path: imgpath + 'policesigninsuccess.png' })
+//   expect(await page.url()).toMatch('http://localhost:3000')
+//   // Select an Island (North Island)
+//   await page.click('text=North Island')
+//   await page.screenshot({ path: imgpath + 'policeislandbuttonsuccess.png' })
+//   expect(await page.url()).toMatch('http://localhost:3000/#/northisland')
+//   // Select a region (Northland)
+//   await page.click('text=Northland')
+//   await page.screenshot({ path: imgpath + 'policeNorthlandbuttonsuccess.png' })
+//   expect(await page.url()).toMatch('http://localhost:3000/#/region/Northland')
+//   // Select a house (Kōwhai)
+//   await page.click('text=Kōwhai')
+//   await page.screenshot({ path: imgpath + 'policeKōwhaibuttonsuccess.png' })
+//   expect(await page.url()).toMatch('http://localhost:3000/#/house/K%C5%8Dwhai')
+//   // Select the log out button
+//   await page.click('text=LOG OUT')
+//   await page.screenshot({ path: imgpath + 'policeLOGOUTbuttonsuccess.png' })
+//   expect(await page.url()).toMatch('http://localhost:3000/#/')
+// })
 
-test('As a house coordinator, I can edit my house', async () => {
-  // Navigate to page
-  await page.goto('localhost:3000')
-  await Promise.all([page.click('button'), page.waitForNavigation('load')
-  ])
-  // Log in
-  expect(await page.url()).toMatch('https://dev-xfbt5qv8.au.auth0.com/')
-  await page.fill('[type=email]', 'refugecoordinator@safehouse.com')
-  await page.fill('[type=password]', 'refugeCoordinator!')
-  await page.click('button')
-  await page.screenshot({ path: imgpath + 'hostsigninsuccess.png' })
-  expect(await page.url()).toMatch('http://localhost:3000')
-  // click on MY WHARE button
-  await page.click('text=MY WHARE')
-  await page.screenshot({ path: imgpath + 'hostwharebuttonsuccess.png' })
-  expect(await page.url()).toMatch('http://localhost:3000/#/house/manage/1')
-  // update house details
-  await page.fill(':nth-match(textarea, 1)', '2 single beds')
-  await page.fill(':nth-match(textarea, 2)', '2 queen beds')
-  await page.fill(':nth-match(textarea, 3)', '2 bunk beds')
-  // checkbox
-  await page.click('#available-3')
-  // form
-  await page.fill('#phone1', '027 5757 021')
-  await page.fill('#phone2', '021 235 8989')
-  await page.fill('#notes', 'Room 3 under renovation')
-  await page.click('text=SUBMIT')
-  await page.screenshot({ path: imgpath + 'hostchangeroomdatasuccess.png' })
-  expect(await page.url()).toMatch('http://localhost:3000/#/house/K%C5%8Dwhai')
-  await page.click('text=LOG OUT')
-  await page.screenshot({ path: imgpath + 'hostLOGOUTbuttonsuccess.png' })
-  expect(await page.url()).toMatch('http://localhost:3000/#/')
-})
+// test('As a house coordinator, I can edit my house', async () => {
+//   // Navigate to page
+//   await page.goto('localhost:3000')
+//   await Promise.all([page.click('button'), page.waitForNavigation('load')
+//   ])
+//   // Log in
+//   expect(await page.url()).toMatch('https://dev-xfbt5qv8.au.auth0.com/')
+//   await page.fill('[type=email]', 'refugecoordinator@safehouse.com')
+//   await page.fill('[type=password]', 'refugeCoordinator!')
+//   await page.click('button')
+//   await page.screenshot({ path: imgpath + 'hostsigninsuccess.png' })
+//   expect(await page.url()).toMatch('http://localhost:3000')
+//   // click on MY WHARE button
+//   await page.click('text=MY WHARE')
+//   await page.screenshot({ path: imgpath + 'hostwharebuttonsuccess.png' })
+//   expect(await page.url()).toMatch('http://localhost:3000/#/house/manage/1')
+//   // update house details
+//   await page.fill(':nth-match(textarea, 1)', '2 single beds')
+//   await page.fill(':nth-match(textarea, 2)', '2 queen beds')
+//   await page.fill(':nth-match(textarea, 3)', '2 bunk beds')
+//   // checkbox
+//   await page.click('#available-3')
+//   // form
+//   await page.fill('#phone1', '027 5757 021')
+//   await page.fill('#phone2', '021 235 8989')
+//   await page.fill('#notes', 'Room 3 under renovation')
+//   await page.click('text=SUBMIT')
+//   await page.screenshot({ path: imgpath + 'hostchangeroomdatasuccess.png' })
+//   expect(await page.url()).toMatch('http://localhost:3000/#/house/K%C5%8Dwhai')
+//   await page.click('text=LOG OUT')
+//   await page.screenshot({ path: imgpath + 'hostLOGOUTbuttonsuccess.png' })
+//   expect(await page.url()).toMatch('http://localhost:3000/#/')
+// })
 
-test('As an admin,', async () => {
+test('As an admin, I can add a house to the database', async () => {
   // Navigate to page
   await page.goto('localhost:3000')
   await Promise.all([page.click('button'), page.waitForNavigation('load')
@@ -143,10 +143,11 @@ test('As an admin,', async () => {
   await page.click('text=NEXT')
   await page.screenshot({ path: imgpath + 'adminsubmitaddhousebuttonsuccess.png' })
   expect(await page.url()).toMatch('http://localhost:3000/#/rooms/add/')
-  await page.fill('name=description', 'two single beds')
+  await page.fill('[type=text]', '2 bunk beds')
   await page.click('text=Add')
-  await page.fill(':nth-match(text, 2)', '2 bunk beds')
-  await page.click('text=Add')
+  // await page.fill(':nth-match(text, 2)', '2 bunk beds')
+  // await page.click('text=Add')
+  waitForAmount(40000)
   await page.click('text=Submit')
   await page.screenshot({ path: imgpath + 'addroomssuccess.png' })
   expect(await page.url()).toMatch('http://localhost:3000/#/house/Aroha')
