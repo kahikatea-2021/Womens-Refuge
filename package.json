@@ -19,7 +19,8 @@
     "lint": "eslint --ext .js,.jsx .",
     "webpack": "webpack --config ./client/webpack.config.js",
     "knex": "knex --knexfile ./server/db/knexfile.js",
-    "tailbuild": "tailwindcss build ./client/styles/index.css -o server/public/main.css"
+    "tailbuild": "tailwindcss build ./client/styles/index.css -o server/public/main.css",
+    "test:e2e": "jest --verbose -c e2e.config.js"
   },
   "babel": {
     "presets": [
@@ -30,6 +31,14 @@
       "@babel/plugin-proposal-class-properties",
       "@babel/plugin-proposal-object-rest-spread",
       "@babel/plugin-transform-runtime"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom"
+    ],
+    "testPathIgnorePatterns": [
+      "/e2eTests/"
     ]
   },
   "eslintConfig": {
