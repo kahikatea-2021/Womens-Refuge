@@ -40,7 +40,7 @@ function ManageHouse () {
     return <img src="../../images/loading.gif"></img>
   }
 
-  if (!isAuthenticated || !ourUser) {
+  if (!isAuthenticated) {
     return <p>Unauthorised access</p>
   } else if (ourUser && (Number(ourUser.house_id) !== Number(houseId) && !ourUser.isAdmin)) {
     return <p>Unauthorised access</p>
@@ -48,7 +48,7 @@ function ManageHouse () {
 
   function handleRoomCallback (evt, id) {
     const { name, value, checked } = evt.target
-    console.log(name, value)
+    console.log('click target', evt.target)
     const updatedRooms = rooms.map(room => {
       if (Number(id) === Number(room.id)) {
         return { ...room, [name]: name === 'description' ? value : checked }

@@ -15,8 +15,8 @@ function ManageRoom (props) {
         </button> */}
 
         <div className="m-2 flex items-center">
-          <label htmlFor="available">Available</label>
-          <input onChange={(event) => { props.handleChange(event, props.room.id) }} checked={props.room.available} className="mx-1" type="checkbox" name="available" id="available" />
+          <label htmlFor={`available-${props.room.id}`}>Available</label>
+          <input onChange={(event) => { props.handleChange(event, props.room.id) }} checked={props.room.available} className="" type="checkbox" name="available" id={`available-${props.room.id}`} />
         </div>
       </div>
       {/* </div> */}

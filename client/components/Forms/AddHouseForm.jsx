@@ -11,6 +11,7 @@ function AddHouseForm () {
   const [form, setForm] = useState({
     name: '',
     region_id: '',
+    region: '',
     phone_1: '',
     phone_2: '',
     notes: ''
@@ -20,13 +21,15 @@ function AddHouseForm () {
 
   function handleChange (evt) {
     const { name, value } = evt.target
-    setForm({ ...form, [name]: value })
+    const formInput = { [name]: value }
+    if (name === 'region_id') {
+      formInput.region = regions.find(reg => Number(reg.id) === Number(value)).region
+    }
+    setForm({ ...form, ...formInput })
   }
 
   function onSubmit (evt) {
     evt.preventDefault()
-
-    console.log(form)
     addNewHouse(form)
       .then(id => {
         history.push('/rooms/add/')
@@ -64,15 +67,15 @@ function AddHouseForm () {
           </select>}
           <label className="block">
             <span className="text-gray-700 font-bold">* House Name</span>
-            <input className="mt-1 block w-full rounded-lg" placeholder="E.g: Poroporo" id='name' name="name" type='text' onChange={handleChange}/>
+            <input className="mt-1 block w-full rounded-lg" placeholder="E.g: Poroporo" id='name' name="name" type='text' onChange={handleChange} />
           </label>
           <label className="block">
             <span className="text-gray-700 font-bold">* Primary Contact Number</span>
-            <input onChange={handleChange} placeholder="E.g: 021 123 4567" name="phone_1" type="tel" className="mt-1 block w-full rounded-lg"/>
+            <input onChange={handleChange} placeholder="E.g: 021 123 4567" name="phone_1" type="tel" className="mt-1 block w-full rounded-lg" />
           </label>
           <label className="block">
             <span className="text-gray-700 font-bold">Secondary Contact Number</span>
-            <input onChange={handleChange} placeholder="E.g: 027 897 2345" name="phone_2" type="tel" className="mt-1 block w-full rounded-lg"/>
+            <input onChange={handleChange} placeholder="E.g: 027 897 2345" name="phone_2" type="tel" className="mt-1 block w-full rounded-lg" />
           </label>
           <label className="block">
             <span className="text-gray-700 font-bold">Notes</span>

@@ -12,6 +12,8 @@ function AddRoomForm () {
     available: true // fix this later
   })
 
+  console.log(house)
+
   function handleChange (evt) {
     const { name, value } = evt.target
     setForm({ ...form, [name]: value })
@@ -37,10 +39,10 @@ function AddRoomForm () {
         <p className='text-center text-base md:text-xl'><b>In Progress:</b></p>
         {!house.name ? <h1 className='flex justify-center font-extrabold my-8 mt-20 text-xl md:text-2xl'>No House Selected</h1> : <div>
 
-          <p className="text-center text-3xl md:text-5xl font-bold my-1 md:my-2">{house.name} House</p>
+          <p className="text-center text-3xl md:text-5xl font-bold my-1 md:my-2">{house.name}</p>
 
           <br />
-
+          <p className='text-left text-base md:text-xl'><b>Region: </b>{house.region}</p>
           <p className='text-left text-base md:text-xl'><b>Primary Number: </b>{house.phone_1}</p>
           {house.phone_2 ? <p className='text-left text-base md:text-xl'><b>Secondary Number:</b> {house.phone_2}</p> : <p className='text-left text-base md:text-xl'><b>Secondary Number: </b>Not Provided </p>}
 
@@ -62,7 +64,7 @@ function AddRoomForm () {
             <div className='flex flex-row md:space-x-4 mt-8'>
               <label htmlFor='description'><b>Room {addedRooms.length + 1} Details:</b></label>
 
-              <input onChange={handleChange} value={form.description} placeholder="E.g. Two single beds" id='description' name="description" type="text" className="mt-1 block w-2/3"/>
+              <input onChange={handleChange} value={form.description} placeholder="E.g. Two single beds" id='description' name="description" type="text" className="mt-1 block w-2/3" />
 
               <button className="md:py-3 md:text-base md:w-40 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onClick={handleAddroom}>Add</button>
 
