@@ -73,8 +73,8 @@ function House () {
               <p className="text-center text-3xl md:text-5xl font-bold">{house[0].name}</p>
               {(ourUser && ourUser.isAdmin === 1) && <div className="mx-2"><ManageHouseButton text='EDIT' path={house[0].house_id} /></div>}
             </div>
-            <div className='flex justify-center'>{count > 0 && <div className="flex flex-row">available<img className='ml-2 w-6' src='/images/tickGreen.png' /></div>}</div>
-            <div className='flex justify-center'>{count === 0 && <div className="flex flex-row">unavailable<img className='ml-2 w-6' src='/images/crossRed.png' /></div>}</div>
+            <div className='flex justify-center m-4'>{count > 0 && <div className="flex flex-row">available<img className='ml-2 w-6' src='/images/tickGreen.png' /></div>}</div>
+            <div className='flex justify-center m-4'>{count === 0 && <div className="flex flex-row">unavailable<img className='ml-2 w-6' src='/images/crossRed.png' /></div>}</div>
             <div className="m-2 my-4 flex flex-col md:flex-row justify-center items-center">
               <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Primary:</b>{house[0].phone_1}</div>
               <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Secondary:</b>{house[0].phone_2}</div>
