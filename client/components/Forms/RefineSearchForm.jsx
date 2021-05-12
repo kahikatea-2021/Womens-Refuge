@@ -96,9 +96,9 @@ export default function RefineSearchForm () {
 
   return (
     <>
-      <div className='bg-purple-200 flex flex-row justify-center self-center shadow-lg rounded-xl w-2/3 space-x-8 relative px-8'>
-        <div className='w-2/5 my-6 justify-start'>
-          <h2 className='font-bold text-lg w-full mb-6'>Select at least one</h2>
+      <div className='bg-purple-200 flex flex-col md:flex-row justify-center self-center shadow-lg rounded-xl w-11/12 md:w-2/3 md:space-x-8 relative px-8'>
+        <div className='w-full md:w-2/5 my-6 justify-start'>
+          <h2 className='font-bold text-lg text-center w-full mb-6'>Select at least one</h2>
           <form action="/action_page.php">
             <div className='space-x-2'>
               <input onClick={handleClickNorth} type="checkbox" id="north" name="north" value="north"/>
@@ -116,9 +116,9 @@ export default function RefineSearchForm () {
           </form>
         </div>
 
-        <div className='w-3/5 my-6 justify-center'>
-          {(northRegions.length !== 0 || southRegions.length !== 0) && <h3 className='font-bold text-lg w-full'>Select regions to EXCLUDE</h3>}
-          <div className={'font-bold text-lg w-full ' + (northRegions.length !== 0 && southRegions.length !== 0) ? 'invisible' : ''}>Select regions to EXCLUDE</div>
+        <div className='w-full md:w-3/5 my-6 justify-center'>
+          {(northRegions.length !== 0 || southRegions.length !== 0) && <h3 className='text-center font-bold text-lg w-full'>Select regions to <u>Exclude</u></h3>}
+          <div className={'font-bold text-lg w-full ' + (northRegions.length !== 0 && southRegions.length !== 0) ? 'invisible' : ''}>Select regions to <u>Exclude</u></div>
           <form action="/action_page.php">
             {northRegions.map(region => {
               return (
@@ -141,9 +141,9 @@ export default function RefineSearchForm () {
             })}
           </form>
         </div>
-        <div className='w-1/5 flex justify-end h-32'>
+        <div className='w-full md:w-1/5 flex justify-end h-32'>
           <ScrollIntoView selector="#results"
-            className='shadow-lg space-x-2 md:py-3 md:text-base text-center md:w-24 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' onClick={submitHandler}>
+            className='shadow-lg space-x-2 md:py-3 md:text-base text-center w-16 md:w-24 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' onClick={submitHandler}>
             SEARCH
           </ScrollIntoView>
         </div>
@@ -151,7 +151,7 @@ export default function RefineSearchForm () {
 
       {searchResults &&
         <>
-          {(searchResults.length !== 0) && <div id='results' className=' flex justify-center font-extrabold md:text-3xl my-10 md:pt-16'>
+          {(searchResults.length !== 0) && <div id='results' className=' flex justify-center font-extrabold text-center text-xl md:text-3xl my-10 md:pt-16'>
             <h1>Houses Matching your Criteria</h1>
           </div>}
 

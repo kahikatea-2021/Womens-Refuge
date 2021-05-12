@@ -31,9 +31,9 @@ function RefineSearch () {
 
   return (
     <>
-      <div className=' flex justify-center font-extrabold md:text-3xl my-10 md:mt-12 space-x-2'>
+      <div className=' flex justify-center font-extrabold text-xl md:text-3xl my-10 md:mt-12 space-x-2'>
         <h1>Advanced Search</h1>
-        <img className='md:w-8 md:h-8' src='/images/searchIconBlack.png'/>
+        <img className='w-6 h-6 md:w-8 md:h-8' src='/images/searchIconBlack.png'/>
       </div>
       <RefineSearchForm />
 
