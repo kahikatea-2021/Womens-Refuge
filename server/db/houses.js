@@ -9,7 +9,7 @@ function getHouseByName (name, db = connection) {
   const query = 'SELECT *,houses.id as houseId, rooms.id as room_id ' +
     'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
     'LEFT JOIN regions on houses.region_id = regions.id ' +
-    `WHERE name = "${name}"`
+    `WHERE name = '${name}'`
   return db.raw(query)
 }
 
@@ -25,14 +25,14 @@ function getHouseById (id, db = connection) {
 function genearlQuery (island = 'all', regions = [], exclude = [], available = 1, db = connection) {
   if (island === 'all') island = '%'
   let query = baseQuery +
-    `WHERE LOWER(regions.island) LIKE "${island.toLowerCase()}" `
+    `WHERE LOWER(regions.island) LIKE '${island.toLowerCase()}' `
 
   if (regions.length > 0) {
-    query += 'AND LOWER(regions.region) IN (' + regions.map(region => `"${region.toLowerCase()}"`).join(' ,') + ') '
+    query += 'AND LOWER(regions.region) IN (' + regions.map(region => `'${region.toLowerCase()}'`).join(' ,') + ') '
   }
 
   if (exclude.length > 0) {
-    query += 'AND LOWER(regions.region) NOT IN (' + exclude.map(region => `"${region.toLowerCase()}"`).join(' ,') + ') '
+    query += 'AND LOWER(regions.region) NOT IN (' + exclude.map(region => `'${region.toLowerCase()}'`).join(' ,') + ') '
   }
 
   query += 'GROUP BY houses.id '
