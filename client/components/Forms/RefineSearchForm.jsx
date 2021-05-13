@@ -117,9 +117,7 @@ export default function RefineSearchForm () {
 
   function Capitalise (string) {
     const stringArr = string.toLowerCase().split('')
-    console.log(stringArr)
     stringArr[0] = stringArr[0].toUpperCase()
-    console.log(stringArr, stringArr[0])
     return stringArr.join('')
   }
 

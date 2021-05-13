@@ -40,6 +40,5 @@ export default function stringMaker (form, include) {
   form.Southland && tempArray.push(queryOption + 'Southland')
   form.available && tempArray.push('&available=2')
   x = tempArray.join('')
-  console.log('query', x)
   return x
 }

@@ -54,12 +54,10 @@ test('updateHouseById should return updated house with this id', () => {
   }
   return houseDb.updateHouseById(updateHouse.id, updateHouse, testDb)
     .then(house => {
-      console.log(house)
       return houseDb.getHouseById(6, testDb)
     })
     .then(houses => {
       const house = houses[0]
-      console.log('test house', house)
       expect(house.house_id).toBe(6)
       expect(Number(house.region_id)).toBe(2)
       expect(house.name).toBe('test update house')

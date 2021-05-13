@@ -26,6 +26,12 @@ function AllSafehouses () {
     return <img src="/images/loading.gif"></img>
   }
 
+  function Capitalise (string) {
+    const stringArr = string.toLowerCase().split('')
+    stringArr[0] = stringArr[0].toUpperCase()
+    return stringArr.join('')
+  }
+
   if (isAuthenticated && user) {
     return (
       <>
@@ -42,7 +48,7 @@ function AllSafehouses () {
         {houses.map(island => {
           return (
             <div className='flex flex-col justify-center w-full' key={island.island}>
-              <p className="mt-16 p-8 pb-0 text-center font-extrabold text-3xl">{island.island === 'north' ? 'North Island' : 'South Island'}</p>
+              <p className="mt-16 p-8 pb-0 text-center font-extrabold text-3xl">{Capitalise(island.island) + ' Island'}</p>
               {island.regions.map(region => {
                 return (
                   <div key={region.name}>

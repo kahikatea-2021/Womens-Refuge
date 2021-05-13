@@ -21,8 +21,6 @@ function House () {
       getHouse(houseName.name)
         .then(results => {
           setHouse(results.sort((a, b) => a.room_id - b.room_id))
-          console.log('check')
-          console.log(results)
           return null
         })
         .catch(err => console.log(err))

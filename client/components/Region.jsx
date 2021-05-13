@@ -26,12 +26,6 @@ function Region () {
     return <img src="../../images/loading.gif"></img>
   }
 
-  if (houses) {
-    console.log(houses)
-  } else {
-    console.log('not houses')
-  }
-
   if (isAuthenticated && user) {
     return (
       <>

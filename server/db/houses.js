@@ -49,7 +49,7 @@ function genearlQuery (island = 'all', regions = [], exclude = [], available = 1
   if (available === 0) {
     query += 'HAVING COUNT(rooms.house_id) = 0 '
   }
-  console.log(query)
+
   return db.raw(query)
     .then(results => {
       return results.rows ? results.rows : results

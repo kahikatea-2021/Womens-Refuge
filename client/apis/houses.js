@@ -39,7 +39,6 @@ export function updateHouseAndRooms (rooms, house) {
 }
 
 export default function getHousesFromSearch (str) {
-  console.log('api', rootUrl + str)
   return request.get(rootUrl + str)
     .set(getAccessHeader())
     .then(res => {

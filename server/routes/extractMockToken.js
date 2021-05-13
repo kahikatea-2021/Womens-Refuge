@@ -9,7 +9,6 @@ function extractMockToken (tokenString, rejected = 'unauthorised') {
       tokens.shift()
       let jsonStr = ''
       tokens.forEach(token => {
-        console.log(token)
         if (token === ':' || token === '{' || token === '}') {
           jsonStr += token
         } else {

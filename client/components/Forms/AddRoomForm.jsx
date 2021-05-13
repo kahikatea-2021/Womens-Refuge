@@ -13,8 +13,6 @@ function AddRoomForm () {
     available: true // fix this later
   })
 
-  console.log(house)
-
   function handleChange (evt) {
     const { name, value } = evt.target
     setForm({ ...form, [name]: value })
