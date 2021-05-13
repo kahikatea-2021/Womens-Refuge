@@ -2,7 +2,7 @@ export default function stringMaker (form, include) {
   const tempArray = ['?']
   const queryOption = include ? '&region=' : '&exclude='
   let x = ''
-  if ((!form.north || !form.south) && include) {
+  if ((!form.north || !form.south)) {
     form.north && tempArray.push('&island=north')
     form.south && tempArray.push('&island=south')
   }

@@ -38,7 +38,6 @@ export default function RefineSearchForm () {
   function getNorth () {
     getAllIslandRegions('north')
       .then(results => {
-        console.log(results)
         setNorthRegions(results)
         return null
       })
@@ -86,8 +85,6 @@ export default function RefineSearchForm () {
       })
       setQueryObject({ ...queryObject, ...tempObject })
     }
-
-    console.log(checked, name)
   }
 
   function handleIncludeClick (evt) {
@@ -120,7 +117,9 @@ export default function RefineSearchForm () {
 
   function Capitalise (string) {
     const stringArr = string.toLowerCase().split('')
-    stringArr[0].toUpperCase()
+    console.log(stringArr)
+    stringArr[0] = stringArr[0].toUpperCase()
+    console.log(stringArr, stringArr[0])
     return stringArr.join('')
   }
 
@@ -213,14 +212,14 @@ export default function RefineSearchForm () {
             {houses.map(island => {
               return (
                 <div className='flex flex-col justify-center w-full' key={island.island}>
-                  <p className="mt-16 p-8 pb-0 text-center font-extrabold text-3xl">{Capitalise(island.island) + ' Island'}</p>
+                  <p className="mt-16 p-8 pb-0 text-center font-extrabold text-3xl">{island.regions.length > 0 && Capitalise(island.island) + ' Island'}</p>
                   {island.regions.map(region => {
                     return (
-                      <div key={region.name}>
+                      <div key={region.name + 'info'}>
                         <p className="pb-4 mt-12 text-center font-bold text-2xl">{region.name}</p>
                         {region.houses.map(house => {
                           return (
-                            <div key={house.name} className=' flex justify-center '>
+                            <div key={house.name + 'info'} className=' flex justify-center '>
                               <button onClick={() => { history.push(`/house/${house.name}`) }} className="px-5 flex justify-between items-center text-center m-2 py-4 w-2/3 md:w-1/3 self-center bg-poroporo hover:bg-poroporo text-white text-lg rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                                 <p className="w-8"></p>{house.name} <img src={house.available_rooms > 0 ? '/images/tickWhite.png' : '/images/crossWhite.png'} className="w-6 md:w-8" alt="" />
                               </button>
