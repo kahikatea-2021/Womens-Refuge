@@ -14,6 +14,7 @@ export default function RefineSearchForm () {
   const [northRegions, setNorthRegions] = useState([])
   const [southRegions, setSouthRegions] = useState([])
   const [houses, sethouses] = useState([])
+  const [scrolled, setScrolled] = useState(false)
   const [queryObject, setQueryObject] = useState({
     north: false,
     south: false,
@@ -99,9 +100,11 @@ export default function RefineSearchForm () {
 
   function submitHandler () {
     getHousesFromSearch(stringMaker(queryObject, include))
-      .then(result => sethouses(formatter(result))
-        // formScroll()
-      )
+      .then(result => {
+        sethouses(formatter(result))
+        setScrolled(true)
+        return null
+      })
       .catch(err => console.log(err))
   }
 
@@ -119,6 +122,11 @@ export default function RefineSearchForm () {
     const stringArr = string.toLowerCase().split('')
     stringArr[0] = stringArr[0].toUpperCase()
     return stringArr.join('')
+  }
+
+  if (scrolled && houses.length > 0) {
+    document.getElementById('search-results').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    setScrolled(false)
   }
 
   return (
@@ -173,10 +181,14 @@ export default function RefineSearchForm () {
           </form>
         </div>
         <div className='w-full md:w-1/5 flex justify-end h-32'>
-          <ScrollIntoView selector="#results"
+          {/* <ScrollIntoView selector="#results"
             className='shadow-lg space-x-2 md:py-3 md:text-base text-center w-16 md:w-24 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' onClick={submitHandler}>
             SEARCH
-          </ScrollIntoView>
+          </ScrollIntoView> */}
+          <div
+            className='shadow-lg space-x-2 md:py-3 md:text-base text-center w-16 md:w-24 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out' onClick={submitHandler}>
+            SEARCH
+          </div>
         </div>
       </div>
 
@@ -197,7 +209,7 @@ export default function RefineSearchForm () {
           </div>}
 
           {/* <div className={'font-bold text-lg w-full ' + (northRegions.length !== 0 && southRegions.length !== 0) ? 'invisible' : ''}>Select regions to EXCLUDE</div> */}
-          <div>
+          <div id="search-results" className>
             {/* {houses.map(house => {
               return (
                 <div className='flex justify-center' key={house.name}>

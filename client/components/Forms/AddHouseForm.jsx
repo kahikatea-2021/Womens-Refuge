@@ -28,6 +28,8 @@ function AddHouseForm () {
     setForm({ ...form, ...formInput })
   }
 
+  console.log(form)
+
   function onSubmit (evt) {
     evt.preventDefault()
     addNewHouse(form)
