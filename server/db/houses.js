@@ -6,10 +6,22 @@ const baseQuery = 'SELECT island,region, regions.id as region_id, name, phone_1,
 
 // when a user searches for a specific house name, that house is returned
 function getHouseByName (name, db = connection) {
+  const nameArr = name.split('')
+  console.log(nameArr)
+
+  const arr2 = nameArr.map(c => {
+    return c === "'" ? "''" : c
+  })
+
+  name = arr2.join('')
+
   const query = 'SELECT *,houses.id as houseId, rooms.id as room_id ' +
     'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
     'LEFT JOIN regions on houses.region_id = regions.id ' +
-    `WHERE name = '${name}'`
+    `WHERE name = '${`${name}`}'`
+
+  const testVar = "''" + 'a'
+  console.log(testVar)
   return db.raw(query)
     .then(result => {
       return result.rows ? result.rows : result
