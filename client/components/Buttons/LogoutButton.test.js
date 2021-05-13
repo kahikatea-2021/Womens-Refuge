@@ -5,18 +5,6 @@ import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 describe('Back Button', () => {
-  it('displays for admin', () => {
-    renderWithRedux(<LogoutButton />,
-      {
-        initialState: {
-          user: {
-            isAdmin: true
-          }
-        }
-      })
-    expect(screen.getByRole('button')).toBeInTheDocument()
-  })
-
   it('displays for everyone', () => {
     renderWithRedux(<LogoutButton />,
       {
