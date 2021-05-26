@@ -1,44 +1,53 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import LogoutButton from './Buttons/LogoutButton'
-import BackButton from './Buttons/BackButton'
+import LoadingIcon from './LoadingIcon'
+import ViewAllButton from './Buttons/ViewAllButton'
+import ManageHouseButton from './Buttons/ManageHouseButton'
+import AddHouseButton from './Buttons/AddHouseButton'
+import BigSearchButton from './Buttons/BigSearchButton'
+import { useSelector } from 'react-redux'
+import LittleSearchButton from './Buttons/LittleSearchButton'
+
 function Header () {
   const { isLoading, isAuthenticated } = useAuth0()
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <LoadingIcon />
   }
   if (isAuthenticated) {
+    const ourUser = useSelector(state => state.user)
     return (
-      <>
-
-        <div className='flex w-full items-center content-center pb-8'>
-
-          <div className='flex w-full justify-start'>
-            <BackButton className='flex fill-current inline-block w-1/2 content-center'/>
-          </div>
-
-          <a className='flex-col justify-center items-center w-full' href='/'>
-            <img className='mx-1/2 justify-center w-20' src="../../images/logo.png"></img>
-            <h1 className='mx-1/2 justify-center text-lg'>Tuohunga</h1>
-          </a>
-
-          <div className='flex w-full justify-end'>
-            <LogoutButton className='flex fill-current inline-block w-1/2 content-center'/>
-          </div>
-
+      <div className='md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200 shadow-lg'>
+        <div className='w-full justify-start'>
+          <BigSearchButton />
         </div>
-
-      </>
+        <div className='flex w-full justify-center md:justify-center w-1/5'>
+          <Link to='/' className='md:flex-col items-center'>
+            <img className='mx-auto self-center w-12 md:w-20' src="/images/logo.png"></img>
+            <h1 className='mx-auto self-center text-poroporo font-bold text-lg md:text-xl'>Tuohunga</h1>
+          </Link>
+        </div>
+        <div className='mt-4 space-x-4 flex w-full justify-center md:justify-end w-4/5'>
+          <LittleSearchButton />
+          {ourUser?.isAdmin ? <AddHouseButton /> : null}
+          {ourUser?.house_id ? <ManageHouseButton text='MY WHARE' path={ourUser.house_id} /> : null}
+          <ViewAllButton />
+          <LogoutButton />
+        </div>
+      </div>
     )
   } else {
     return (
       <>
-        <div className='flex w-full align-center items-center content-center'>
-          <a className='flex-col justify-center items-center w-full' href='/'>
-            <img className='mx-1/2 justify-center w-20' src="../../images/logo.png"></img>
-            <h1 className='mx-1/2 justify-center text-lg'>Tuohunga</h1>
-          </a>
+        <div className='shadow-lg md:flex w-full items-center content-center py-4 px-8 mb-4 bg-purple-200'>
+          <div className='flex w-full justify-center w-1/5'>
+            <Link to='/' className='flex-row md:flex-col items-center'>
+              <img className='mx-auto self-center w-12 md:w-20' src="/images/logo.png"></img>
+              <h1 className='mx-auto self-center text-poroporo font-bold text-lg md:text-xl'>Tuohunga</h1>
+            </Link>
+          </div>
         </div>
       </>
     )

@@ -1,50 +1,18 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router'
-import { editHouse } from '../../apis/houses'
-import { useHistory } from 'react-router-dom'
+import React from 'react'
 
 export default function ManageHouseForm (props) {
-  const history = useHistory()
-  const id = useParams().id
-  console.log('id', id)
-  const [form, setForm] = useState({
-    phone_1: props.house.phone_1,
-    phone_2: props.house.phone_2,
-    notes: props.house.notes
-  })
-
-  function handleChange (e) {
-    const { name, value } = e.target
-    setForm({
-      ...form,
-      [name]: value
-    })
-  }
-
-  function handleSubmit (e) {
-    e.preventDefault()
-    editHouse(id, form)
-    history.push(`/house/${props.house.name}`)
-    // .then(response => {
-    //   console.log(response)
-    // })
-    // .catch(err => console.log(err))
-  }
-
   return (
-
     <>
-      <form>
-        <label htmlFor='phone1'>Primary Contact Number: </label>
-        <input id='phone1' name='phone_1' value={form.phone_1} type='text'onChange={handleChange}></input>
-        <label htmlFor='phone2'>Secondary Contact Number: </label>
-        <input id='phone2' name='phone_2' type="text" value={form.phone_2} onChange={handleChange}></input>
-        <label htmlFor='notes'>Notes: </label>
-        <textarea id='notes' name='notes' type="text" value={form.notes} onChange={handleChange}></textarea>
-        <button onClick={handleSubmit}>SUBMIT</button>
-      </form>
+      <div className="flex justify-center flex-col mx-auto w-full  md:justify-start md:w-1/3">
+        <label className="block"><span className="text-gray-700 font-bold ">Primary Contact Number: </span></label>
+        <input className='rounded-lg w-full mt-2' id='phone1' name='phone_1' value={props.house.phone_1} type='text' onChange={(event) => { props.handleChange(event, props.house.id) }}></input>
+
+        <label className='mt-4' htmlFor='phone2 '>Secondary Contact Number: </label>
+        <input className='rounded-lg mt-2' id='phone2' name='phone_2' type="text" value={props.house.phone_2} onChange={(event) => { props.handleChange(event, props.house.id) }}></input>
+
+        <label className='mt-4' htmlFor='notes'>Notes: </label>
+        <textarea className='mt-2 rounded-lg block w-full' id='notes' name='notes' rows="5" type="text" value={props.house.notes} onChange={(event) => { props.handleChange(event, props.house.id) }}></textarea>
+      </div>
     </>
   )
 }
-
-// export default ManageHouseForm

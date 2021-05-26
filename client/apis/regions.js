@@ -1,9 +1,12 @@
 import request from 'superagent'
+import getAccessHeader from './tokenHelper'
 const rootUrl = '/api/v1/houses/'
 
 export function getAllRegions (island) {
+  // console.log('region', token)
   return request.get('/api/v1/regions')
     .query({ island: island })
+    .set(getAccessHeader())
     .then(res => {
       return res.body
     })
@@ -13,6 +16,7 @@ export function getAllRegions (island) {
 export function getAllHouses (house) {
   return request.get(rootUrl)
     .query({ house: house })
+    .set(getAccessHeader())
     .then(res => {
       return res.body
     })
@@ -20,8 +24,10 @@ export function getAllHouses (house) {
 
 // Get all the houses in a particular region
 export function getHousesInRegion (region) {
+  // console.log('in regions api', region)
   return request.get(rootUrl)
     .query({ region: region })
+    .set(getAccessHeader())
     // .accept(acceptJsonHeader)
     .then(res => {
       return res.body
@@ -31,6 +37,7 @@ export function getHousesInRegion (region) {
 // Get a house
 export function getHouse (house) {
   return request.get(rootUrl + 'name/' + house)
+    .set(getAccessHeader())
     .then(res => {
       return res.body
     })
@@ -38,8 +45,9 @@ export function getHouse (house) {
 
 export function getHouseById (id) {
   return request.get(rootUrl + 'id/' + id)
+    .set(getAccessHeader())
     .then(res => {
-      console.log('house id rooms', res.body)
+      // console.log('house id rooms', res.body)
       return res.body
     })
 }

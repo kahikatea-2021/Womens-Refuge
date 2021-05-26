@@ -7,9 +7,12 @@ import { getAllRegions } from '../../apis/regions'
 
 export function addNewHouse (house) {
   dispatch(setWait())
-  return addHouse(house)
+  const tempHouse = { ...house }
+  delete tempHouse.region
+  return addHouse(tempHouse)
     .then(newHouse => {
-      dispatch(setHouse(newHouse.body))
+      house.id = newHouse.body.id
+      dispatch(setHouse(house))
       dispatch(setWait(false))
       return newHouse.body.id
     })

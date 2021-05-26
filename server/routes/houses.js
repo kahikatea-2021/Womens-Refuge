@@ -9,9 +9,9 @@ router.get('/', (req, res) => {
   const island = req.query.island ? req.query.island : 'all'
   const regions = req.query.region ? [].concat(req.query.region) : []
   const excludedRegions = req.query.exclude ? [].concat(req.query.exclude) : []
+  const available = Number(req.query.available)
 
-  console.log('regions: ', regions)
-  houseDb.genearlQuery(island, regions, excludedRegions)
+  houseDb.genearlQuery(island, regions, excludedRegions, available)
     .then(result => {
       res.status(200).json(result)
       return null
@@ -20,8 +20,12 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const house = req.body
+  if (!req.user.isAdmin) {
+    res.status(403).send()
+    return
+  }
 
+  const house = req.body
   houseDb.addHouse(house)
     .then((house) => {
       res.status(200).json(house)
@@ -31,9 +35,15 @@ router.post('/', (req, res) => {
 })
 
 router.patch('/:id', (req, res) => {
-  console.log('in house patch')
   const houseDetails = req.body
   const houseId = req.params.id
+  const userHouseId = req.user.house_id
+
+  if (Number(userHouseId) !== Number(houseId) && !req.user.isAdmin) {
+    res.status(403).send()
+    return
+  }
+
   houseDb.updateHouseById(houseId, houseDetails)
     .then(() => {
       return houseDb.getHouseById(houseId)
@@ -46,29 +56,49 @@ router.patch('/:id', (req, res) => {
 })
 
 router.put('/', (req, res) => {
-  const house = {}
-  house.id = req.body.id
-  house.name = req.body.name
-  house.region_id = req.body.region
-  house.phone_1 = req.body.phone_1
-  house.phone_2 = req.body.phone_2
-  house.notes = req.body.note
-
-  houseDb.updateHouseById(house.id)
-    .then(() => {
-      res.status(200).send()
-      return null
-    })
-    .catch(err => console.log(err))
+  if (Number(req.user.house_id) !== Number(req.body.id) && !req.user.isAdmin) {
+    res.status(403).send()
+  } else {
+    const house = {}
+    house.id = req.body.id
+    house.name = req.body.name
+    house.region_id = req.body.region
+    house.phone_1 = req.body.phone_1
+    house.phone_2 = req.body.phone_2
+    house.notes = req.body.note
+    houseDb.updateHouseById(house.id)
+      .then(() => {
+        res.status(200).send()
+        return null
+      })
+      .catch(err => console.log(err))
+  }
 })
 
 router.delete('/:id', (req, res) => {
-  houseDb.deleteHouseById(req.params.id)
-    .then(() => {
-      res.status(200).send()
-      return null
-    })
-    .catch(err => console.log(err))
+  if (!req.user.isAdmin) {
+    res.status(403).send()
+  } else {
+    houseDb.deleteHouseById(req.params.id)
+      .then(() => {
+        res.status(200).send()
+        return null
+      })
+      .catch(err => console.log(err))
+  }
+})
+
+router.put('/update-house', (req, res) => {
+  if (Number(req.user.house_id) !== Number(req.body.house.id) && !req.user.isAdmin) {
+    res.status(403).send()
+  } else {
+    roomDb.updateHouseAndRooms(req.body.rooms, req.body.house)
+      .then(() => {
+        res.status(200).send()
+        return null
+      })
+      .catch(err => console.log(err))
+  }
 })
 
 // get houses by region
@@ -86,7 +116,6 @@ router.get('/name/:name', (req, res) => {
   const name = req.params.name
   houseDb.getHouseByName(name)
     .then(house => {
-      console.log('db', house)
       res.status(200).json(house)
       return null
     })

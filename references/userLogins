@@ -1,8 +1,11 @@
-email: masteradmin@safehouse.com
-password: masterAdmin!
+email: admin@safehouse.com
+password: Iamtheadmin!
 
 email: refugecoordinator@safehouse.com
 password: refugeCoordinator!
 
 email: generaluser@safehouse.com
 password: generalUser!
+
+
+api end point?exclude=region1&exclude=region2&island=north&region=region3&region=region4
