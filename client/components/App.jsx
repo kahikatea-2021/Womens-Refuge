@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, useHistory } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import Login from './Login'
 import Home from './Home'
@@ -24,7 +24,6 @@ function App () {
   const dispatch = useDispatch()
   const isWaiting = useSelector(state => state.wait)
   const ourUser = useSelector(state => state.user)
-  const history = useHistory()
 
   if (isLoading) {
     return (
