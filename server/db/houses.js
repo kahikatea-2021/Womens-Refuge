@@ -27,7 +27,7 @@ function getHouseById (id, db = connection) {
     'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
     'LEFT JOIN regions on houses.region_id = regions.id ' +
     'WHERE houses.id = ?'
-  return db.raw(query, [id])
+  return db.raw(query, id)
     .then(result => {
       return result.rows ? result.rows : result
     })
@@ -52,7 +52,6 @@ function genearlQuery (island = 'all', regions = [], exclude = [], available = 1
   if (exclude.length > 0) {
     query += 'AND LOWER(regions.region) NOT IN (' + exclude.map(region => '?').join(' ,') + ') '
     queryParameters.push(...exclude.map(region => region.toLowerCase()))
-    console.log(queryParameters, exclude)
   }
 
   query += 'GROUP BY houses.id, regions.id, island, region, name, phone_1, phone_2, notes, rooms.house_id '
@@ -63,7 +62,6 @@ function genearlQuery (island = 'all', regions = [], exclude = [], available = 1
   if (available === 0) {
     query += 'HAVING COUNT(rooms.house_id) = 0 '
   }
-  console.log(query)
   return db.raw(query, queryParameters)
     .then(results => {
       return results.rows ? results.rows : results
