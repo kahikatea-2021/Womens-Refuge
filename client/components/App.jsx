@@ -60,7 +60,7 @@ function App () {
           <div className='h-screen flex flex-col'>
             <Header />
             {!isAuthenticated && <Login />}
-            {ourUser && <Route path='/*' component={BackButton} />}
+            {<Route path='/*' component={BackButton} />}
             <main className='flex flex-col h-full pb-0 pt-4 px-8'>
               <Route exact path='/' component={Home} />
               <Route path='/northisland' component={NorthIsland} />
