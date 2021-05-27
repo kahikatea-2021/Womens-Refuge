@@ -1,26 +1,21 @@
 const connection = require('./connection')
 
+/**
+ * Base query, includes all information for each house as well as calculate how many
+ * rooms each house have available.
+ */
 const baseQuery = 'SELECT island,region, regions.id as region_id, name, phone_1, phone_2, notes, houses.id as house_id, COUNT(*) as rooms_available, SUM(CASE WHEN rooms.available = true THEN 1 ELSE 0 END) as available_rooms ' +
   'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
   'LEFT JOIN regions on houses.region_id = regions.id '
 
-// when a user searches for a specific house name, that house is returned
+// Get house by name
 function getHouseByName (name, db = connection) {
-  const nameArr = name.split('')
-  console.log(nameArr)
-
-  const arr2 = nameArr.map(c => {
-    return c === "'" ? "''" : c
-  })
-
-  name = arr2.join('')
-
   const query = 'SELECT *,houses.id as houseId, rooms.id as room_id ' +
     'FROM houses LEFT JOIN rooms on houses.id = rooms.house_id ' +
     'LEFT JOIN regions on houses.region_id = regions.id ' +
-    `WHERE name = '${name}'`
+    'WHERE name = ?'
 
-  return db.raw(query)
+  return db.raw(query, name)
     .then(result => {
       return result.rows ? result.rows : result
     })
