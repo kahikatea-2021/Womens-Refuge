@@ -18,12 +18,12 @@ function Region () {
       .catch(err => console.log(err))
   }, [])
 
-  if (!isAuthenticated) {
-    return <p>Unauthorised access</p>
-  }
-
   if (isLoading) {
     return <img src="../../images/loading.gif"></img>
+  }
+
+  if (!isAuthenticated) {
+    return <p>Unauthorised access</p>
   }
 
   if (isAuthenticated && user) {

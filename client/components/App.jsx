@@ -62,17 +62,21 @@ function App () {
             {!isAuthenticated && <Login />}
             {<Route path='/*' component={BackButton} />}
             <main className='flex flex-col h-full pb-0 pt-4 px-8'>
-              <Route exact path='/' component={Home} />
-              <Route path='/northisland' component={NorthIsland} />
-              <Route path='/southisland' component={SouthIsland} />
-              <Route exact path='/houses' component={AllSafehouses} />
-              <Route path='/region/:name' component={Region} />
-              <Route exact path='/house/:name' component={House} />
-              <Route path='/house/manage/:id' component={ManageHouse} />
-              <Route path='/houses/add' component={AdminAddHouse} />
-              <Route path='/rooms/add' component={AdminAddRoom} />
-              <Route path='/search' component={RefineSearch} />
-              <Footer />
+              {
+                ourUser && <div>
+                  <Route exact path='/' component={Home} />
+                  <Route path='/northisland' component={NorthIsland} />
+                  <Route path='/southisland' component={SouthIsland} />
+                  <Route exact path='/houses' component={AllSafehouses} />
+                  <Route path='/region/:name' component={Region} />
+                  <Route exact path='/house/:name' component={House} />
+                  <Route path='/house/manage/:id' component={ManageHouse} />
+                  <Route path='/houses/add' component={AdminAddHouse} />
+                  <Route path='/rooms/add' component={AdminAddRoom} />
+                  <Route path='/search' component={RefineSearch} />
+                  <Footer />
+                </div>
+              }
             </main>
 
           </div>
