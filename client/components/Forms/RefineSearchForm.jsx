@@ -24,7 +24,7 @@ export default function RefineSearchForm () {
     Waikato: false,
     Gisborne: false,
     Taranaki: false,
-    'Hawkes Bay': false,
+    'Hawke\'s Bay': false,
     'Whanganui - Manawatu': false,
     Wellington: false,
     Nelson: false,

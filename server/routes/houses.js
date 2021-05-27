@@ -11,6 +11,8 @@ router.get('/', (req, res) => {
   const excludedRegions = req.query.exclude ? [].concat(req.query.exclude) : []
   const available = Number(req.query.available)
 
+  console.log('regions: ', regions, excludedRegions, available)
+
   houseDb.genearlQuery(island, regions, excludedRegions, available)
     .then(result => {
       res.status(200).json(result)

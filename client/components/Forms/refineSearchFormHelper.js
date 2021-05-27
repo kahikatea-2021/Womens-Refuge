@@ -29,7 +29,7 @@ export default function stringMaker (form, include) {
   form.Waikato && tempArray.push(queryOption + 'Waikato')
   form.Gisborne && tempArray.push(queryOption + 'Gisborne')
   form.Taranaki && tempArray.push(queryOption + 'Taranaki')
-  form['Hawkes Bay'] && tempArray.push(queryOption + 'Hawkes Bay')
+  form['Hawke\'s Bay'] && tempArray.push(queryOption + 'Hawke\'s Bay')
   form['Whanganui - Manawatu'] && tempArray.push(queryOption + 'Whanganui - Manawatu')
   form.Wellington && tempArray.push(queryOption + 'Wellington')
   form.Nelson && tempArray.push(queryOption + 'Nelson')
@@ -38,7 +38,8 @@ export default function stringMaker (form, include) {
   form['West Coast'] && tempArray.push(queryOption + 'West Coast')
   form.Otago && tempArray.push(queryOption + 'Otago')
   form.Southland && tempArray.push(queryOption + 'Southland')
-  form.available && tempArray.push('&available=2')
+  form.available ? tempArray.push('&available=2') : tempArray.push('&available=1')
   x = tempArray.join('')
+  console.log(form['Hawke\'s Bay'])
   return x
 }
