@@ -6,6 +6,7 @@ import ManageHouseForm from './Forms/ManageHouseForm'
 import ManageRoomForm from './Forms/ManageRoomForm'
 import { useAuth0 } from '@auth0/auth0-react'
 import { updateHouseAndRooms } from '../apis/houses'
+import LoadingIcon from './LoadingIcon'
 
 function ManageHouse () {
   const [house, setHouse] = useState(null)
@@ -37,7 +38,7 @@ function ManageHouse () {
   }, [houseId])
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <LoadingIcon/>
   }
 
   if (!isAuthenticated) {

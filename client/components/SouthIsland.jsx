@@ -3,6 +3,7 @@ import { getAllIslandRegions } from '../apis/islands'
 import { useHistory } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useSelector } from 'react-redux'
+import LoadingIcon from './LoadingIcon'
 
 function SouthIsland () {
   const [regions, setRegions] = useState([])
@@ -22,7 +23,7 @@ function SouthIsland () {
   })
 
   if (isLoading) {
-    return <img src="/images/loading.gif"></img>
+    return <LoadingIcon/>
   }
 
   if (!isAuthenticated || !user) {
