@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getAllIslandRegions } from '../apis/islands'
 import { useAuth0 } from '@auth0/auth0-react'
 import RefineSearchForm from './Forms/RefineSearchForm'
+import LoadingIcon from './LoadingIcon'
 
 function RefineSearch () {
   const [regions, setRegions] = useState([])
@@ -19,7 +20,7 @@ function RefineSearch () {
   })
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <LoadingIcon/>
   }
 
   if (!isAuthenticated) {
