@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { getHousesInRegion } from '../apis/regions'
 import { useAuth0 } from '@auth0/auth0-react'
+import LoadingIcon from './LoadingIcon'
 
 function Region () {
   const [houses, setHouses] = useState(null)
@@ -19,7 +20,7 @@ function Region () {
   }, [])
 
   if (isLoading) {
-    return <img src="../../images/loading.gif"></img>
+    return <LoadingIcon/>
   }
 
   if (!isAuthenticated) {
