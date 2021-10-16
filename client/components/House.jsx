@@ -86,8 +86,8 @@ function House () {
             <div className='flex justify-center m-4'>{count > 0 && <div className="flex flex-row">available<img className='ml-2 w-6' src='/images/tickGreen.png' /></div>}</div>
             <div className='flex justify-center m-4'>{count === 0 && <div className="flex flex-row">unavailable<img className='ml-2 w-6' src='/images/crossRed.png' /></div>}</div>
             <div className="m-2 my-4 flex flex-col md:flex-row justify-center items-center">
-              <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Primary:</b>{house[0].phone_1}</div>
-              <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Secondary:</b>{house[0].phone_2}</div>
+              <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Primary:</b><a href={`tel:${house[0].phone_1}`}>{house[0].phone_1}</a></div>
+              <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Secondary:</b><a href={`tel:${house[0].phone_2}`}>{house[0].phone_2}</a></div>
             </div>
 
             <div className='flex flex-col md:flex-row justify-center items-center md:space-x-8 my-8'>
