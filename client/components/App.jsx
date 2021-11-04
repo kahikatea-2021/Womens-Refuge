@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import Login from './Login'
 import Home from './Home'
 import Header from './Header'
-import Footer from './Footer'
+// import Footer from './Footer'
 import NorthIsland from './NorthIsland'
 import SouthIsland from './SouthIsland'
 import AllSafehouses from './AllSafehouses'
@@ -73,7 +73,7 @@ function App () {
                   <Route path='/houses/add' component={AdminAddHouse} />
                   <Route path='/rooms/add' component={AdminAddRoom} />
                   <Route path='/search' component={RefineSearch} />
-                  <Footer />
+                  {/* <Footer /> */}
                 </div>
               }
             </main>
