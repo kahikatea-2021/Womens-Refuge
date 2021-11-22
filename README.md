@@ -27,5 +27,3 @@ As a user, I want to open the app and be able to login as either: a master admin
 See live demo here: 
 https://www.gracemalae.com/#/tuohunga
 
-Diagram:
-https://dbdiagram.io/d/60926e79b29a09603d1377d6
