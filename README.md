@@ -1,4 +1,4 @@
-# Women's Refuge - Safe House Website
+# Women's Refuge - Safe House Website 
 
 This website is designed to be used by safe house hosts, members of the police, and Women's Refuge employees. Its purpose is to speed up the process of moving domestic violence victims into safe houses throughout New Zealand.
 
