@@ -24,6 +24,6 @@ As a user, I want to open the app and be able to login as either: a master admin
 1. When clicking on the view all button on the landing page, I want to be guided to a page where all vacancies in New Zealand are displayed.
 1. When clicking on the search button, I want to be guided to an 'advanced search' page where I can specify the locations I want to see.
 
+See live demo here: 
+https://www.gracemalae.com/#/tuohunga
 
-Diagram:
-https://dbdiagram.io/d/60926e79b29a09603d1377d6
