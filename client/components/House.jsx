@@ -89,6 +89,7 @@ function House () {
               <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Primary:</b><a href={`tel:${house[0].phone_1}`}>{house[0].phone_1}</a></div>
               <div className="flex flex-row my-2 mx-8 text-center md:text-xl"><img className='w-6' src='/images/phone.png' /><b className='mx-2'>Secondary:</b><a href={`tel:${house[0].phone_2}`}>{house[0].phone_2}</a></div>
             </div>
+            {house[0]?.notes && <div className='text-center md:text-xl mt-4'><b>Additional Information:</b><br />{house[0].notes}</div>}
 
             <div className='flex flex-col md:flex-row justify-center items-center md:space-x-8 my-8'>
               {(house[0].room_id || house.length > 1) && house.map((h, i) => {
@@ -107,7 +108,6 @@ function House () {
                 )
               })}
             </div>
-            {house[0]?.notes && <div className='text-base md:text-xl'><b>Additional Information:</b><br />{house[0].notes}</div>}
             {isAdmin() && <div className="flex flex-col justify-center items-center">
               {!confirmDelete ? <DeleteHouseButton text={confirmDelete ? 'Confirm' : null} callback={setConfirmDelete} /> : <p>Confirm Delete</p>}
               {(confirmDelete && !deleted) && <div className="flex mt-2">
