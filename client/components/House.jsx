@@ -102,7 +102,12 @@ function House () {
                       <br />
                       <img className='w-12 md:w-16' src='../../images/bed.png' />
                       {h.description}
-
+                      <br />
+                      <p>{`Single Beds: ${h.singleBeds}`}</p>
+                      <p>{`Single Beds: ${h.doubleBeds}`}</p>
+                      <p>{`Single Beds: ${h.queenBeds}`}</p>
+                      <p>{`Single Beds: ${h.kingBeds}`}</p>
+                      <p>{`Single Beds: ${h.bunkBeds}`}</p>
                     </div>
                   </div>
                 )
