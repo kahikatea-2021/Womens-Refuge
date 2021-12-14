@@ -67,9 +67,9 @@ function updateRoomAvailability (roomId, updateAvailable, db = connection) {
     })
 }
 
-function addRooms (rooms, db = connection) {
+function addRooms (newRoom, db = connection) {
   return db('rooms')
-    .insert(rooms)
+    .insert(newRoom)
 }
 
 function deleteRoom (roomId, db = connection) {

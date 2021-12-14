@@ -11,6 +11,7 @@ const baseURL = 'api/v1/rooms/'
 // }
 
 export function addRoom (room) {
+  console.log('api: ', room)
   return request.post(baseURL)
     .set(getAccessHeader())
     .send(room)

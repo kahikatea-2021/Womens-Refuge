@@ -7,23 +7,46 @@ function AddRoomForm () {
   const history = useHistory()
   const [addedRooms, setAddedRooms] = useState([])
   const house = useSelector(state => state.house)
-  const [form, setForm] = useState({
+  const blankForm = {
     house_id: house.id,
     description: '',
-    available: true // fix this later
-  })
+    available: true, // fix this later
+    single_beds: 0,
+    double_beds: 0,
+    queen_beds: 0,
+    king_beds: 0,
+    bunk_beds: 0
+  }
+  const [form, setForm] = useState(blankForm)
 
   function handleChange (evt) {
     const { name, value } = evt.target
     setForm({ ...form, [name]: value })
   }
 
+  function handleBed (evt, button) {
+    evt.preventDefault()
+    const { name } = evt.target
+    const value = form[name]
+    console.log('name: ', name)
+    console.log('value: ', value)
+    console.log('button: ', button)
+    if (button === 'increase') {
+      setForm({ ...form, [name]: Number(value) + 1 })
+    } else if (button === 'decrease') {
+      if (value > 0) {
+        setForm({ ...form, [name]: Number(value) - 1 })
+      }
+    }
+  }
+
   function handleAddroom (e) {
+    console.log('addroom')
     e.preventDefault()
     addRoom(form)
       .then(() => {
         setAddedRooms([...addedRooms, form])
-        setForm({ ...form, description: '' })
+        setForm(blankForm)
 
         return null
       })
@@ -63,6 +86,17 @@ function AddRoomForm () {
             <div className='flex flex-row md:space-x-4 mt-8'>
               <label htmlFor='description'><b>Room {addedRooms.length + 1} Details:</b></label>
               <input onChange={handleChange} value={form.description} placeholder="E.g. Two single beds" id='description' name="description" type="text" className="mt-1 block w-2/3" />
+              <br></br>
+              <p>Single Beds: {form.single_beds}</p><button name='single_beds' onClick={(event) => handleBed(event, 'increase')}>+</button><button name='single_beds' onClick={(event) => handleBed(event, 'decrease')}>-</button>
+              <br></br>
+              <p>Double Beds: {form.double_beds}</p><button name='double_beds' onClick={(event) => handleBed(event, 'increase')}>+</button><button name='double_beds' onClick={(event) => handleBed(event, 'decrease')}>-</button>
+              <br></br>
+              <p>Queen Beds: {form.queen_beds}</p><button name='queen_beds' onClick={(event) => handleBed(event, 'increase')}>+</button><button name='queen_beds' onClick={(event) => handleBed(event, 'decrease')}>-</button>
+              <br></br>
+              <p>King Beds: {form.king_beds}</p><button name='king_beds' onClick={(event) => handleBed(event, 'increase')}>+</button><button name='king_beds' onClick={(event) => handleBed(event, 'decrease')}>-</button>
+              <br></br>
+              <p>Bunk Beds: {form.bunk_beds}</p><button name='bunk_beds' onClick={(event) => handleBed(event, 'increase')}>+</button><button name='bunk_beds' onClick={(event) => handleBed(event, 'decrease')}>-</button>
+              <br></br>
               <button className="md:py-3 md:text-base md:w-40 py-2 self-center bg-poroporo hover:bg-poroporo text-white text-xs rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onClick={handleAddroom}>Add Room</button>
             </div>
             <br />

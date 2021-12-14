@@ -18,6 +18,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  console.log('route: ', req.body)
   const room = req.body
   if (!req.user.isAdmin) {
     res.status(403).send()
