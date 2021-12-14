@@ -28,15 +28,10 @@ function AddRoomForm () {
     evt.preventDefault()
     const { name } = evt.target
     const value = form[name]
-    console.log('name: ', name)
-    console.log('value: ', value)
-    console.log('button: ', button)
     if (button === 'increase') {
       setForm({ ...form, [name]: Number(value) + 1 })
-    } else if (button === 'decrease') {
-      if (value > 0) {
-        setForm({ ...form, [name]: Number(value) - 1 })
-      }
+    } else if (button === 'decrease' && value > 0) {
+      setForm({ ...form, [name]: Number(value) - 1 })
     }
   }
 
@@ -47,7 +42,6 @@ function AddRoomForm () {
       .then(() => {
         setAddedRooms([...addedRooms, form])
         setForm(blankForm)
-
         return null
       })
       .catch(err => console.log(err))
