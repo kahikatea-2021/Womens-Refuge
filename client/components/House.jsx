@@ -101,13 +101,13 @@ function House () {
                       </div>
                       <br />
                       <img className='w-12 md:w-16' src='../../images/bed.png' />
-                      {h.description}
-                      <br />
-                      <p>{`Single Beds: ${h.single_beds}`}</p>
-                      <p>{`Double Beds: ${h.double_beds}`}</p>
-                      <p>{`Queen Beds: ${h.queen_beds}`}</p>
-                      <p>{`King Beds: ${h.king_beds}`}</p>
-                      <p>{`Bunk Beds: ${h.bunk_beds}`}</p>
+                      {/* {h.description} */}
+                      {/* <br /> */}
+                      {h.single_beds ? <p>{`Single Beds: ${h.single_beds}`}</p> : null}
+                      {h.double_beds ? <p>{`Double Beds: ${h.double_beds}`}</p> : null}
+                      {h.queen_beds ? <p>{`Queen Beds: ${h.queen_beds}`}</p> : null}
+                      {h.king_beds ? <p>{`King Beds: ${h.king_beds}`}</p> : null}
+                      {h.bunk_beds ? <p>{`Bunk Beds: ${h.bunk_beds}`}</p> : null}
                     </div>
                   </div>
                 )

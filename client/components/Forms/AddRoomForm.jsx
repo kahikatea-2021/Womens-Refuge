@@ -72,7 +72,11 @@ function AddRoomForm () {
                 return <li key={i}>
                   <div className='text-justify flex flex-row mt-8 border-4 border-purple-300 w-3/3 md:w-4/5 rounded-lg p-1 mb-2 my-4 space-x-2'>
                     <div className='font-bold w-1/3'>Room {i + 1}:</div>
-                    <div className='w-2/3'>{room.description}</div>
+                    {room.single_beds ? <p>{`Single Beds: ${room.single_beds}`}</p> : null}
+                    {room.double_beds ? <p>{`Double Beds: ${room.double_beds}`}</p> : null}
+                    {room.queen_beds ? <p>{`Queen Beds: ${room.queen_beds}`}</p> : null}
+                    {room.king_beds ? <p>{`King Beds: ${room.king_beds}`}</p> : null}
+                    {room.bunk_beds ? <p>{`Bunk Beds: ${room.bunk_beds}`}</p> : null}
                   </div></li>
               })}
             </ul>
