@@ -36,7 +36,6 @@ function AddRoomForm () {
   }
 
   function handleAddroom (e) {
-    console.log('addroom')
     e.preventDefault()
     addRoom(form)
       .then(() => {
